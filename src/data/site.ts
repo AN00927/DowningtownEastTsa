@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
 // Site-wide configuration. Edit values here to update the whole site.
-// PLACEHOLDER values are marked with TODO — replace before launch.
+// PLACEHOLDER values are marked with TODO. Replace them before launch.
 // ---------------------------------------------------------------------------
 
 export const site = {
@@ -10,7 +10,7 @@ export const site = {
   tagline:
     "Use this website as a resource to prepare and be successful in your event this year!",
   description:
-    "The Technology Student Association (TSA) chapter at Downingtown East High School — a national organization that develops skills in science, technology, engineering, and mathematics (STEM) through competitive events.",
+    "Downingtown East TSA is a club at East where students interested in engineering and related fields can compete in a variety of STEM events. TSA is a national organization created to develop skills in science, technology, engineering, and mathematics (STEM) and business education.",
   // Used for canonical URLs / Open Graph. TODO: set to your real domain.
   url: "https://deasttsa.example.com",
 
@@ -25,10 +25,9 @@ export const site = {
   // Primary navigation. Order = display order.
   nav: [
     { label: "Home", href: "/" },
-    { label: "Events", href: "/events" },
-    { label: "Find My Event", href: "/quiz" },
+    { label: "Competitive Events", href: "/events" },
     { label: "Event Support", href: "/support" },
-    { label: "Officers", href: "/officers" },
+    { label: "Officer Team", href: "/officers" },
     { label: "News", href: "/news" },
     { label: "Achievements", href: "/achievements" },
     { label: "FAQ", href: "/faq" },

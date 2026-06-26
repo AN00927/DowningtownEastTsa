@@ -8,7 +8,7 @@ export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Avoid hydration mismatch — only render the real icon after mount.
+  // Avoid hydration mismatch by only rendering the real icon after mount.
   useEffect(() => setMounted(true), []);
 
   const isDark = resolvedTheme === "dark";

@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------------------
-// Frequently asked questions. PLACEHOLDER answers — edit to match your chapter.
+// Frequently asked questions. PLACEHOLDER answers. Edit to match your chapter.
 // ---------------------------------------------------------------------------
 
 export interface FaqItem {

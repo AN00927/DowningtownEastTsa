@@ -94,7 +94,7 @@ export function QuizFlow() {
             Events you might love
           </h2>
           <p className="mt-2 text-muted-foreground">
-            Based on your answers. Explore them — you&apos;re not locked in!
+            Based on your answers. Look through them, you&apos;re not locked in!
           </p>
         </div>
 

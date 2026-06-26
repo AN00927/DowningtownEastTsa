@@ -129,8 +129,8 @@ export default function SupportPage() {
                 </div>
 
                 <p className="mt-3 text-xs text-muted-foreground">
-                  Placeholder PDF — to be replaced with the final all-in-one prep
-                  guide before launch.
+                  This is a placeholder PDF. It will be replaced with the real
+                  prep guide before launch.
                 </p>
               </div>
             </div>
@@ -144,8 +144,8 @@ export default function SupportPage() {
           <SectionHeading
             align="left"
             eyebrow="Resources"
-            title="Quick Links"
-            subtitle="Forms, rules, and official TSA websites you'll use throughout the season."
+            title="Helpful Quick Links"
+            subtitle="Forms, rules, and the official TSA websites you'll use all year."
           />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {quickLinks.map((link) => (
@@ -161,8 +161,8 @@ export default function SupportPage() {
           <SectionHeading
             align="left"
             eyebrow="Templates"
-            title="Documentation Portfolio Templates & Examples"
-            subtitle="Starter templates and sample winning portfolios to model your own work on."
+            title="Documentation Portfolio Templates + Examples"
+            subtitle="You can use these to give you inspiration!"
           />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {portfolioExamples.map((link) => (
@@ -178,7 +178,7 @@ export default function SupportPage() {
           <SectionHeading
             align="left"
             eyebrow="In person"
-            title="Lunch n' Learn"
+            title="Lunch n' Learn Support Time"
           />
           <Card className="flex flex-col gap-4 p-6 sm:flex-row sm:items-start">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[var(--radius-base)] bg-primary text-primary-foreground">
@@ -190,9 +190,9 @@ export default function SupportPage() {
                 <Badge className="border-accent text-accent">Placeholder</Badge>
               </div>
               <p className="text-sm text-muted-foreground">
-                Bring your lunch and your questions. Officers host informal
-                drop-in sessions to help you read the rules, plan your event, and
-                review your documentation portfolio — no appointment needed.
+                Bring your lunch and your questions. Officers host drop in
+                sessions to help you read the rules, plan your event, and look
+                over your documentation portfolio. No appointment needed.
               </p>
               <p className="text-xs text-muted-foreground">
                 Exact days, times, and room are placeholder details and will be
@@ -236,10 +236,10 @@ export default function SupportPage() {
                 <Youtube className="h-6 w-6" aria-hidden />
               </div>
               <div className="space-y-2">
-                <h3 className="text-lg font-semibold">Watch prep videos</h3>
+                <h3 className="text-lg font-semibold">Youtube Support</h3>
                 <p className="text-sm text-muted-foreground">
-                  Our YouTube channel has walkthroughs and tips to help you
-                  prepare for your event. Subscribe so you never miss one.
+                  Use the youtube videos we have created to prepare for your
+                  events and interviews!
                 </p>
               </div>
               <a

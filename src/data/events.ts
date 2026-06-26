@@ -1,8 +1,8 @@
 // ---------------------------------------------------------------------------
 // Competitive events catalog. Powers /events (search + filters) and /quiz.
 // To add/edit an event, edit an entry below. `id` must stay unique + kebab-case.
-// Descriptions are short summaries — link members to the official TSA rules
-// for the authoritative requirements (see src/data/resources.ts).
+// Descriptions are short summaries. Send members to the official TSA rules
+// for the full requirements (see src/data/resources.ts).
 // ---------------------------------------------------------------------------
 
 export const EVENT_CATEGORIES = [
@@ -37,7 +37,7 @@ export function participationOf(e: TsaEvent): Participation {
 export function teamSizeLabel(e: TsaEvent): string {
   if (e.teamMax === 1) return "Individual";
   if (e.teamMin === e.teamMax) return `Team of ${e.teamMax}`;
-  return `Team of ${e.teamMin}–${e.teamMax}`;
+  return `Team of ${e.teamMin} to ${e.teamMax}`;
 }
 
 export const events: TsaEvent[] = [
@@ -52,7 +52,7 @@ export const events: TsaEvent[] = [
   { id: "photographic-technology", name: "Photographic Technology", category: "Creative & Design", scope: "national", teamMin: 1, teamMax: 1, blurb: "Build a portfolio that demonstrates technical and creative imaging expertise." },
   { id: "promotional-design", name: "Promotional Design", category: "Creative & Design", scope: "national", teamMin: 1, teamMax: 1, blurb: "Create a graphic design resource packet that promotes a product or idea." },
   { id: "video-game-design", name: "Video Game Design", category: "Creative & Design", scope: "national", teamMin: 2, teamMax: 6, blurb: "Build an E-rated online game that addresses the annual theme." },
-  { id: "vr-visualization", name: "Virtual Reality Visualization", category: "Creative & Design", scope: "national", teamMin: 1, teamMax: 6, blurb: "Create a 2–3 minute virtual reality experience." },
+  { id: "vr-visualization", name: "Virtual Reality Visualization", category: "Creative & Design", scope: "national", teamMin: 1, teamMax: 6, blurb: "Create a 2 to 3 minute virtual reality experience." },
   { id: "webmaster", name: "Webmaster", category: "Creative & Design", scope: "national", teamMin: 2, teamMax: 6, blurb: "Design, build, and launch a website on an assigned topic." },
 
   // --- Engineering & Technology -------------------------------------------
@@ -79,9 +79,9 @@ export const events: TsaEvent[] = [
   // --- Media & Communication ----------------------------------------------
   { id: "digital-video-production", name: "Digital Video Production", category: "Media & Communication", scope: "national", teamMin: 1, teamMax: 6, blurb: "Produce a short video with a supporting documentation portfolio." },
   { id: "essays-on-technology", name: "Essays on Technology", category: "Media & Communication", scope: "national", teamMin: 1, teamMax: 1, blurb: "Write a research-based essay on a technology topic within a 2-hour window." },
-  { id: "extemporaneous-speech", name: "Extemporaneous Speech", category: "Media & Communication", scope: "national", teamMin: 1, teamMax: 1, blurb: "Deliver a 3–5 minute impromptu speech on a drawn topic." },
+  { id: "extemporaneous-speech", name: "Extemporaneous Speech", category: "Media & Communication", scope: "national", teamMin: 1, teamMax: 1, blurb: "Deliver a 3 to 5 minute impromptu speech on a drawn topic." },
   { id: "on-demand-video", name: "On Demand Video", category: "Media & Communication", scope: "national", teamMin: 2, teamMax: 6, blurb: "Create a 60-second film on a surprise theme within 36 hours." },
-  { id: "prepared-presentation", name: "Prepared Presentation", category: "Media & Communication", scope: "national", teamMin: 1, teamMax: 1, blurb: "Give a 3–5 minute prepared speech on the annual conference theme." },
+  { id: "prepared-presentation", name: "Prepared Presentation", category: "Media & Communication", scope: "national", teamMin: 1, teamMax: 1, blurb: "Give a 3 to 5 minute prepared speech on the annual conference theme." },
 
   // --- Academic & Competition ---------------------------------------------
   { id: "chapter-team", name: "Chapter Team", category: "Academic & Competition", scope: "national", teamMin: 6, teamMax: 6, blurb: "Demonstrate parliamentary procedure knowledge through a test and ceremony." },

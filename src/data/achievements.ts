@@ -1,12 +1,12 @@
 // ---------------------------------------------------------------------------
-// Achievements / results wall. Newest year first. PLACEHOLDER entries —
-// replace with real competition results.
+// Achievements / results wall. Newest year first. PLACEHOLDER entries.
+// Replace with real competition results.
 // ---------------------------------------------------------------------------
 
 export interface Achievement {
   year: string;
   event: string;
-  placement: string; // e.g. "1st Place – States", "6th Place – Nationals"
+  placement: string; // e.g. "1st Place", "6th Place"
   level: "Regional" | "State" | "National";
   members: string; // PLACEHOLDER names or "DE TSA Team"
 }

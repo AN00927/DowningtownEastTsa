@@ -1,18 +1,18 @@
 // ---------------------------------------------------------------------------
 // Upcoming dates. The homepage countdown targets `nextCompetition`.
 // Set `date` to "" (empty) to show a "no current competitions" message.
-// PLACEHOLDER dates — replace with your real schedule.
+// PLACEHOLDER dates. Replace with your real schedule.
 // ---------------------------------------------------------------------------
 
 export interface CalendarEvent {
   name: string;
-  date: string; // ISO datetime, e.g. "2026-04-15T09:00:00" — or "" for none
+  date: string; // ISO datetime, e.g. "2026-04-15T09:00:00", or "" for none
   location?: string;
 }
 
 export const nextCompetition: CalendarEvent = {
   name: "PA-TSA State Conference",
-  date: "2026-04-15T09:00:00", // PLACEHOLDER — set the real date/time
+  date: "2026-04-15T09:00:00", // PLACEHOLDER. Set the real date/time
   location: "Seven Springs, PA (placeholder)",
 };
 

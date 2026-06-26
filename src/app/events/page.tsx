@@ -16,7 +16,7 @@ export default function EventsPage() {
     <>
       <PageHeader
         title="Competitive Events"
-        subtitle="Discover your future event! Search and filter to find the right fit."
+        subtitle="Discover your future event!"
       />
       <Section>
         <Container>
@@ -29,7 +29,7 @@ export default function EventsPage() {
               <div>
                 <h2 className="font-semibold">Not sure which event to pick?</h2>
                 <p className="text-sm text-muted-foreground">
-                  Answer a few quick questions and we&apos;ll recommend events for you.
+                  Use our quiz to determine which event best suits your interests.
                 </p>
               </div>
             </div>
@@ -37,7 +37,7 @@ export default function EventsPage() {
               href="/quiz"
               className="shrink-0 font-semibold text-accent hover:underline"
             >
-              Take the quiz →
+              Take the Quiz
             </Link>
           </Card>
 

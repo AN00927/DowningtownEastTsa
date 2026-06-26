@@ -21,7 +21,7 @@ import { buttonClass } from "@/components/ui";
 //        </form>
 //
 //      (When using Formspree's native action, the name attributes above are
-//      what Formspree reads — you can drop the controlled React state.)
+//      what Formspree reads, so you can drop the controlled React state.)
 // ---------------------------------------------------------------------------
 
 const inputClass =
@@ -49,7 +49,7 @@ export function ContactForm() {
       >
         <p className="font-semibold">Thanks!</p>
         <p className="mt-2 text-muted-foreground">
-          This is a demo form — connect it to a form service like Formspree to
+          This is a demo form. Connect it to a form service like Formspree to
           receive messages.
         </p>
       </div>

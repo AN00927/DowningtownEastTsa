@@ -35,8 +35,8 @@ export const quiz: QuizQuestion[] = [
     id: "work-style",
     prompt: "How do you prefer to work?",
     options: [
-      { label: "Solo — I do my best work on my own", events: {} },
-      { label: "Small team of 2–3", categories: { "Science & Research": 1 } },
+      { label: "Solo. I do my best work on my own", events: {} },
+      { label: "Small team of 2 to 3", categories: { "Science & Research": 1 } },
       { label: "Big team where everyone has a role", categories: { "Engineering & Technology": 1, "Creative & Design": 1 } },
     ],
   },
@@ -64,7 +64,7 @@ export const quiz: QuizQuestion[] = [
     id: "spotlight",
     prompt: "How do you feel about presenting to judges?",
     options: [
-      { label: "Love the spotlight — give me a mic", categories: { "Media & Communication": 2 }, events: { "extemporaneous-speech": 2 } },
+      { label: "Love the spotlight, give me a mic", categories: { "Media & Communication": 2 }, events: { "extemporaneous-speech": 2 } },
       { label: "Fine presenting a project I built", categories: { "Engineering & Technology": 1, "Creative & Design": 1 } },
       { label: "I'd rather let the work speak for itself", categories: { "Science & Research": 1, "Academic & Competition": 1 } },
     ],

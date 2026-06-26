@@ -19,20 +19,20 @@ read announcements, and contact the chapter.
 ```bash
 npm install      # install dependencies
 npm run dev      # start the dev server at http://localhost:3000
-npm run build    # production build (must pass cleanly — TS strict + eslint)
+npm run build    # production build (must pass cleanly: TS strict + eslint)
 npm run start    # serve the production build
 ```
 
 ## Where to edit content
 
-All site content lives in `src/data/*` — edit these files, never hardcode
+All site content lives in `src/data/*`. Edit these files, never hardcode
 content in pages:
 
 | File | Controls |
 | --- | --- |
 | `src/data/site.ts` | School/chapter name, tagline, description, canonical `url`, social links, and the primary navigation. |
 | `src/data/events.ts` | The competitive events list, event categories, and participation/team-size helpers. |
-| `src/data/officers.ts` | Officer roster and advisor info (placeholders — no personal emails). |
+| `src/data/officers.ts` | Officer roster and advisor info (placeholders, no personal emails). |
 | `src/data/news.ts` | News / announcements (newest first; `slug`, `title`, `date`, `excerpt`, `body`). |
 | `src/data/achievements.ts` | Chapter achievements / awards. |
 | `src/data/faq.ts` | Frequently asked questions. |
@@ -70,7 +70,7 @@ Officer names, photos, and grades are placeholders until cleared for publication
 
 1. Push this repository to GitHub (or GitLab/Bitbucket).
 2. In [Vercel](https://vercel.com), click **New Project** and import the repo.
-3. Vercel auto-detects Next.js — no extra config is needed. Keep the default
+3. Vercel auto-detects Next.js, so no extra config is needed. Keep the default
    build command (`next build`) and output settings.
 4. Set the production domain, then update `url` in `src/data/site.ts` to match.
 5. Deploy. Pushes to the main branch trigger automatic production deploys;

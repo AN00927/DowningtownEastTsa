@@ -1,13 +1,13 @@
 // ---------------------------------------------------------------------------
 // Officer team. ALL personal info is PLACEHOLDER per privacy decision.
 // Roles are preserved from the chapter structure. Replace name/grade/photo
-// privately before launch. Do NOT publish student personal emails — use the
+// privately before launch. Do NOT publish student personal emails. Use the
 // /contact form instead.
 // ---------------------------------------------------------------------------
 
 export interface Officer {
   role: string;
-  /** PLACEHOLDER — replace with real name before launch. */
+  /** PLACEHOLDER. Replace with real name before launch. */
   name: string;
   /** e.g. "Senior", "Junior". PLACEHOLDER. */
   grade: string;

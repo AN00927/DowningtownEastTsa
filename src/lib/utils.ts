@@ -1,4 +1,4 @@
-// Tiny className combiner — avoids pulling in extra deps.
+// Tiny className combiner that avoids pulling in extra deps.
 export function cn(...classes: Array<string | false | null | undefined>): string {
   return classes.filter(Boolean).join(" ");
 }

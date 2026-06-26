@@ -7,7 +7,7 @@ import { site } from "@/data/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Downingtown East TSA — questions, sign-ups, and more.",
+    "Get in touch with Downingtown East TSA. Questions, sign-ups, and more.",
 };
 
 const socialLinks = [
@@ -22,7 +22,7 @@ export default function ContactPage() {
     <>
       <PageHeader
         title="Contact Us"
-        subtitle="Questions about TSA? Reach out — we'd love to hear from you."
+        subtitle="Questions about TSA? Reach out, we'd love to hear from you."
       />
       <Section>
         <Container>

@@ -56,7 +56,7 @@ export function CountdownTimer({
   if (!time) {
     return (
       <p className="text-lg font-semibold text-accent">
-        {name} is here — good luck, competitors!
+        {name} is here. Good luck, competitors!
       </p>
     );
   }
