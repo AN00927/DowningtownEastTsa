@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+/* Enable class-based dark mode (next-themes adds class="dark" on <html>). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------------------
+   Brand + semantic tokens. TSA palette: navy / red / white.
+   Light theme is the default; .dark overrides below.
+--------------------------------------------------------------------------- */
+:root {
+  --background: #ffffff;
+  --foreground: #0d1530;
+  --muted: #f4f6fb;
+  --muted-foreground: #586079;
+  --card: #ffffff;
+  --card-foreground: #0d1530;
+  --border: #e3e7f0;
+  --input: #e3e7f0;
+
+  /* Brand */
+  --navy: #102a56;
+  --navy-foreground: #ffffff;
+  --red: #d81e3f;
+  --red-foreground: #ffffff;
+
+  --primary: var(--navy);
+  --primary-foreground: #ffffff;
+  --accent: var(--red);
+  --accent-foreground: #ffffff;
+
+  --ring: #2a4a8a;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: #0a1024;
+  --foreground: #e8ecf6;
+  --muted: #121a36;
+  --muted-foreground: #9aa3c0;
+  --card: #0f1730;
+  --card-foreground: #e8ecf6;
+  --border: #233056;
+  --input: #233056;
+
+  --navy: #5b86d6;
+  --navy-foreground: #08112a;
+  --red: #ff5470;
+  --red-foreground: #1a0008;
+
+  --primary: #6e9bff;
+  --primary-foreground: #08112a;
+  --accent: #ff5470;
+  --accent-foreground: #1a0008;
+
+  --ring: #6e9bff;
+}
+
+/* Expose tokens to Tailwind utilities (bg-background, text-foreground, etc.) */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-navy: var(--navy);
+  --color-navy-foreground: var(--navy-foreground);
+  --color-red: var(--red);
+  --color-red-foreground: var(--red-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-ring: var(--ring);
+  --radius-base: var(--radius);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Visible focus for keyboard users (accessibility). */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Respect reduced-motion preferences. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
