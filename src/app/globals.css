@@ -1,65 +1,69 @@
 @import "tailwindcss";
 
-/* Enable class-based dark mode (next-themes adds class="dark" on <html>). */
+/* Class-based dark mode (next-themes adds class="dark" on <html>). */
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ---------------------------------------------------------------------------
-   Brand + semantic tokens. TSA palette: navy / red / white.
-   Light theme is the default; .dark overrides below.
+   Matte palette derived from official TSA scarlet / white / navy.
+   Flat fills only: no glossy gradients, neon, or heavy glows. Soft, low-opacity
+   shadows. Red is a sparing accent; navy and paper carry the page.
+   Single light theme (matte) by design.
 --------------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #0b1220;
-  --muted: #f2f5fb;
-  --muted-foreground: #5a6478;
-  --card: #ffffff;
-  --card-foreground: #0b1220;
-  --border: #e6eaf2;
-  --input: #e6eaf2;
+  /* Brand tokens from the brief */
+  --deep-navy: #15233b; /* hero/countdown band, footer, dark sections */
+  --slate-navy: #2a4a7a; /* primary brand: nav, headings, links */
+  --brick-red: #b23a3a; /* accent: buttons, highlights, active states */
+  --brick-dark: #8e2d2d; /* button hover */
+  --paper: #f3f1ec; /* page background (warm off-white) */
+  --card: #faf9f6; /* card / surface background */
+  --ink: #1e2633; /* body text (soft near-black) */
+  --muted-text: #5b6472; /* secondary text */
+  --hairline: #dad6ce; /* hairline borders */
 
-  /* Brand */
-  --navy: #15336b;
-  --navy-foreground: #ffffff;
-  --red: #e11d48;
-  --red-foreground: #ffffff;
+  /* Semantic aliases used across components */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --muted: #ece9e1; /* warm tint for subtle section backgrounds */
+  --muted-foreground: var(--muted-text);
+  --card-foreground: var(--ink);
+  --border: var(--hairline);
+  --input: var(--hairline);
 
-  --primary: var(--navy);
+  --primary: var(--slate-navy);
   --primary-foreground: #ffffff;
-  --accent: var(--red);
+  --accent: var(--brick-red);
   --accent-foreground: #ffffff;
+  --accent-hover: var(--brick-dark);
 
-  --ring: #2a4a8a;
-  --radius: 0.9rem;
-
-  --shadow-color: 220deg 40% 20%;
+  --ring: var(--slate-navy);
+  --radius: 0.75rem;
+  --shadow-color: 222deg 24% 30%;
 }
 
+/* Dark theme: matte navy, kept restrained (no neon/glow). The deep-navy brand
+   bands (countdown, footer) stay the same in both themes. */
 .dark {
-  --background: #070b16;
-  --foreground: #e9edf6;
-  --muted: #101728;
-  --muted-foreground: #98a2b8;
-  --card: #0d1322;
-  --card-foreground: #e9edf6;
-  --border: #1e283f;
-  --input: #1e283f;
+  --background: #0e1424;
+  --foreground: #e7eaf2;
+  --muted: #19223a;
+  --muted-foreground: #9aa3bb;
+  --card: #141d31;
+  --card-foreground: #e7eaf2;
+  --border: #283150;
+  --input: #283150;
 
-  --navy: #6f9bff;
-  --navy-foreground: #060a14;
-  --red: #ff5a76;
-  --red-foreground: #1a0008;
+  --primary: #8aa6e0;
+  --primary-foreground: #0b1120;
+  --accent: #d06a6a;
+  --accent-foreground: #ffffff;
+  --accent-hover: #c25a5a;
 
-  --primary: #6f9bff;
-  --primary-foreground: #060a14;
-  --accent: #ff5a76;
-  --accent-foreground: #1a0008;
-
-  --ring: #6f9bff;
-
-  --shadow-color: 220deg 60% 2%;
+  --ring: #8aa6e0;
+  --shadow-color: 222deg 50% 3%;
 }
 
-/* Expose tokens to Tailwind utilities (bg-background, text-foreground, etc.) */
+/* Expose tokens to Tailwind utilities (bg-background, text-primary, etc.) */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -69,14 +73,12 @@
   --color-card-foreground: var(--card-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
-  --color-navy: var(--navy);
-  --color-navy-foreground: var(--navy-foreground);
-  --color-red: var(--red);
-  --color-red-foreground: var(--red-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-hover: var(--accent-hover);
+  --color-deep-navy: var(--deep-navy);
   --color-ring: var(--ring);
   --radius-base: var(--radius);
 
@@ -100,13 +102,19 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Headings use the display typeface with tighter tracking for a polished feel. */
+/* Headings use the display typeface, brand navy by default (override to white on
+   dark bands). Tight tracking for a sharp, intentional feel. */
 h1,
 h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
+  color: var(--primary);
+}
+
+a {
+  color: inherit;
 }
 
 /* Visible focus for keyboard users (accessibility). */
@@ -116,51 +124,71 @@ h4 {
 }
 
 /* ---------------------------------------------------------------------------
-   Aesthetic utilities
+   Matte utilities (flat, soft shadows only)
 --------------------------------------------------------------------------- */
 
-/* Deep brand-navy hero background. Theme-stable so white text always reads. */
-.hero-bg {
-  background-color: #0a1430;
-  background-image:
-    radial-gradient(60% 80% at 85% 5%, rgba(225, 29, 72, 0.30), transparent 60%),
-    radial-gradient(55% 65% at 5% 100%, rgba(73, 110, 200, 0.45), transparent 60%),
-    linear-gradient(165deg, #112a5e 0%, #0a1430 65%);
-}
-
-.hero-dots {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.8) 1px, transparent 1px);
-  background-size: 26px 26px;
-}
-
-/* Soft, layered shadow for cards on hover. */
+/* Soft, low-opacity shadow for cards. */
 .shadow-soft {
   box-shadow:
-    0 1px 2px hsl(var(--shadow-color) / 0.06),
-    0 8px 24px -12px hsl(var(--shadow-color) / 0.18);
+    0 1px 2px hsl(var(--shadow-color) / 0.05),
+    0 6px 18px -12px hsl(var(--shadow-color) / 0.14);
 }
-
 .shadow-soft-lg {
   box-shadow:
-    0 1px 2px hsl(var(--shadow-color) / 0.08),
-    0 24px 48px -20px hsl(var(--shadow-color) / 0.28);
+    0 1px 2px hsl(var(--shadow-color) / 0.06),
+    0 16px 36px -20px hsl(var(--shadow-color) / 0.2);
 }
 
-/* Accent gradient text for highlight words. */
-.text-gradient {
-  background-image: linear-gradient(120deg, var(--accent), #ff8aa0);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Hairline grid backdrop for light section texture. */
+/* Hairline grid backdrop for subtle texture on light sections. */
 .grid-backdrop {
   background-image:
     linear-gradient(var(--border) 1px, transparent 1px),
     linear-gradient(90deg, var(--border) 1px, transparent 1px);
   background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black, transparent 75%);
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black, transparent 75%);
+}
+
+/* Subtle reveal-on-scroll (used by the Reveal component). */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Staggered word reveal (anime.js-inspired, used by StaggerText). */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise-word {
+  display: inline-block;
+  animation: rise-in 0.6s ease-out both;
+}
+
+/* Digital-clock digit roll: a new number rolls up into place when it changes. */
+@keyframes digit-roll {
+  from {
+    opacity: 0;
+    transform: translateY(55%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.digit-roll {
+  animation: digit-roll 0.4s ease-out;
 }
 
 /* Respect reduced-motion preferences. */
@@ -173,5 +201,15 @@ h4 {
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+  .reveal-init {
+    opacity: 1;
+    transform: none;
+  }
+  .rise-word {
+    animation: none;
+  }
+  .digit-roll {
+    animation: none;
   }
 }

@@ -8,8 +8,7 @@ export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Avoid hydration mismatch: until mounted, `resolvedTheme` is unknown, so keep
-  // every theme-dependent attribute (icon, aria-label, onClick) deterministic.
+  // Keep the first render deterministic to avoid a hydration mismatch.
   useEffect(() => setMounted(true), []);
 
   const isDark = mounted && resolvedTheme === "dark";
@@ -19,7 +18,7 @@ export function ThemeToggle() {
       type="button"
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-[var(--radius-base)] border border-border hover:bg-muted"
+      className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground/80 transition-colors hover:bg-muted hover:text-foreground"
     >
       {isDark ? (
         <Sun className="h-5 w-5" aria-hidden />

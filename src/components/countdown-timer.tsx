@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface TimeLeft {
   days: number;
@@ -8,6 +9,8 @@ interface TimeLeft {
   minutes: number;
   seconds: number;
 }
+
+const ZERO: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
 function diff(targetMs: number): TimeLeft | null {
   const now = Date.now();
@@ -21,17 +24,41 @@ function diff(targetMs: number): TimeLeft | null {
   };
 }
 
+function secsToTime(total: number): TimeLeft {
+  return {
+    days: Math.floor(total / 86_400),
+    hours: Math.floor((total / 3_600) % 24),
+    minutes: Math.floor((total / 60) % 60),
+    seconds: Math.floor(total % 60),
+  };
+}
+
 export function CountdownTimer({
   targetIso,
   name,
+  onDark = false,
+  compact = false,
+  animateIn = false,
 }: {
   targetIso: string;
   name: string;
+  /** Use light text + translucent tiles for placement on a dark hero. */
+  onDark?: boolean;
+  /** Smaller tiles, no trailing "until name" line (for multi-timer grids). */
+  compact?: boolean;
+  /** Count up from 0 to the value when it first scrolls into view. */
+  animateIn?: boolean;
 }) {
   const targetMs = targetIso ? new Date(targetIso).getTime() : NaN;
   const [time, setTime] = useState<TimeLeft | null>(null);
+  const [display, setDisplay] = useState<TimeLeft | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [inView, setInView] = useState(false);
 
+  const introStarted = useRef(false);
+  const introDone = useRef(false);
+
+  // Live ticking.
   useEffect(() => {
     setMounted(true);
     if (!targetIso || Number.isNaN(targetMs)) return;
@@ -40,54 +67,145 @@ export function CountdownTimer({
     return () => clearInterval(id);
   }, [targetIso, targetMs]);
 
+  // Observe visibility so the count-up triggers when reached.
+  const observe = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (!animateIn) return;
+      if (!node) return;
+      const io = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setInView(true);
+            io.disconnect();
+          }
+        },
+        { threshold: 0.35 },
+      );
+      io.observe(node);
+    },
+    [animateIn],
+  );
+
+  // Count-up intro: tween 0 -> value once, when in view.
+  useEffect(() => {
+    if (!animateIn || !time || !inView || introStarted.current) return;
+    introStarted.current = true;
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      introDone.current = true;
+      setDisplay(time);
+      return;
+    }
+
+    const target = time;
+    const total =
+      target.days * 86_400 +
+      target.hours * 3_600 +
+      target.minutes * 60 +
+      target.seconds;
+    const duration = 1300;
+    let start = 0;
+    const frame = (now: number) => {
+      if (!start) start = now;
+      const p = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setDisplay(secsToTime(Math.round(eased * total)));
+      if (p < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        introDone.current = true;
+        setDisplay(target);
+      }
+    };
+    requestAnimationFrame(frame);
+  }, [animateIn, time, inView]);
+
+  // Keep display synced to live time (except while the intro is running).
+  useEffect(() => {
+    if (!time) return;
+    if (!animateIn || introDone.current) setDisplay(time);
+  }, [time, animateIn]);
+
+  const subtle = onDark ? "text-white/70" : "text-muted-foreground";
+
   if (!targetIso || Number.isNaN(targetMs)) {
     return (
-      <p className="text-lg font-medium text-muted-foreground">
-        No current competitions scheduled. Check back soon!
+      <p className={cn("text-lg font-medium", subtle)}>
+        No upcoming competition. Stay tuned!
       </p>
     );
   }
 
-  // Pre-mount / passed: avoid hydration mismatch by rendering neutral state.
   if (!mounted) {
-    return <p className="text-lg text-muted-foreground">Loading countdown…</p>;
+    return <p className={cn("text-lg", subtle)}>Loading countdown...</p>;
   }
 
   if (!time) {
     return (
-      <p className="text-lg font-semibold text-accent">
+      <p
+        className={cn(
+          "text-lg font-semibold",
+          onDark ? "text-white" : "text-accent",
+        )}
+      >
         {name} is here. Good luck, competitors!
       </p>
     );
   }
 
+  const shown = display ?? (animateIn ? ZERO : time);
   const units: { label: string; value: number }[] = [
-    { label: "Days", value: time.days },
-    { label: "Hours", value: time.hours },
-    { label: "Minutes", value: time.minutes },
-    { label: "Seconds", value: time.seconds },
+    { label: "Days", value: shown.days },
+    { label: "Hours", value: shown.hours },
+    { label: "Minutes", value: shown.minutes },
+    { label: "Seconds", value: shown.seconds },
   ];
 
   return (
-    <div>
-      <div className="grid grid-cols-4 gap-3 sm:gap-4">
+    <div ref={observe}>
+      <div className={cn("grid grid-cols-4", compact ? "gap-2" : "gap-3 sm:gap-4")}>
         {units.map((u) => (
           <div
             key={u.label}
-            className="rounded-[var(--radius-base)] border bg-card px-2 py-4 text-center"
+            className={cn(
+              "rounded-[var(--radius-base)] border text-center",
+              compact ? "px-1 py-3" : "px-2 py-5",
+              onDark
+                ? "border-white/15 bg-white/10 text-white backdrop-blur"
+                : "bg-card text-foreground shadow-soft",
+            )}
           >
-            <div className="text-3xl font-bold tabular-nums sm:text-4xl">
+            <div
+              className={cn(
+                "font-bold tabular-nums",
+                compact ? "text-2xl sm:text-3xl" : "text-4xl sm:text-5xl",
+              )}
+            >
               {String(u.value).padStart(2, "0")}
             </div>
-            <div className="mt-1 text-xs uppercase tracking-wide text-muted-foreground">
+            <div
+              className={cn(
+                "mt-1 uppercase tracking-wide",
+                compact ? "text-[10px]" : "text-xs",
+                subtle,
+              )}
+            >
               {u.label}
             </div>
           </div>
         ))}
       </div>
-      <p className="mt-4 text-center text-sm text-muted-foreground">
-        until <span className="font-semibold text-foreground">{name}</span>
-      </p>
+      {!compact && (
+        <p className={cn("mt-5 text-center text-sm", subtle)}>
+          until{" "}
+          <span
+            className={cn("font-semibold", onDark ? "text-white" : "text-foreground")}
+          >
+            {name}
+          </span>
+        </p>
+      )}
     </div>
   );
 }

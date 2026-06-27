@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Facebook, Instagram, Youtube, GraduationCap } from "lucide-react";
+import { Facebook, Instagram, Youtube } from "lucide-react";
 import { site } from "@/data/site";
 import { Container } from "./ui";
 
@@ -7,84 +7,77 @@ const socialLinks = [
   { href: site.socials.facebook, label: "Facebook", Icon: Facebook },
   { href: site.socials.instagram, label: "Instagram", Icon: Instagram },
   { href: site.socials.youtube, label: "YouTube", Icon: Youtube },
-  { href: site.socials.schoology, label: "Schoology", Icon: GraduationCap },
 ];
 
 export function Footer() {
-  const year = "2025";
+  const year = "2026";
   return (
-    <footer className="border-t bg-muted/40">
-      <Container className="py-12">
-        <div className="flex flex-col gap-8 md:flex-row md:justify-between">
+    <footer className="bg-deep-navy text-white/80">
+      <Container className="py-14">
+        <div className="flex flex-col gap-10 md:flex-row md:items-start md:gap-28">
+          {/* Brand */}
           <div className="max-w-sm">
-            <div className="flex items-center gap-2 font-bold">
-              <span className="flex h-9 w-9 items-center justify-center rounded-[var(--radius-base)] bg-primary text-primary-foreground">
+            <div className="flex items-center gap-2.5 font-bold text-white">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-sm">
                 TSA
               </span>
               {site.chapterName}
             </div>
-            <p className="mt-3 text-sm text-muted-foreground">
-              {site.description}
-            </p>
+            <p className="mt-4 text-sm text-white/70">{site.description}</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
-            <FooterCol
-              title="Explore"
-              links={site.nav.slice(0, 5)}
-            />
-            <FooterCol title="More" links={site.nav.slice(5)} />
-            <div>
-              <h3 className="mb-3 text-sm font-semibold">Connect</h3>
-              <ul className="flex gap-3">
-                {socialLinks.map(({ href, label, Icon }) => (
-                  <li key={label}>
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={label}
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-[var(--radius-base)] border border-border hover:bg-muted"
-                    >
+          {/* Quick nav */}
+          <nav aria-label="Footer">
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
+              Pages
+            </h2>
+            <ul className="space-y-2.5">
+              {site.nav.map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="text-sm text-white/70 transition-colors hover:text-white"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Social */}
+          <div>
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
+              Connect
+            </h2>
+            <ul className="flex flex-col gap-3">
+              {socialLinks.map(({ href, label, Icon }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 text-sm text-white/70 transition-colors hover:text-white"
+                  >
+                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/20">
                       <Icon className="h-4 w-4" aria-hidden />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+                    </span>
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="mt-10 border-t pt-6 text-sm text-muted-foreground">
-          © {year} {site.chapterName}. All rights reserved.
+        <div className="mt-12 border-t border-white/15 pt-6 text-sm text-white/60">
+          <p>© {year} {site.chapterName}. All rights reserved.</p>
+          <p className="mt-1">
+            Designed and developed by Rishabh Patel, Ahaan Nigam, and Neel
+            Vangala.
+          </p>
         </div>
       </Container>
     </footer>
-  );
-}
-
-function FooterCol({
-  title,
-  links,
-}: {
-  title: string;
-  links: readonly { label: string; href: string }[];
-}) {
-  return (
-    <div>
-      <h3 className="mb-3 text-sm font-semibold">{title}</h3>
-      <ul className="space-y-2">
-        {links.map((l) => (
-          <li key={l.href}>
-            <Link
-              href={l.href}
-              className="text-sm text-muted-foreground hover:text-foreground"
-            >
-              {l.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
   );
 }

@@ -1,322 +1,155 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  Compass,
-  LifeBuoy,
-  Sparkles,
-  Users,
-} from "lucide-react";
-import {
-  ButtonLink,
-  Card,
-  Container,
-  Eyebrow,
-  Section,
-} from "@/components/ui";
-import { ImagePlaceholder } from "@/components/placeholder";
-import { events, EVENT_CATEGORIES } from "@/data/events";
-import { officers } from "@/data/officers";
-import { news } from "@/data/news";
+import { ArrowRight, Compass, ImageIcon, LifeBuoy, Users } from "lucide-react";
+import { ButtonLink, Card, Container, Eyebrow, Section } from "@/components/ui";
+import { Carousel, type Slide } from "@/components/carousel";
+import { NextCompetitionClock } from "@/components/next-competition-clock";
+import { Reveal } from "@/components/reveal";
+import { StaggerText } from "@/components/stagger-text";
+import { Magnetic } from "@/components/magnetic";
+import { TiltCard } from "@/components/tilt-card";
+import { DotGrid } from "@/components/dot-grid";
+import { conferences } from "@/data/calendar";
 import { site } from "@/data/site";
-import { formatDate } from "@/lib/utils";
 
-const stats = [
-  { value: `${events.length}`, label: "Competitive events" },
-  { value: `${EVENT_CATEGORIES.length}`, label: "Event categories" },
-  { value: "3", label: "Levels: regional, state, national" },
-  { value: `${officers.length}`, label: "Student officers" },
+// Placeholder slides. Swap `src` with real photo paths under /public later.
+const slides: Slide[] = [
+  { src: "", alt: "Chapter photo 1 (add your photo)" },
+  { src: "", alt: "Chapter photo 2 (add your photo)" },
+  { src: "", alt: "Chapter photo 3 (add your photo)" },
+  { src: "", alt: "Chapter photo 4 (add your photo)" },
 ];
 
-const whyJoin = [
+const quickLinks = [
   {
-    title: "Compete in real events",
-    body: "From robotics and coding to video, design, and engineering, there is something for everyone.",
-  },
-  {
-    title: "Build something real",
-    body: "Work hands on, on your own or with a team, and take your project all the way to competition.",
-  },
-  {
-    title: "Grow and lead",
-    body: "Make friends, learn from older members, and build skills that help with college and beyond.",
-  },
-];
-
-const categoryBlurbs: Record<string, string> = {
-  "Creative & Design":
-    "Design and create, from games and fashion to virtual reality and web design.",
-  "Engineering & Technology":
-    "Robotics, CAD, structures, drones, and other hands on builds.",
-  "Science & Research":
-    "Data science, biotechnology, forensics, and geospatial problem solving.",
-  "Media & Communication":
-    "Video, public speaking, writing, and presentations.",
-  "Academic & Competition":
-    "Coding, debate, parliamentary procedure, and knowledge events.",
-};
-
-const explore = [
-  {
-    title: "Competitive Events",
-    body: "Look through every event and find the right one for you.",
+    title: "Events",
+    description: "Browse every competitive event and find the right one for you.",
     href: "/events",
     Icon: Compass,
   },
   {
-    title: "Event Support",
-    body: "Rules, forms, templates, and prep resources in one place.",
-    href: "/support",
+    title: "Resources",
+    description: "Rules, forms, templates, and prep support all in one place.",
+    href: "/resources",
     Icon: LifeBuoy,
   },
   {
-    title: "Officer Team",
-    body: "Meet the officers running the club this year.",
-    href: "/officers",
+    title: "Team",
+    description: "Meet the officers and committees running the club this year.",
+    href: "/team",
     Icon: Users,
   },
 ];
 
 export default function HomePage() {
-  const latestNews = news.slice(0, 3);
-  const categories = EVENT_CATEGORIES.map((name) => ({
-    name,
-    count: events.filter((e) => e.category === name).length,
-    blurb: categoryBlurbs[name],
-  }));
-
   return (
     <>
-      {/* 1. Opening (split intro, intentionally NOT a full hero) */}
-      <Section className="relative isolate overflow-hidden">
-        <div className="grid-backdrop absolute inset-0 -z-10 opacity-50" aria-hidden />
-        <Container>
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <div>
-              <Eyebrow>{site.schoolName}</Eyebrow>
-              <h1 className="mt-4 text-balance text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-6xl">
-                Welcome to Downingtown East TSA
-              </h1>
-              <p className="mt-6 max-w-lg text-lg text-muted-foreground">
-                {site.tagline}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <ButtonLink href="/events" variant="primary" size="lg">
-                  Browse Events <ArrowRight className="h-4 w-4" />
-                </ButtonLink>
-                <ButtonLink href="/quiz" variant="outline" size="lg">
-                  Find My Event
-                </ButtonLink>
-              </div>
-            </div>
-            <ImagePlaceholder
-              label="Add a club photo here"
-              aspect="aspect-[4/3]"
-              className="shadow-soft-lg"
-            />
-          </div>
-        </Container>
-      </Section>
-
-      {/* 2. Stats strip (social-proof analog) */}
-      <Section className="border-y bg-muted/40 !py-12">
-        <Container>
-          <dl className="grid grid-cols-2 gap-8 text-center sm:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.label}>
-                <dt className="text-4xl font-extrabold tracking-tight text-primary sm:text-5xl">
-                  {s.value}
-                </dt>
-                <dd className="mt-2 text-sm text-muted-foreground">{s.label}</dd>
-              </div>
-            ))}
-          </dl>
-        </Container>
-      </Section>
-
-      {/* 3. Why join (value proposition) */}
-      <Section>
-        <Container>
-          <div className="mx-auto mb-12 flex max-w-2xl flex-col items-center text-center">
-            <Eyebrow>Why join</Eyebrow>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              A place to make, compete, and belong
-            </h2>
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {whyJoin.map((item, i) => (
-              <Card key={item.title} className="p-7">
-                <span className="text-4xl font-extrabold text-accent/30">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-3 text-xl font-semibold">{item.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{item.body}</p>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* 4. Event categories (numbered "stack" analog) */}
-      <Section className="border-t bg-muted/40">
-        <Container>
-          <div className="mb-12 max-w-2xl">
-            <Eyebrow>What you can compete in</Eyebrow>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              Explore by category
-            </h2>
-            <p className="mt-4 text-muted-foreground">
-              Every event falls into one of these areas. Browse them all on the
-              events page.
+      {/* 1. Photo carousel with floating welcome banner over it */}
+      <Carousel
+        slides={slides}
+        overlay={
+          <div className="pointer-events-auto mx-auto max-w-sm rounded-2xl border border-white/15 bg-deep-navy/70 px-5 py-5 text-center shadow-soft-lg sm:max-w-md sm:px-7 sm:py-6">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/65">
+              {site.schoolName}
             </p>
+            <h1 className="mt-2 text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
+              <StaggerText text="Welcome to Downingtown East TSA!" />
+            </h1>
+            <p className="mx-auto mt-2.5 max-w-xs text-sm text-white/80">
+              {site.tagline}
+            </p>
+            <div className="mt-4">
+              <Magnetic>
+                <ButtonLink href="#about" variant="accent" size="md">
+                  Learn More <ArrowRight className="h-4 w-4" aria-hidden />
+                </ButtonLink>
+              </Magnetic>
+            </div>
           </div>
-          <div className="divide-y divide-border overflow-hidden rounded-[var(--radius-base)] border bg-card shadow-soft">
-            {categories.map((c, i) => (
-              <Link
-                key={c.name}
-                href="/events"
-                className="group flex items-center gap-5 p-6 transition-colors hover:bg-muted/60"
-              >
-                <span className="text-lg font-bold tabular-nums text-accent/50">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="flex-1">
-                  <h3 className="font-semibold">{c.name}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{c.blurb}</p>
-                </div>
-                <span className="hidden shrink-0 text-sm text-muted-foreground sm:block">
-                  {c.count} events
-                </span>
-                <ArrowRight className="h-5 w-5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-accent" />
-              </Link>
-            ))}
-          </div>
-        </Container>
-      </Section>
+        }
+      />
 
-      {/* 5. HERO #1 (interior, full-bleed gradient): find your event */}
-      <section className="hero-bg relative isolate overflow-hidden text-white">
-        <div className="hero-dots absolute inset-0 -z-10 opacity-[0.06]" />
-        <Container className="py-24 text-center sm:py-32">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-medium backdrop-blur">
-            <Sparkles className="h-4 w-4" />
-            New here?
-          </span>
-          <h2 className="mx-auto mt-6 max-w-3xl text-balance text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl">
-            Find the event that fits you
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg text-white/75">
-            Answer a few quick questions and we will point you to events that
-            match your interests.
-          </p>
-          <div className="mt-9 flex flex-wrap justify-center gap-3">
-            <ButtonLink href="/quiz" variant="accent" size="lg">
-              Take the Quiz <ArrowRight className="h-4 w-4" />
-            </ButtonLink>
-            <ButtonLink
-              href="/events"
-              size="lg"
-              className="border border-white/30 bg-white/10 text-white hover:-translate-y-0.5 hover:bg-white/20"
-            >
-              Browse all events
-            </ButtonLink>
-          </div>
-        </Container>
-      </section>
-
-      {/* 6. Explore the club (card grid) */}
-      <Section>
-        <Container>
-          <div className="mb-12 flex flex-col items-center text-center">
-            <Eyebrow>Get started</Eyebrow>
+      {/* 2. About */}
+      <Section id="about">
+        <Container className="max-w-3xl text-center">
+          <Reveal className="flex flex-col items-center">
+            <Eyebrow>About</Eyebrow>
             <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              Explore the club
+              About Downingtown East TSA
             </h2>
+            <p className="mt-6 text-base text-muted-foreground sm:text-lg">
+              Downingtown East TSA is a club for students interested in
+              engineering and other STEM and business fields. We compete in
+              events that range from software to mechanical, building real
+              projects along the way. TSA is a national organization that
+              develops skills in science, technology, engineering, mathematics,
+              and business education.
+            </p>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* 3. Next competition digital clock (auto-advances Regional -> State -> National) */}
+      <section className="relative isolate overflow-hidden bg-deep-navy text-white">
+        <DotGrid className="pointer-events-none absolute inset-0 -z-10 h-full w-full" />
+        <Container className="py-16 sm:py-20">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            {/* Left: clock + details */}
+            <div>
+              <Eyebrow>Next Competition</Eyebrow>
+              <div className="mt-4">
+                <NextCompetitionClock conferences={conferences} />
+              </div>
+            </div>
+
+            {/* Right: conference image placeholder */}
+            <div
+              role="img"
+              aria-label="Conference photo placeholder"
+              className="flex aspect-[4/3] w-full items-center justify-center rounded-2xl border border-dashed border-white/25 bg-white/5"
+            >
+              <div className="flex flex-col items-center gap-2 text-white/55">
+                <ImageIcon className="h-9 w-9" aria-hidden />
+                <span className="text-sm font-medium">Conference photo placeholder</span>
+              </div>
+            </div>
           </div>
+        </Container>
+      </section>
+
+      {/* 4. Quick links */}
+      <Section className="border-y bg-muted/50">
+        <Container>
+          <Reveal className="mb-12 flex flex-col items-center text-center">
+            <Eyebrow>Quick Links</Eyebrow>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+              Everything you need
+            </h2>
+          </Reveal>
           <div className="grid gap-6 md:grid-cols-3">
-            {explore.map(({ title, body, href, Icon }) => (
-              <Link key={href} href={href} className="group">
-                <Card className="flex h-full flex-col p-7 transition-all duration-200 hover:-translate-y-1 hover:shadow-soft-lg">
-                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                    <Icon className="h-6 w-6" />
-                  </span>
-                  <h3 className="mt-5 text-lg font-semibold">{title}</h3>
-                  <p className="mt-2 flex-1 text-sm text-muted-foreground">{body}</p>
-                  <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-accent">
-                    Learn more
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
-                </Card>
-              </Link>
+            {quickLinks.map(({ title, description, href, Icon }, i) => (
+              <Reveal key={href} delay={i * 80}>
+                <TiltCard>
+                  <Card className="flex h-full flex-col p-7 transition-shadow duration-200 hover:shadow-soft-lg">
+                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" aria-hidden />
+                    </span>
+                    <h3 className="mt-5 text-xl font-semibold">{title}</h3>
+                    <p className="mt-2 flex-1 text-sm text-muted-foreground">
+                      {description}
+                    </p>
+                    <Link
+                      href={href}
+                      className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-accent hover:underline"
+                    >
+                      Explore <ArrowRight className="h-4 w-4" aria-hidden />
+                    </Link>
+                  </Card>
+                </TiltCard>
+              </Reveal>
             ))}
           </div>
         </Container>
       </Section>
-
-      {/* 7. Latest news (content hub) */}
-      {latestNews.length > 0 && (
-        <Section className="border-t bg-muted/40">
-          <Container>
-            <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <Eyebrow>Stay in the loop</Eyebrow>
-                <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-                  Latest news
-                </h2>
-              </div>
-              <Link
-                href="/news"
-                className="inline-flex items-center gap-1 text-sm font-semibold text-accent hover:underline"
-              >
-                All news <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-            <div className="grid gap-6 md:grid-cols-3">
-              {latestNews.map((post) => (
-                <Link key={post.slug} href={`/news/${post.slug}`} className="group">
-                  <Card className="flex h-full flex-col p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-soft-lg">
-                    <time className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                      {formatDate(post.date)}
-                    </time>
-                    <h3 className="mt-2 text-lg font-semibold group-hover:text-accent">
-                      {post.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-muted-foreground">
-                      {post.excerpt}
-                    </p>
-                  </Card>
-                </Link>
-              ))}
-            </div>
-          </Container>
-        </Section>
-      )}
-
-      {/* 8. HERO #2 (closing CTA, full-bleed gradient) */}
-      <section className="hero-bg relative isolate overflow-hidden text-white">
-        <div className="hero-dots absolute inset-0 -z-10 opacity-[0.06]" />
-        <Container className="py-24 text-center sm:py-28">
-          <h2 className="mx-auto max-w-2xl text-balance text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Ready to join Downingtown East TSA?
-          </h2>
-          <p className="mx-auto mt-5 max-w-xl text-lg text-white/75">
-            Come build, compete, and meet people who like the same things you
-            do. We would love to have you.
-          </p>
-          <div className="mt-9 flex flex-wrap justify-center gap-3">
-            <ButtonLink href="/contact" variant="accent" size="lg">
-              Get in touch
-            </ButtonLink>
-            <a
-              href={site.socials.schoology}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-13 items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-8 font-semibold transition-all hover:-translate-y-0.5 hover:bg-white/20"
-            >
-              Join us on Schoology
-            </a>
-          </div>
-        </Container>
-      </section>
     </>
   );
 }

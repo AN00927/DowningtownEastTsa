@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/data/site";
-import { news } from "@/data/news";
+import { events } from "@/data/events";
 
 // Fixed lastModified so output is deterministic (no Date.now()).
 const lastModified = new Date("2025-09-01");
@@ -11,10 +11,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified,
   }));
 
-  const newsRoutes = news.map((post) => ({
-    url: `${site.url}/news/${post.slug}`,
+  const eventRoutes = events.map((e) => ({
+    url: `${site.url}/events/${e.id}`,
     lastModified,
   }));
 
-  return [...routes, ...newsRoutes];
+  return [...routes, ...eventRoutes];
 }

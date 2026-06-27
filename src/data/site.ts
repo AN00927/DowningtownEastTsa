@@ -16,23 +16,21 @@ export const site = {
 
   socials: {
     facebook: "https://www.facebook.com/profile.php?id=61562208695319",
-    instagram: "https://www.instagram.com/deast_tsa",
+    instagram: "https://www.instagram.com/deast_tsa/",
     youtube: "https://www.youtube.com/@DowningtownEastTSA",
-    // TODO: replace with the real Schoology group/course join link.
-    schoology: "https://app.schoology.com/",
   },
 
-  // Primary navigation. Order = display order. `primary` items show in the
-  // desktop top bar; everything appears in the mobile menu and the footer.
+  // External tools / embeds. TODO: replace the calendar embed with the real one.
+  quizUrl: "https://deast-tsa-personality-quiz.netlify.app/",
+  calendarEmbedUrl:
+    "https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America%2FNew_York",
+
+  // Primary navigation. Order = display order. Always-visible top bar.
   nav: [
-    { label: "Home", href: "/", primary: true },
-    { label: "Competitive Events", href: "/events", primary: true },
-    { label: "Event Support", href: "/support", primary: true },
-    { label: "Officer Team", href: "/officers", primary: true },
-    { label: "News", href: "/news", primary: false },
-    { label: "Achievements", href: "/achievements", primary: false },
-    { label: "FAQ", href: "/faq", primary: false },
-    { label: "Contact", href: "/contact", primary: true },
+    { label: "Home", href: "/" },
+    { label: "Events", href: "/events" },
+    { label: "Resources", href: "/resources" },
+    { label: "Team", href: "/team" },
   ],
 } as const;
 

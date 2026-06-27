@@ -1,97 +1,84 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./theme-toggle";
 
 export function Navbar() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Subtle scroll-aware elevation. Links stay visible at all sizes.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/70">
-      <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="group flex items-center gap-2.5 font-bold">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-sm text-primary-foreground shadow-soft transition-transform group-hover:scale-105">
-            TSA
-          </span>
-          <span className="hidden text-sm leading-tight sm:block">
+    <header
+      className={cn(
+        "sticky top-0 z-50 border-b bg-background/95 backdrop-blur transition-shadow",
+        scrolled ? "border-border shadow-soft" : "border-border/60",
+      )}
+    >
+      <nav
+        aria-label="Primary"
+        className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-3 sm:px-6 lg:px-8"
+      >
+        {/* Logo. Save the official TSA logo as /public/tsa-logo.png. */}
+        <Link
+          href="/"
+          className="group flex items-center gap-3 font-bold text-primary"
+        >
+          <Image
+            src="/tsa-logo.png"
+            alt="Technology Student Association logo"
+            width={120}
+            height={77}
+            className="h-11 w-auto"
+            priority
+          />
+          <span className="hidden text-sm font-bold leading-tight text-primary sm:block">
             Downingtown East
-            <span className="block text-xs font-normal text-muted-foreground">
-              Technology Student Association
-            </span>
           </span>
         </Link>
 
-        {/* Desktop nav (primary items only, to keep it easy to scan) */}
-        <div className="hidden items-center gap-1 lg:flex">
-          {site.nav.filter((item) => item.primary).map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
-                isActive(item.href)
-                  ? "bg-primary/10 text-primary"
-                  : "text-foreground/70 hover:bg-muted hover:text-foreground",
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
-          <Link
-            href="/quiz"
-            className="ml-2 inline-flex h-10 items-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-soft transition-all hover:-translate-y-0.5 hover:shadow-soft-lg"
-          >
-            Find My Event
-          </Link>
+        {/* Links: always visible, wrap on small screens (no hamburger) */}
+        <div className="flex flex-wrap items-center gap-1 sm:gap-2">
+          <ul className="flex flex-wrap items-center gap-1 sm:gap-2">
+            {site.nav.map((item) => {
+              const active = isActive(item.href);
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    className={cn(
+                      "relative rounded-md px-3 py-2 text-sm font-semibold transition-colors",
+                      "after:absolute after:bottom-1 after:left-3 after:right-3 after:h-0.5 after:origin-left after:rounded-full after:bg-accent after:transition-transform after:duration-300",
+                      active
+                        ? "text-accent after:scale-x-100"
+                        : "text-primary/80 after:scale-x-0 hover:text-primary hover:after:scale-x-100",
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
           <ThemeToggle />
-        </div>
-
-        {/* Mobile controls */}
-        <div className="flex items-center gap-2 lg:hidden">
-          <ThemeToggle />
-          <button
-            type="button"
-            aria-label="Toggle menu"
-            aria-expanded={open}
-            onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-[var(--radius-base)] border border-border hover:bg-muted"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
         </div>
       </nav>
-
-      {/* Mobile menu */}
-      {open && (
-        <div className="border-t lg:hidden">
-          <div className="mx-auto grid max-w-6xl gap-1 px-4 py-3 sm:px-6">
-            {site.nav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className={cn(
-                  "rounded-md px-3 py-2 text-sm font-medium",
-                  isActive(item.href)
-                    ? "bg-muted text-accent"
-                    : "hover:bg-muted",
-                )}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
     </header>
   );
 }

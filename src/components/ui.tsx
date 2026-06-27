@@ -41,8 +41,7 @@ export function Section({
 /** Small uppercase eyebrow label. */
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-accent">
-      <span className="h-px w-6 bg-accent/60" aria-hidden />
+    <span className="inline-flex items-center text-sm font-semibold uppercase tracking-[0.18em] text-accent">
       {children}
     </span>
   );
@@ -135,14 +134,12 @@ type ButtonVariant = "primary" | "accent" | "outline" | "ghost";
 type ButtonSize = "sm" | "md" | "lg";
 
 const buttonBase =
-  "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 focus-visible:outline-2 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 rounded-md font-semibold transition-colors focus-visible:outline-2 disabled:pointer-events-none disabled:opacity-50";
 
 const buttonVariants: Record<ButtonVariant, string> = {
-  primary:
-    "bg-primary text-primary-foreground shadow-soft hover:shadow-soft-lg hover:-translate-y-0.5",
-  accent:
-    "bg-accent text-accent-foreground shadow-soft hover:shadow-soft-lg hover:-translate-y-0.5",
-  outline: "border border-border bg-background hover:bg-muted hover:border-foreground/20",
+  primary: "bg-primary text-primary-foreground shadow-soft hover:opacity-95",
+  accent: "bg-accent text-accent-foreground shadow-soft hover:bg-accent-hover",
+  outline: "border border-border bg-card hover:bg-muted",
   ghost: "bg-transparent hover:bg-muted",
 };
 

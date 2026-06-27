@@ -1,34 +1,38 @@
 // ---------------------------------------------------------------------------
-// Officer team. ALL personal info is PLACEHOLDER per privacy decision.
-// Roles are preserved from the chapter structure. Replace name/grade/photo
-// privately before launch. Do NOT publish student personal emails. Use the
-// /contact form instead.
+// Team data: officers + committees. Names/roles are real (provided by the
+// chapter). Photos and bios are optional placeholders for now (add later).
 // ---------------------------------------------------------------------------
 
 export interface Officer {
   role: string;
-  /** PLACEHOLDER. Replace with real name before launch. */
   name: string;
-  /** e.g. "Senior", "Junior". PLACEHOLDER. */
-  grade: string;
-  /** Events this officer is interested in / competes in. PLACEHOLDER. */
-  interests: string[];
   /** Path under /public, or "" to show the avatar placeholder. */
   photo: string;
+  /** Optional short bio (placeholder until provided). */
+  bio?: string;
 }
 
 export const officers: Officer[] = [
-  { role: "President", name: "Officer Name", grade: "Grade", interests: ["Add interests"], photo: "" },
-  { role: "Vice President", name: "Officer Name", grade: "Grade", interests: ["Add interests"], photo: "" },
-  { role: "Treasurer", name: "Officer Name", grade: "Grade", interests: ["Add interests"], photo: "" },
-  { role: "Secretary", name: "Officer Name", grade: "Grade", interests: ["Add interests"], photo: "" },
-  { role: "Sergeant-at-Arms", name: "Officer Name", grade: "Grade", interests: ["Add interests"], photo: "" },
-  { role: "Reporter", name: "Officer Name", grade: "Grade", interests: ["Add interests"], photo: "" },
+  { role: "Student Advisor", name: "Olivia Smith", photo: "" },
+  { role: "President", name: "Ahaan Nigam", photo: "" },
+  { role: "Vice President", name: "Rishabh Patel", photo: "" },
+  { role: "Treasurer", name: "Purvi Sumanth", photo: "" },
+  { role: "Secretary", name: "Neel Vangala", photo: "" },
+  { role: "Reporter", name: "Advik Kashyap", photo: "" },
 ];
 
-// Optional faculty advisor block (placeholder).
-export const advisor = {
-  role: "Faculty Advisor",
-  name: "Advisor Name",
-  photo: "",
-};
+export interface Committee {
+  name: string;
+  members: string[];
+}
+
+export const committees: Committee[] = [
+  {
+    name: "Fundraising Team",
+    members: ["Sampada Pakkerakari", "Vaishnavi Saripalli"],
+  },
+  {
+    name: "Mentorship Team",
+    members: ["Aditi Bhat", "Akshara Patil", "Rohit Bhattiprolu"],
+  },
+];
