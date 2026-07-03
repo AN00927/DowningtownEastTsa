@@ -13,12 +13,12 @@ export interface Officer {
 }
 
 export const officers: Officer[] = [
-  { role: "Student Advisor", name: "Olivia Smith", photo: "" },
   { role: "President", name: "Ahaan Nigam", photo: "" },
   { role: "Vice President", name: "Rishabh Patel", photo: "" },
   { role: "Treasurer", name: "Purvi Sumanth", photo: "" },
   { role: "Secretary", name: "Neel Vangala", photo: "" },
   { role: "Reporter", name: "Advik Kashyap", photo: "" },
+  { role: "Student Advisor", name: "Olivia Smith", photo: "" },
 ];
 
 export interface Committee {

@@ -64,12 +64,17 @@ export function NextCompetitionClock({ conferences }: { conferences: Conf[] }) {
     return <p className="text-lg text-white/70">Loading countdown...</p>;
   }
 
-  // Walk the conferences in schedule order (Regional, State, National) and show
-  // the first one that is still upcoming: either it has no date yet (shows a
-  // "to be announced" placeholder) or its date is still in the future. Once a
-  // dated conference passes, it is skipped and the next one shows.
-  const next = conferences.find(
+  // Walk the conferences in schedule order (Regional, State, National). The
+  // clock counts down to the FIRST upcoming conference that has a date. If an
+  // earlier conference is still undated, it is shown as a small "date to be
+  // announced" note above the ticking clock, so there is always a live
+  // countdown when any upcoming conference has a date.
+  const upcoming = conferences.filter(
     (c) => !c.date || new Date(c.date).getTime() > now,
+  );
+  const next = upcoming.find((c) => c.date) ?? upcoming[0];
+  const undatedBefore = upcoming.filter(
+    (c) => !c.date && c !== next && upcoming.indexOf(c) < upcoming.indexOf(next),
   );
 
   if (!next) {
@@ -94,19 +99,26 @@ export function NextCompetitionClock({ conferences }: { conferences: Conf[] }) {
 
   return (
     <div>
+      {undatedBefore.length > 0 && (
+        <p className="mb-5 inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 text-xs font-medium tracking-wide text-white/70">
+          {undatedBefore.map((c) => c.name).join(", ")}: date to be announced
+        </p>
+      )}
       <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
         {next.name}
       </h2>
-      <p className="mt-2 text-white/70">
-        {hasDate ? formatDate(next.date) : "Date to be announced"}
-      </p>
-      <p className="mt-1 flex items-center gap-1.5 text-sm text-white/60">
-        <MapPin className="h-4 w-4" aria-hidden />
-        {next.location ? next.location : "Location to be announced"}
-      </p>
+      <div className="mt-4 space-y-2">
+        <p className="text-lg font-medium text-white/85">
+          {hasDate ? formatDate(next.date) : "Date to be announced"}
+        </p>
+        <p className="flex items-center gap-2 text-sm text-white/60">
+          <MapPin className="h-4 w-4 shrink-0" aria-hidden />
+          {next.location ? next.location : "Location to be announced"}
+        </p>
+      </div>
 
       {units.length > 0 ? (
-        <div className="mt-8 grid max-w-xl grid-cols-5 gap-2 sm:gap-3">
+        <div className="mt-10 grid max-w-xl grid-cols-5 gap-2.5 sm:gap-3.5">
           {units.map((u) => (
             <div
               key={u.label}

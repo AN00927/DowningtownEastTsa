@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import {
   PageHeader,
   Section,
   Container,
+  Card,
   Badge,
 } from "@/components/ui";
 import { events, participationOf, type TsaEvent } from "@/data/events";
@@ -43,6 +44,11 @@ export default async function EventDetailPage({ params }: Props) {
   const event = events.find((e) => e.id === id);
   if (!event) notFound();
 
+  // Up to 4 other events in the same category, in catalog order.
+  const related = events
+    .filter((e) => e.category === event.category && e.id !== event.id)
+    .slice(0, 4);
+
   return (
     <>
       <PageHeader title={event.name} eyebrow={event.category} />
@@ -63,6 +69,35 @@ export default async function EventDetailPage({ params }: Props) {
             This is a short summary. Always check the official TSA rules for the
             full event requirements before you compete.
           </p>
+
+          {related.length > 0 && (
+            <div className="mt-12">
+              <h2 className="text-xl font-bold tracking-tight">
+                More in {event.category}
+              </h2>
+              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                {related.map((r) => (
+                  <Link key={r.id} href={`/events/${r.id}`} className="group">
+                    <Card className="flex h-full flex-col p-5 transition-shadow duration-200 hover:shadow-soft-lg">
+                      <h3 className="font-semibold group-hover:text-accent">
+                        {r.name}
+                      </h3>
+                      <p className="mt-1.5 flex-1 text-sm text-muted-foreground">
+                        {r.blurb}
+                      </p>
+                      <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-accent">
+                        View event
+                        <ArrowRight
+                          className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                          aria-hidden
+                        />
+                      </span>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="mt-10 border-t pt-6">
             <Link

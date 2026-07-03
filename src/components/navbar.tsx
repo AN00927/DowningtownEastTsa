@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "./theme-toggle";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -53,8 +52,7 @@ export function Navbar() {
         </Link>
 
         {/* Links: always visible, wrap on small screens (no hamburger) */}
-        <div className="flex flex-wrap items-center gap-1 sm:gap-2">
-          <ul className="flex flex-wrap items-center gap-1 sm:gap-2">
+        <ul className="flex flex-wrap items-center gap-1 sm:gap-2">
             {site.nav.map((item) => {
               const active = isActive(item.href);
               return (
@@ -75,9 +73,7 @@ export function Navbar() {
                 </li>
               );
             })}
-          </ul>
-          <ThemeToggle />
-        </div>
+        </ul>
       </nav>
     </header>
   );
