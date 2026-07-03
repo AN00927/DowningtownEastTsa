@@ -1,8 +1,5 @@
 @import "tailwindcss";
 
-/* Class-based dark mode (next-themes adds class="dark" on <html>). */
-@custom-variant dark (&:where(.dark, .dark *));
-
 /* ---------------------------------------------------------------------------
    Matte palette derived from official TSA scarlet / white / navy.
    Flat fills only: no glossy gradients, neon, or heavy glows. Soft, low-opacity
@@ -41,28 +38,6 @@
   --shadow-color: 222deg 24% 30%;
 }
 
-/* Dark theme: matte navy, kept restrained (no neon/glow). The deep-navy brand
-   bands (countdown, footer) stay the same in both themes. */
-.dark {
-  --background: #0e1424;
-  --foreground: #e7eaf2;
-  --muted: #19223a;
-  --muted-foreground: #9aa3bb;
-  --card: #141d31;
-  --card-foreground: #e7eaf2;
-  --border: #283150;
-  --input: #283150;
-
-  --primary: #8aa6e0;
-  --primary-foreground: #0b1120;
-  --accent: #d06a6a;
-  --accent-foreground: #ffffff;
-  --accent-hover: #c25a5a;
-
-  --ring: #8aa6e0;
-  --shadow-color: 222deg 50% 3%;
-}
-
 /* Expose tokens to Tailwind utilities (bg-background, text-primary, etc.) */
 @theme inline {
   --color-background: var(--background);
@@ -86,35 +61,41 @@
   --font-display: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
 }
 
-* {
-  border-color: var(--border);
-}
+/* Base styles live in the `base` layer so Tailwind utility classes (e.g.
+   `text-white` on dark bands, `border-white/15`) can override them. Un-layered
+   rules would silently win over utilities and cause unreadable navy-on-navy
+   headings. */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
 
-html {
-  scroll-behavior: smooth;
-}
+  html {
+    scroll-behavior: smooth;
+  }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
 
-/* Headings use the display typeface, brand navy by default (override to white on
-   dark bands). Tight tracking for a sharp, intentional feel. */
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-display);
-  letter-spacing: -0.02em;
-  color: var(--primary);
-}
+  /* Headings use the display typeface, brand navy by default (overridden to
+     white on dark bands). Tight tracking for a sharp, intentional feel. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    color: var(--primary);
+  }
 
-a {
-  color: inherit;
+  a {
+    color: inherit;
+  }
 }
 
 /* Visible focus for keyboard users (accessibility). */
@@ -191,6 +172,40 @@ a {
   animation: digit-roll 0.4s ease-out;
 }
 
+/* Auto-scrolling marquee. The track renders its items twice, so translating by
+   -50% loops seamlessly. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 36s linear infinite;
+}
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* Gentle bounce for the hero scroll cue. */
+@keyframes scroll-cue {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+.animate-scroll-cue {
+  animation: scroll-cue 1.8s ease-in-out infinite;
+}
+
 /* Respect reduced-motion preferences. */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -210,6 +225,12 @@ a {
     animation: none;
   }
   .digit-roll {
+    animation: none;
+  }
+  .animate-marquee {
+    animation: none;
+  }
+  .animate-scroll-cue {
     animation: none;
   }
 }

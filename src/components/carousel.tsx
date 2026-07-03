@@ -19,11 +19,14 @@ export function Carousel({
   slides,
   interval = 5000,
   overlay,
+  heightClass = "h-[58vh] min-h-[360px] sm:h-[64vh]",
 }: {
   slides: Slide[];
   interval?: number;
   /** Optional content floated and centered over the slides (e.g. a banner). */
   overlay?: ReactNode;
+  /** Tailwind height classes for the slide area. */
+  heightClass?: string;
 }) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -70,7 +73,7 @@ export function Carousel({
       onKeyDown={onKeyDown}
     >
       {/* Slides */}
-      <div className="relative h-[58vh] min-h-[360px] w-full sm:h-[64vh]">
+      <div className={`relative w-full ${heightClass}`}>
         {slides.map((slide, i) => {
           const active = i === index;
           return (
