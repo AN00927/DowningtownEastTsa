@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Download, ExternalLink, FileText, PlayCircle } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
+import { TiltCard } from "@/components/tilt-card";
 import {
   Badge,
   ButtonLink,
@@ -46,43 +47,49 @@ function ResourceCard({
 
   if (resource.comingSoon) {
     return (
-      <Card className="flex h-full flex-col p-6 opacity-80">
-        <div className="flex items-start justify-between gap-3">
-          <h3 className="text-lg font-semibold text-primary">{title}</h3>
-          <Badge className="shrink-0 border-border bg-muted text-muted-foreground">
-            Coming soon
-          </Badge>
-        </div>
-        <p className="mt-2 text-sm text-muted-foreground">
-          {resource.description}
-        </p>
-      </Card>
+      <TiltCard>
+        <Card className="flex h-full flex-col p-6 opacity-80 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-soft-lg">
+          <div className="flex items-start justify-between gap-3">
+            <h3 className="text-lg font-semibold text-primary">{title}</h3>
+            <Badge className="shrink-0 border-border bg-muted text-muted-foreground">
+              Coming soon
+            </Badge>
+          </div>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {resource.description}
+          </p>
+        </Card>
+      </TiltCard>
     );
   }
 
   return (
-    <Card className="h-full p-0 transition-shadow hover:shadow-soft-lg">
-      <a
-        href={resource.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex h-full flex-col rounded-[var(--radius-base)] p-6"
-      >
-        <div className="flex items-start justify-between gap-3">
-          <h3 className="text-lg font-semibold text-primary">{title}</h3>
-          <ExternalLink
-            className="size-5 shrink-0 text-muted-foreground"
-            aria-hidden
-          />
-        </div>
-        <p className="mt-2 text-sm text-muted-foreground">
-          {resource.description}
-        </p>
-        <span className="mt-4 text-sm font-medium text-accent">
-          Open link
-        </span>
-      </a>
-    </Card>
+    <TiltCard>
+      <Card className="group h-full p-0 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-soft-lg">
+        <a
+          href={resource.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex h-full flex-col rounded-[var(--radius-base)] p-6"
+        >
+          <div className="flex items-start justify-between gap-3">
+            <h3 className="text-lg font-semibold text-primary transition-colors group-hover:text-accent">
+              {title}
+            </h3>
+            <ExternalLink
+              className="size-5 shrink-0 text-muted-foreground"
+              aria-hidden
+            />
+          </div>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {resource.description}
+          </p>
+          <span className="mt-4 text-sm font-medium text-accent">
+            Open link
+          </span>
+        </a>
+      </Card>
+    </TiltCard>
   );
 }
 
@@ -106,7 +113,7 @@ export default function ResourcesPage() {
       <section className="pt-16 sm:pt-20 lg:pt-24">
         <Container>
           <Reveal>
-            <Card className="flex flex-col gap-6 p-7 sm:flex-row sm:items-center sm:p-8">
+            <Card className="flex flex-col gap-6 p-7 transition-shadow duration-200 hover:shadow-soft-lg sm:flex-row sm:items-center sm:p-8">
               <div className="flex size-14 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                 <FileText className="size-7" aria-hidden />
               </div>
@@ -152,11 +159,12 @@ export default function ResourcesPage() {
           </Reveal>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {quickLinks.map((resource, index) => (
-              <ResourceCard
-                key={resource.title}
-                resource={resource}
-                label={quickLinkLabels[index]}
-              />
+              <Reveal key={resource.title} delay={index * 70}>
+                <ResourceCard
+                  resource={resource}
+                  label={quickLinkLabels[index]}
+                />
+              </Reveal>
             ))}
           </div>
         </Container>
@@ -174,8 +182,10 @@ export default function ResourcesPage() {
             />
           </Reveal>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {portfolioCards.map(({ resource, label }) => (
-              <ResourceCard key={label} resource={resource} label={label} />
+            {portfolioCards.map(({ resource, label }, index) => (
+              <Reveal key={label} delay={index * 70}>
+                <ResourceCard resource={resource} label={label} />
+              </Reveal>
             ))}
           </div>
         </Container>
@@ -192,7 +202,7 @@ export default function ResourcesPage() {
               align="left"
             />
           </Reveal>
-          <Card className="flex flex-col gap-4 p-6 opacity-80 sm:flex-row sm:items-start">
+          <Card className="flex flex-col gap-4 p-6 opacity-80 transition-shadow duration-200 hover:shadow-soft-lg sm:flex-row sm:items-start">
             <div className="flex size-11 shrink-0 items-center justify-center rounded-md bg-muted text-muted-foreground">
               <FileText className="size-6" aria-hidden />
             </div>
