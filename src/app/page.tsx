@@ -6,6 +6,7 @@ import {
   ExternalLink,
   ImageIcon,
   LifeBuoy,
+  Trophy,
   Users,
 } from "lucide-react";
 import { ButtonLink, Card, Container, Eyebrow, Section } from "@/components/ui";
@@ -27,12 +28,95 @@ import { events, EVENT_CATEGORIES } from "@/data/events";
 import { officers } from "@/data/officers";
 import { site } from "@/data/site";
 
-// Placeholder slides. Swap `src` with real photo paths under /public later.
+// Chapter photos live under /public/photos.
 const slides: Slide[] = [
-  { src: "", alt: "Chapter photo 1 (add your photo)" },
-  { src: "", alt: "Chapter photo 2 (add your photo)" },
-  { src: "", alt: "Chapter photo 3 (add your photo)" },
-  { src: "", alt: "Chapter photo 4 (add your photo)" },
+  {
+    src: "/photos/IMG_3578.jpg",
+    alt: "The full Downingtown East TSA chapter posing on stage at the PA TSA State Leadership Conference at Seven Springs",
+  },
+  {
+    src: "/photos/IMG_1120.jpg",
+    alt: "Downingtown East TSA members with a trophy at the National TSA Conference",
+  },
+  {
+    src: "/photos/IMG_9870.jpeg",
+    alt: "Downingtown East TSA members on stage at the national awards ceremony",
+  },
+  {
+    src: "/photos/IMG_4618.jpg",
+    alt: "Downingtown East TSA team accepting a trophy on the national stage",
+  },
+  {
+    src: "/photos/IMG_9873.jpeg",
+    alt: "The Audio Podcasting team celebrating with trophies on the national stage",
+  },
+  {
+    src: "/photos/IMG_8510.jpg",
+    alt: "Chapter members at a team dinner during a conference trip",
+  },
+];
+
+// Wall of Fame cards. `pos` tweaks the crop focus for portrait photos.
+const nationalWins = [
+  {
+    src: "/photos/IMG_9872.jpeg",
+    alt: "The Audio Podcasting team on stage with their trophies at the National TSA Conference",
+    title: "Audio Podcasting",
+    sub: "6th in the Nation",
+    pos: "object-center",
+  },
+  {
+    src: "/photos/IMG_9984.jpg",
+    alt: "The Geospatial Technology team reacting on stage at the National TSA Conference",
+    title: "Geospatial Technology",
+    sub: "4th in the Nation",
+    pos: "object-[50%_22%]",
+  },
+  {
+    src: "/photos/IMG_4625.jpg",
+    alt: "Three chapter members holding a tall trophy at the National TSA Conference",
+    title: "National Trophy Winners",
+    sub: "TSA National Conference",
+    pos: "object-[50%_35%]",
+  },
+  {
+    src: "/photos/IMG_9871.jpeg",
+    alt: "Chapter members receiving a trophy at the national awards ceremony",
+    title: "National Finalists",
+    sub: "Awards ceremony at Nationals",
+    pos: "object-center",
+  },
+];
+
+const stateWins = [
+  {
+    src: "/photos/IMG_3610.jpg",
+    alt: "Chapter member holding up her 1st place medal at the PA State Leadership Conference",
+    title: "1st Place — States",
+    sub: "PA State Leadership Conference",
+    pos: "object-[50%_25%]",
+  },
+  {
+    src: "/photos/IMG_3608.jpg",
+    alt: "Five chapter members, one wearing a 2nd place medal, at the PA State Leadership Conference",
+    title: "2nd Place — States",
+    sub: "PA State Leadership Conference",
+    pos: "object-[50%_30%]",
+  },
+  {
+    src: "/photos/IMG_3603.jpg",
+    alt: "Three chapter members showing off their state medals at Seven Springs",
+    title: "State Medalists",
+    sub: "Hardware from Seven Springs",
+    pos: "object-[50%_30%]",
+  },
+  {
+    src: "/photos/IMG_3612.jpg",
+    alt: "Chapter member with her Promotional Design award sash and pins at the PA State Leadership Conference",
+    title: "Promotional Design",
+    sub: "PA States Medalist",
+    pos: "object-[50%_25%]",
+  },
 ];
 
 const marqueeItems = [
@@ -215,15 +299,16 @@ export default function HomePage() {
                 <NextCompetitionClock conferences={conferences} />
               </div>
             </div>
+            {/* PLACEHOLDER: swap in a regional conference photo when you have one. */}
             <div
               role="img"
-              aria-label="Conference photo placeholder"
+              aria-label="Regional conference photo placeholder"
               className="flex aspect-[4/3] w-full items-center justify-center rounded-[6px] border border-dashed border-white/25 bg-white/5"
             >
               <div className="flex flex-col items-center gap-2 text-white/55">
                 <ImageIcon className="h-9 w-9" aria-hidden />
                 <span className="text-sm font-medium">
-                  Conference photo placeholder
+                  Regional conference photo coming soon
                 </span>
               </div>
             </div>
@@ -250,7 +335,91 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* 7. Explore the club */}
+      {/* 7. Wall of Fame: real chapter results with photos */}
+      <Section id="wall-of-fame" className="border-t">
+        <Container>
+          <Reveal className="mb-12 flex flex-col items-center text-center">
+            <Eyebrow>Wall of Fame</Eyebrow>
+            <h2 className="mt-3 text-4xl font-bold sm:text-5xl">
+              Chapter achievements
+            </h2>
+            <p className="mt-4 max-w-xl text-muted-foreground">
+              Downingtown East teams bring home hardware every season, from
+              Seven Springs all the way to the national stage.
+            </p>
+          </Reveal>
+
+          <div className="mb-6 flex items-center gap-3">
+            <span className="inline-flex h-9 w-9 items-center justify-center rounded-[4px] bg-accent text-white">
+              <Trophy className="h-5 w-5" aria-hidden />
+            </span>
+            <h3 className="font-display text-xl font-bold uppercase tracking-[0.04em]">
+              National TSA Conference
+            </h3>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {nationalWins.map((w, i) => (
+              <Reveal key={w.src} delay={i * 80}>
+                <Card className="group h-full overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-soft-lg">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-deep-navy">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={w.src}
+                      alt={w.alt}
+                      loading="lazy"
+                      className={`h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 ${w.pos}`}
+                    />
+                  </div>
+                  <div className="border-t-4 border-accent p-5">
+                    <h4 className="font-display text-lg font-bold uppercase tracking-[0.02em]">
+                      {w.title}
+                    </h4>
+                    <p className="mt-1 text-sm font-semibold text-accent">
+                      {w.sub}
+                    </p>
+                  </div>
+                </Card>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mb-6 mt-14 flex items-center gap-3">
+            <span className="inline-flex h-9 w-9 items-center justify-center rounded-[4px] bg-primary text-white">
+              <Trophy className="h-5 w-5" aria-hidden />
+            </span>
+            <h3 className="font-display text-xl font-bold uppercase tracking-[0.04em]">
+              PA State Leadership Conference
+            </h3>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {stateWins.map((w, i) => (
+              <Reveal key={w.src} delay={i * 80}>
+                <Card className="group h-full overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-soft-lg">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-deep-navy">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={w.src}
+                      alt={w.alt}
+                      loading="lazy"
+                      className={`h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 ${w.pos}`}
+                    />
+                  </div>
+                  <div className="border-t-4 border-primary p-5">
+                    <h4 className="font-display text-lg font-bold uppercase tracking-[0.02em]">
+                      {w.title}
+                    </h4>
+                    <p className="mt-1 text-sm font-semibold text-primary">
+                      {w.sub}
+                    </p>
+                  </div>
+                </Card>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* 8. Explore the club */}
       <Section className="border-t bg-muted/40">
         <Container>
           <Reveal className="mb-12 flex flex-col items-center text-center">

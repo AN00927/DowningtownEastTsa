@@ -27,7 +27,7 @@ const CATEGORY_META: Record<
   },
   "Science & Research": {
     Icon: FlaskConical,
-    blurb: "Biotech, data science, forensics, and geospatial problem solving.",
+    blurb: "Biotech, data science, and forensic problem solving.",
   },
   "Media & Communication": {
     Icon: Clapperboard,

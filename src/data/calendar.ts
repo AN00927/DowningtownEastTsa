@@ -11,19 +11,18 @@ export interface CalendarEvent {
 }
 
 export const nextCompetition: CalendarEvent = {
-  name: "PA State Conference",
-  date: "2026-04-15T09:00:00", // PLACEHOLDER. Set the real date/time
-  location: "Seven Springs, PA (placeholder)",
+  name: "Regional Conference",
+  date: "2026-12-05T08:00:00", // PLACEHOLDER. Set the real date/time
+  location: "Location TBA (placeholder)",
 };
 
 // The conferences the homepage clock counts down to (it targets the next one
-// that is still in the future). SAMPLE dates so the countdown is visible now.
-// Replace `date` with the real dates, and fill in `location` when announced
-// (leave it "" to show a "Location to be announced" placeholder).
+// that is still in the future). The Regional date/location are PLACEHOLDERS
+// so the countdown targets Regionals first. Replace them with the real
+// schedule when announced (leave location "" to show a "to be announced"
+// placeholder).
 export const conferences: CalendarEvent[] = [
-  // Regional has no date yet, so the clock shows the "to be announced"
-  // placeholders. Add a date (e.g. "2026-09-12T09:00:00") to start the countdown.
-  { name: "Regional Conference", date: "", location: "" },
+  { name: "Regional Conference", date: "2026-12-05T08:00:00", location: "Location TBA (placeholder)" },
   { name: "State Conference", date: "2027-02-19T09:00:00", location: "Seven Springs, PA" },
   { name: "National Conference", date: "2027-06-23T09:00:00", location: "Orlando, FL" },
 ];
