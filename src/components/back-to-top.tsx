@@ -25,7 +25,7 @@ export function BackToTop() {
       tabIndex={visible ? 0 : -1}
       onClick={() => window.scrollTo({ top: 0 })}
       className={cn(
-        "fixed bottom-5 right-5 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-card text-primary shadow-soft transition-all duration-300 hover:bg-muted",
+        "fixed bottom-5 right-5 z-40 inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-[4px] border border-border bg-card text-primary shadow-soft transition-all duration-300 hover:border-accent hover:bg-accent hover:text-white",
         visible
           ? "translate-y-0 opacity-100"
           : "pointer-events-none translate-y-3 opacity-0",

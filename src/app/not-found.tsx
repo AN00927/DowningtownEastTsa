@@ -4,13 +4,13 @@ import { ButtonLink, Container } from "@/components/ui";
 export default function NotFound() {
   return (
     <Container className="flex flex-col items-center py-24 text-center sm:py-32">
-      <span className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
+      <span className="inline-flex h-14 w-14 items-center justify-center rounded-[4px] bg-accent text-white">
         <Compass className="h-7 w-7" aria-hidden />
       </span>
-      <p className="mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-accent">
+      <p className="mt-6 font-display text-sm font-bold uppercase tracking-[0.18em] text-accent">
         404
       </p>
-      <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
+      <h1 className="mt-3 text-5xl font-bold sm:text-6xl">
         Page not found
       </h1>
       <p className="mt-4 max-w-md text-muted-foreground">

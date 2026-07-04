@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Card, Container, PageHeader, Section, SectionHeading } from "@/components/ui";
 import { AvatarPlaceholder } from "@/components/placeholder";
 import { Reveal } from "@/components/reveal";
+import { TiltCard } from "@/components/tilt-card";
 import { committees, officers } from "@/data/officers";
 
 export const metadata: Metadata = {
@@ -23,35 +24,37 @@ export default function TeamPage() {
             title="Officers"
             subtitle="The officer team that keeps our chapter running."
           />
-          <Reveal>
-            <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {officers.map((officer) => (
-                <li key={officer.role}>
-                  <Card className="flex h-full flex-col items-center p-6 text-center">
-                    <div className="w-24">
-                      {officer.photo ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={officer.photo}
-                          alt={officer.name}
-                          className="aspect-square w-full rounded-full object-cover"
-                        />
-                      ) : (
-                        <AvatarPlaceholder label={officer.role} />
+          <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {officers.map((officer, index) => (
+              <li key={officer.role}>
+                <Reveal delay={index * 70} className="h-full">
+                  <TiltCard>
+                    <Card className="flex h-full flex-col items-center border-t-4 border-t-accent p-6 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-soft-lg">
+                      <div className="w-24">
+                        {officer.photo ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={officer.photo}
+                            alt={officer.name}
+                            className="aspect-square w-full rounded-full object-cover ring-4 ring-accent/15"
+                          />
+                        ) : (
+                          <AvatarPlaceholder label={officer.role} />
+                        )}
+                      </div>
+                      <p className="mt-4 font-display text-sm font-bold uppercase tracking-[0.14em] text-accent">
+                        {officer.role}
+                      </p>
+                      <h3 className="mt-1 font-display text-xl font-bold">{officer.name}</h3>
+                      {officer.bio && (
+                        <p className="mt-3 text-sm text-muted-foreground">{officer.bio}</p>
                       )}
-                    </div>
-                    <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-accent">
-                      {officer.role}
-                    </p>
-                    <h3 className="mt-1 text-lg font-bold">{officer.name}</h3>
-                    {officer.bio && (
-                      <p className="mt-3 text-sm text-muted-foreground">{officer.bio}</p>
-                    )}
-                  </Card>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+                    </Card>
+                  </TiltCard>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
         </Container>
       </Section>
 
@@ -62,25 +65,27 @@ export default function TeamPage() {
             title="Committees"
             subtitle="Teams of members driving our chapter's projects forward."
           />
-          <Reveal>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {committees.map((committee) => (
-                <Card key={committee.name} className="p-6">
-                  <h3 className="text-xl font-bold">{committee.name}</h3>
-                  <ul className="mt-4 flex flex-wrap gap-2">
-                    {committee.members.map((member) => (
-                      <li
-                        key={member}
-                        className="inline-flex items-center rounded-full border bg-card px-3 py-1 text-sm font-medium text-foreground"
-                      >
-                        {member}
-                      </li>
-                    ))}
-                  </ul>
-                </Card>
-              ))}
-            </div>
-          </Reveal>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {committees.map((committee, index) => (
+              <Reveal key={committee.name} delay={index * 90} className="h-full">
+                <TiltCard>
+                  <Card className="h-full border-l-4 border-l-accent p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-soft-lg">
+                    <h3 className="font-display text-2xl font-bold">{committee.name}</h3>
+                    <ul className="mt-4 flex flex-wrap gap-2">
+                      {committee.members.map((member) => (
+                        <li
+                          key={member}
+                          className="inline-flex items-center rounded-[4px] border bg-card px-3 py-1 text-sm font-medium text-foreground"
+                        >
+                          {member}
+                        </li>
+                      ))}
+                    </ul>
+                  </Card>
+                </TiltCard>
+              </Reveal>
+            ))}
+          </div>
         </Container>
       </Section>
     </>

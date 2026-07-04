@@ -125,7 +125,7 @@ export function Carousel({
         type="button"
         onClick={() => go(index - 1)}
         aria-label="Previous slide"
-        className="absolute left-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-deep-navy/60 text-white backdrop-blur transition-colors hover:bg-deep-navy/80 sm:left-5"
+        className="absolute left-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-[4px] border border-white/25 bg-deep-navy/60 text-white backdrop-blur transition-colors hover:border-accent hover:bg-accent sm:left-5"
       >
         <ChevronLeft className="h-5 w-5" aria-hidden />
       </button>
@@ -133,7 +133,7 @@ export function Carousel({
         type="button"
         onClick={() => go(index + 1)}
         aria-label="Next slide"
-        className="absolute right-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-deep-navy/60 text-white backdrop-blur transition-colors hover:bg-deep-navy/80 sm:right-5"
+        className="absolute right-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-[4px] border border-white/25 bg-deep-navy/60 text-white backdrop-blur transition-colors hover:border-accent hover:bg-accent sm:right-5"
       >
         <ChevronRight className="h-5 w-5" aria-hidden />
       </button>
@@ -150,8 +150,8 @@ export function Carousel({
               aria-label={`Go to slide ${i + 1}`}
               aria-current={active ? "true" : undefined}
               className={[
-                "h-2.5 rounded-full transition-all",
-                active ? "w-7 bg-white" : "w-2.5 bg-white/45 hover:bg-white/70",
+                "h-2 -skew-x-[20deg] cursor-pointer transition-all",
+                active ? "w-8 bg-accent" : "w-3 bg-white/45 hover:bg-white/70",
               ].join(" ")}
             />
           );
