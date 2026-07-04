@@ -113,8 +113,8 @@ export default function ResourcesPage() {
       <section className="pt-16 sm:pt-20 lg:pt-24">
         <Container>
           <Reveal>
-            <Card className="flex flex-col gap-6 p-7 transition-shadow duration-200 hover:shadow-soft-lg sm:flex-row sm:items-center sm:p-8">
-              <div className="flex size-14 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            <Card className="flex flex-col gap-6 border-l-4 border-l-accent p-7 transition-shadow duration-200 hover:shadow-soft-lg sm:flex-row sm:items-center sm:p-8">
+              <div className="flex size-14 shrink-0 items-center justify-center rounded-[4px] bg-accent text-white">
                 <FileText className="size-7" aria-hidden />
               </div>
               <div className="flex-1">
@@ -203,7 +203,7 @@ export default function ResourcesPage() {
             />
           </Reveal>
           <Card className="flex flex-col gap-4 p-6 opacity-80 transition-shadow duration-200 hover:shadow-soft-lg sm:flex-row sm:items-start">
-            <div className="flex size-11 shrink-0 items-center justify-center rounded-md bg-muted text-muted-foreground">
+            <div className="flex size-11 shrink-0 items-center justify-center rounded-[4px] bg-muted text-muted-foreground">
               <FileText className="size-6" aria-hidden />
             </div>
             <div className="flex-1">

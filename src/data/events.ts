@@ -27,6 +27,9 @@ export interface TsaEvent {
   /** Largest allowed number of participants. */
   teamMax: number;
   blurb: string;
+  /** Optional card photo under /public (e.g. "/events/coding.jpg").
+      When omitted, the card shows a designed category visual. */
+  image?: string;
 }
 
 /** Convenience: an event counts as "individual" only when it is strictly solo. */

@@ -38,10 +38,25 @@ export function Section({
   );
 }
 
-/** Small uppercase eyebrow label. */
-export function Eyebrow({ children }: { children: ReactNode }) {
+/**
+ * Condensed uppercase eyebrow with a skewed scarlet bar — the design system's
+ * signature label. Use tone="light" on dark navy bands.
+ */
+export function Eyebrow({
+  children,
+  tone = "accent",
+}: {
+  children: ReactNode;
+  tone?: "accent" | "light";
+}) {
   return (
-    <span className="inline-flex items-center text-sm font-semibold uppercase tracking-[0.18em] text-accent">
+    <span
+      className={cn(
+        "inline-flex items-center gap-3 font-display text-sm font-bold uppercase tracking-[0.22em]",
+        tone === "accent" ? "text-accent" : "text-white/90",
+      )}
+    >
+      <span className="h-[3px] w-8 -skew-x-[20deg] bg-accent" aria-hidden />
       {children}
     </span>
   );
@@ -71,7 +86,7 @@ export function SectionHeading({
           <Eyebrow>{eyebrow}</Eyebrow>
         </div>
       )}
-      <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
+      <h2 className="text-4xl font-bold sm:text-5xl">{title}</h2>
       {subtitle && (
         <p className="mt-4 text-base text-muted-foreground sm:text-lg">{subtitle}</p>
       )}
@@ -79,7 +94,7 @@ export function SectionHeading({
   );
 }
 
-/** Top-of-page header band used by interior pages. */
+/** Top-of-page header band used by interior pages: dark navy, angled cut. */
 export function PageHeader({
   title,
   subtitle,
@@ -90,24 +105,23 @@ export function PageHeader({
   eyebrow?: string;
 }) {
   return (
-    <div className="relative isolate overflow-hidden border-b bg-muted/40">
-      <div className="grid-backdrop absolute inset-0 -z-10 opacity-60" aria-hidden />
-      <Container className="py-16 sm:py-20">
+    <div className="band-angle-b relative isolate overflow-hidden bg-deep-navy text-white">
+      <Container className="pb-24 pt-16 sm:pb-28 sm:pt-20">
         {eyebrow && (
           <div className="mb-4">
-            <Eyebrow>{eyebrow}</Eyebrow>
+            <Eyebrow tone="light">{eyebrow}</Eyebrow>
           </div>
         )}
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">{title}</h1>
+        <h1 className="text-5xl font-bold text-white sm:text-6xl">{title}</h1>
         {subtitle && (
-          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">{subtitle}</p>
+          <p className="mt-4 max-w-2xl text-lg text-white/75">{subtitle}</p>
         )}
       </Container>
     </div>
   );
 }
 
-/** Card container. */
+/** Card container: white block, sharp corners, hairline border. */
 export function Card({
   className,
   children,
@@ -134,18 +148,20 @@ type ButtonVariant = "primary" | "accent" | "outline" | "ghost";
 type ButtonSize = "sm" | "md" | "lg";
 
 const buttonBase =
-  "inline-flex items-center justify-center gap-2 rounded-md font-semibold transition-colors focus-visible:outline-2 disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex cursor-pointer items-center justify-center gap-2 rounded-[4px] font-display font-bold uppercase tracking-[0.08em] transition-all duration-200 focus-visible:outline-2 disabled:pointer-events-none disabled:opacity-50";
 
 const buttonVariants: Record<ButtonVariant, string> = {
-  primary: "bg-primary text-primary-foreground shadow-soft hover:opacity-95",
-  accent: "bg-accent text-accent-foreground shadow-soft hover:bg-accent-hover",
-  outline: "border border-border bg-card hover:bg-muted",
+  primary:
+    "bg-primary text-primary-foreground shadow-soft hover:-translate-y-0.5 hover:bg-navy-800 hover:shadow-soft-lg",
+  accent:
+    "bg-accent text-accent-foreground shadow-soft hover:-translate-y-0.5 hover:bg-accent-hover hover:shadow-soft-lg",
+  outline: "border border-border bg-card hover:border-accent hover:text-accent",
   ghost: "bg-transparent hover:bg-muted",
 };
 
 const buttonSizes: Record<ButtonSize, string> = {
   sm: "h-9 px-4 text-sm",
-  md: "h-11 px-6 text-sm",
+  md: "h-11 px-6 text-[15px]",
   lg: "h-13 px-8 text-base",
 };
 
@@ -170,7 +186,7 @@ export function ButtonLink({
   return <Link className={buttonClass(variant, size, className)} {...props} />;
 }
 
-/** Small pill/label. */
+/** Small block tag/label. */
 export function Badge({
   children,
   className,
@@ -181,7 +197,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium",
+        "inline-flex items-center rounded-[3px] border px-2.5 py-0.5 font-display text-xs font-bold uppercase tracking-[0.06em]",
         className,
       )}
     >

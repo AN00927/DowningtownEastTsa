@@ -20,8 +20,8 @@ export default function EventsPage() {
         <DotGrid className="pointer-events-none absolute inset-0 -z-10 h-full w-full" />
         <Container className="py-16 sm:py-20">
           <div className="max-w-2xl">
-            <Eyebrow>Competitive Events</Eyebrow>
-            <h1 className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+            <Eyebrow tone="light">Competitive Events</Eyebrow>
+            <h1 className="mt-3 text-5xl font-bold text-white sm:text-6xl">
               Find your event
             </h1>
             <p className="mt-4 text-lg text-white/75">
@@ -32,16 +32,16 @@ export default function EventsPage() {
           </div>
 
           {/* Quiz callout */}
-          <div className="mt-8 flex flex-col items-start justify-between gap-4 rounded-xl border border-white/15 bg-white/10 p-5 backdrop-blur sm:flex-row sm:items-center">
+          <div className="mt-8 flex flex-col items-start justify-between gap-4 rounded-[6px] border border-white/15 border-l-4 border-l-accent bg-white/10 p-5 backdrop-blur sm:flex-row sm:items-center">
             <div className="flex items-start gap-3">
               <span
-                className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/10 text-white"
+                className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[4px] bg-accent text-white"
                 aria-hidden
               >
                 <Sparkles className="h-5 w-5" />
               </span>
               <div>
-                <h2 className="font-semibold text-white">
+                <h2 className="font-display text-xl font-bold text-white">
                   Not sure where to start?
                 </h2>
                 <p className="text-sm text-white/70">
@@ -53,7 +53,7 @@ export default function EventsPage() {
               href={site.quizUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-md bg-accent px-6 text-sm font-semibold text-accent-foreground shadow-soft transition-colors hover:bg-accent-hover"
+              className="inline-flex h-11 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-[4px] bg-accent px-6 font-display text-[15px] font-bold uppercase tracking-[0.08em] text-accent-foreground shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-hover"
             >
               Take the Quiz <ExternalLink className="h-4 w-4" aria-hidden />
             </a>

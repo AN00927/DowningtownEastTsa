@@ -104,7 +104,7 @@ export function NextCompetitionClock({ conferences }: { conferences: Conf[] }) {
           {undatedBefore.map((c) => c.name).join(", ")}: date to be announced
         </p>
       )}
-      <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+      <h2 className="text-4xl font-bold text-white sm:text-5xl">
         {next.name}
       </h2>
       <div className="mt-4 space-y-2">
@@ -122,18 +122,18 @@ export function NextCompetitionClock({ conferences }: { conferences: Conf[] }) {
           {units.map((u) => (
             <div
               key={u.label}
-              className="rounded-[var(--radius-base)] border border-white/15 bg-white/10 px-1 py-4 text-center backdrop-blur"
+              className="rounded-[4px] border-t-2 border-accent bg-white/10 px-1 py-4 text-center backdrop-blur"
             >
               <div className="overflow-hidden">
                 {/* key by value so it remounts and rolls when the number changes */}
                 <span
                   key={u.value}
-                  className="digit-roll block font-mono text-2xl font-bold tabular-nums text-white sm:text-5xl"
+                  className="digit-roll block font-display text-3xl font-bold tabular-nums text-white sm:text-6xl"
                 >
                   {String(u.value).padStart(2, "0")}
                 </span>
               </div>
-              <div className="mt-1.5 text-[10px] uppercase tracking-wide text-white/60 sm:text-xs">
+              <div className="mt-1.5 font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-white/60 sm:text-xs">
                 {u.label}
               </div>
             </div>

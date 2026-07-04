@@ -29,23 +29,23 @@ export default function TeamPage() {
               <li key={officer.role}>
                 <Reveal delay={index * 70} className="h-full">
                   <TiltCard>
-                    <Card className="flex h-full flex-col items-center p-6 text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-soft-lg">
+                    <Card className="flex h-full flex-col items-center border-t-4 border-t-accent p-6 text-center transition-all duration-200 hover:-translate-y-1 hover:shadow-soft-lg">
                       <div className="w-24">
                         {officer.photo ? (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img
                             src={officer.photo}
                             alt={officer.name}
-                            className="aspect-square w-full rounded-full object-cover"
+                            className="aspect-square w-full rounded-full object-cover ring-4 ring-accent/15"
                           />
                         ) : (
                           <AvatarPlaceholder label={officer.role} />
                         )}
                       </div>
-                      <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-accent">
+                      <p className="mt-4 font-display text-sm font-bold uppercase tracking-[0.14em] text-accent">
                         {officer.role}
                       </p>
-                      <h3 className="mt-1 text-lg font-bold">{officer.name}</h3>
+                      <h3 className="mt-1 font-display text-xl font-bold">{officer.name}</h3>
                       {officer.bio && (
                         <p className="mt-3 text-sm text-muted-foreground">{officer.bio}</p>
                       )}
@@ -69,13 +69,13 @@ export default function TeamPage() {
             {committees.map((committee, index) => (
               <Reveal key={committee.name} delay={index * 90} className="h-full">
                 <TiltCard>
-                  <Card className="h-full p-6 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-soft-lg">
-                    <h3 className="text-xl font-bold">{committee.name}</h3>
+                  <Card className="h-full border-l-4 border-l-accent p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-soft-lg">
+                    <h3 className="font-display text-2xl font-bold">{committee.name}</h3>
                     <ul className="mt-4 flex flex-wrap gap-2">
                       {committee.members.map((member) => (
                         <li
                           key={member}
-                          className="inline-flex items-center rounded-full border bg-card px-3 py-1 text-sm font-medium text-foreground"
+                          className="inline-flex items-center rounded-[4px] border bg-card px-3 py-1 text-sm font-medium text-foreground"
                         >
                           {member}
                         </li>
