@@ -61,9 +61,10 @@ export default function EventsPage() {
         </Container>
       </section>
 
-      {/* Browser: search, filters, and both event grids */}
+      {/* Browser: search, filters, and both event grids. Wider container so
+          the cards get room to breathe. */}
       <Section className="!pt-10 sm:!pt-12">
-        <Container>
+        <Container className="!max-w-7xl">
           <EventBrowser events={events} />
         </Container>
       </Section>

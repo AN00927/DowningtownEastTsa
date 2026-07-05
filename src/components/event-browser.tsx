@@ -3,13 +3,11 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import {
-  ArrowRight,
   Clapperboard,
   Cog,
   FlaskConical,
   Palette,
   Search,
-  SlidersHorizontal,
   Trophy,
   X,
   type LucideIcon,
@@ -20,7 +18,6 @@ import {
   type EventCategory,
   type TsaEvent,
 } from "@/data/events";
-import { Badge, Card } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
 type CategoryFilter = "all" | EventCategory;
@@ -38,7 +35,7 @@ function categoryShort(c: EventCategory): string {
   return c.replace(" & ", " + ");
 }
 
-/** Icon shown on the designed placeholder panel when an event has no photo. */
+/** Icon shown on the image placeholder panel (photos get placed later). */
 const CATEGORY_ICONS: Record<EventCategory, LucideIcon> = {
   "Creative & Design": Palette,
   "Engineering & Technology": Cog,
@@ -64,8 +61,8 @@ function CategoryPill({
       className={cn(
         "shrink-0 cursor-pointer whitespace-nowrap rounded-[4px] border px-3.5 py-1.5 font-display text-sm font-semibold uppercase tracking-[0.04em] transition-colors",
         active
-          ? "border-primary bg-primary text-primary-foreground"
-          : "border-border bg-card text-foreground hover:border-primary/40 hover:bg-muted",
+          ? "border-accent bg-accent text-accent-foreground"
+          : "border-border bg-card text-muted-foreground hover:border-accent/50 hover:text-foreground",
       )}
     >
       {children}
@@ -111,57 +108,37 @@ function Segmented({
   );
 }
 
+/**
+ * Airy, borderless entry in the spirit of the old chapter site: image slot on
+ * top, then the event name with the team size beside it, then the full
+ * description. The image is a designed placeholder — photos get placed later.
+ */
 function EventCard({ event }: { event: TsaEvent }) {
   const Icon = CATEGORY_ICONS[event.category];
   return (
     <Link href={`/events/${event.id}`} className="group block h-full">
-      <Card className="flex h-full flex-col overflow-hidden p-0 transition-all duration-200 group-hover:-translate-y-1 group-hover:border-accent group-hover:shadow-soft-lg">
-        {/* Big visual header: real photo when provided, otherwise a designed
-            category panel. Zooms gently on hover. */}
-        <div className="relative aspect-[16/10] w-full overflow-hidden bg-deep-navy">
-          {event.image ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={event.image}
-              alt=""
-              loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-          ) : (
-            <div className="dots-pattern flex h-full w-full items-center justify-center transition-transform duration-300 group-hover:scale-105">
-              <Icon
-                className="h-14 w-14 text-white/60 transition-colors group-hover:text-white/85"
-                aria-hidden
-              />
-            </div>
-          )}
-          <span className="absolute left-3 top-3 inline-flex items-center rounded-[3px] bg-accent px-2 py-0.5 font-display text-[11px] font-bold uppercase tracking-[0.08em] text-white">
-            {categoryShort(event.category)}
-          </span>
+      <article className="flex h-full flex-col">
+        {/* PLACEHOLDER image slot — we'll pick the right photo per event later. */}
+        <div
+          role="img"
+          aria-label={`${event.name} photo placeholder`}
+          className="dots-pattern flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-2xl bg-deep-navy"
+        >
+          <Icon className="h-10 w-10 text-white/40" aria-hidden />
         </div>
 
-        {/* Body: name + team tag, one-glance only. */}
-        <div className="flex flex-1 flex-col p-5">
-          <div className="flex items-start justify-between gap-3">
-            <h3 className="font-display text-xl font-bold leading-snug text-primary transition-colors group-hover:text-accent">
-              {event.name}
-            </h3>
-            <Badge className="mt-0.5 shrink-0 border-border text-muted-foreground">
-              {participationTag(event)}
-            </Badge>
-          </div>
-          <p className="mt-2 line-clamp-2 flex-1 text-sm text-muted-foreground">
-            {event.blurb}
-          </p>
-          <span className="mt-4 inline-flex items-center gap-1 font-display text-sm font-bold uppercase tracking-[0.08em] text-accent">
-            View details
-            <ArrowRight
-              className="h-4 w-4 transition-transform group-hover:translate-x-1"
-              aria-hidden
-            />
+        <div className="mt-7 flex items-baseline justify-between gap-4">
+          <h3 className="font-display text-xl font-bold uppercase tracking-[0.14em] text-primary transition-colors group-hover:text-accent sm:text-2xl">
+            {event.name}
+          </h3>
+          <span className="shrink-0 text-sm text-muted-foreground">
+            {participationTag(event)}
           </span>
         </div>
-      </Card>
+        <p className="mt-3 max-w-[46ch] text-base leading-relaxed text-muted-foreground">
+          {event.blurb}
+        </p>
+      </article>
     </Link>
   );
 }
@@ -180,31 +157,31 @@ function EventGrid({
   onClear: () => void;
 }) {
   return (
-    <section id={id} aria-label={heading} className="scroll-mt-44">
-      <div className="mb-6 flex flex-wrap items-center gap-3">
-        <h2 className="text-3xl font-bold">{heading}</h2>
-        <Badge className="border-border bg-muted text-muted-foreground">
+    <section id={id} aria-label={heading} className="scroll-mt-28 border-t pt-16 sm:pt-20">
+      <div className="mb-14 text-center">
+        <h2 className="text-4xl font-bold tracking-[0.06em] sm:text-5xl">
+          {heading}
+        </h2>
+        <p className="mt-2 text-sm text-muted-foreground">
           {events.length} {events.length === 1 ? "event" : "events"}
-        </Badge>
-        {note && <span className="text-sm text-muted-foreground">{note}</span>}
+          {note && <> &middot; {note}</>}
+        </p>
       </div>
       {events.length === 0 ? (
-        <div className="flex flex-col items-center gap-4 rounded-[var(--radius-base)] border border-dashed bg-muted/40 px-4 py-10 text-center">
+        <div className="rounded-[6px] border border-dashed px-4 py-12 text-center">
           <p className="text-sm text-muted-foreground">
-            No matching events in this section. Try adjusting your search or
-            filters.
+            No matching events in this section.{" "}
+            <button
+              type="button"
+              onClick={onClear}
+              className="cursor-pointer font-medium text-foreground underline underline-offset-2 hover:text-accent"
+            >
+              Clear all filters
+            </button>
           </p>
-          <button
-            type="button"
-            onClick={onClear}
-            className="inline-flex h-10 cursor-pointer items-center gap-1.5 rounded-[4px] border border-border bg-card px-4 font-display text-sm font-bold uppercase tracking-[0.06em] text-foreground transition-colors hover:border-accent hover:text-accent"
-          >
-            <X className="h-4 w-4" aria-hidden />
-            Clear all filters
-          </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-x-14 gap-y-20 md:grid-cols-2 xl:grid-cols-3">
           {events.map((event) => (
             <EventCard key={event.id} event={event} />
           ))}
@@ -240,14 +217,6 @@ export function EventBrowser({ events }: { events: TsaEvent[] }) {
     window.history.replaceState(null, "", url);
   }, [category, mounted]);
 
-  const categoryCounts = useMemo(() => {
-    const counts = new Map<EventCategory, number>();
-    for (const e of events) {
-      counts.set(e.category, (counts.get(e.category) ?? 0) + 1);
-    }
-    return counts;
-  }, [events]);
-
   const filtersActive =
     query.trim() !== "" || category !== "all" || participation !== "all";
 
@@ -276,9 +245,9 @@ export function EventBrowser({ events }: { events: TsaEvent[] }) {
   }
 
   return (
-    <div className="flex flex-col gap-10">
-      {/* Filter toolbar: sticky under the navbar from sm up */}
-      <div className="z-30 rounded-[6px] border bg-background/95 p-4 shadow-soft backdrop-blur sm:sticky sm:top-[79px] sm:p-5">
+    <div className="flex flex-col gap-16 sm:gap-20">
+      {/* Filters: stay at the top of the page (not sticky). */}
+      <div className="flex flex-col gap-3">
         <div className="flex flex-wrap items-center gap-3">
           <div className="relative min-w-[220px] flex-1">
             <Search
@@ -290,7 +259,7 @@ export function EventBrowser({ events }: { events: TsaEvent[] }) {
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search events by name or description"
+              placeholder="Search events"
               aria-label="Search events"
               className="h-11 w-full rounded-[4px] border border-input bg-card pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-2"
             />
@@ -300,7 +269,7 @@ export function EventBrowser({ events }: { events: TsaEvent[] }) {
             <button
               type="button"
               onClick={clear}
-              className="inline-flex h-11 cursor-pointer items-center gap-1.5 rounded-[4px] border border-border bg-card px-3.5 text-sm font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
+              className="inline-flex h-11 cursor-pointer items-center gap-1.5 rounded-[4px] px-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               <X className="h-4 w-4" aria-hidden />
               Clear
@@ -312,10 +281,10 @@ export function EventBrowser({ events }: { events: TsaEvent[] }) {
         <div
           role="group"
           aria-label="Filter by category"
-          className="mt-3 flex gap-2 overflow-x-auto pb-1"
+          className="flex gap-2 overflow-x-auto pb-1"
         >
           <CategoryPill active={category === "all"} onClick={() => setCategory("all")}>
-            All categories ({events.length})
+            All categories
           </CategoryPill>
           {EVENT_CATEGORIES.map((c) => (
             <CategoryPill
@@ -323,24 +292,14 @@ export function EventBrowser({ events }: { events: TsaEvent[] }) {
               active={category === c}
               onClick={() => setCategory(c)}
             >
-              {categoryShort(c)} ({categoryCounts.get(c) ?? 0})
+              {categoryShort(c)}
             </CategoryPill>
           ))}
         </div>
 
-        {/* Count + section jump links */}
-        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
-          <span className="inline-flex items-center gap-1.5" aria-live="polite">
-            <SlidersHorizontal className="h-3.5 w-3.5" aria-hidden />
-            Showing {filtered.length} of {events.length} events
-          </span>
-          <a href="#national" className="font-medium text-primary hover:text-accent hover:underline">
-            National ({national.length})
-          </a>
-          <a href="#pa-only" className="font-medium text-primary hover:text-accent hover:underline">
-            PA-only ({pa.length})
-          </a>
-        </div>
+        <p className="text-sm text-muted-foreground" aria-live="polite">
+          Showing {filtered.length} of {events.length} events
+        </p>
       </div>
 
       {/* Results */}

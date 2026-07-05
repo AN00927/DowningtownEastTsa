@@ -28,95 +28,27 @@ import { events, EVENT_CATEGORIES } from "@/data/events";
 import { officers } from "@/data/officers";
 import { site } from "@/data/site";
 
-// Chapter photos live under /public/photos.
+// PLACEHOLDER slides — we'll pick which photos go where later.
 const slides: Slide[] = [
-  {
-    src: "/photos/IMG_3578.jpg",
-    alt: "The full Downingtown East TSA chapter posing on stage at the PA TSA State Leadership Conference at Seven Springs",
-  },
-  {
-    src: "/photos/IMG_1120.jpg",
-    alt: "Downingtown East TSA members with a trophy at the National TSA Conference",
-  },
-  {
-    src: "/photos/IMG_9870.jpeg",
-    alt: "Downingtown East TSA members on stage at the national awards ceremony",
-  },
-  {
-    src: "/photos/IMG_4618.jpg",
-    alt: "Downingtown East TSA team accepting a trophy on the national stage",
-  },
-  {
-    src: "/photos/IMG_9873.jpeg",
-    alt: "The Audio Podcasting team celebrating with trophies on the national stage",
-  },
-  {
-    src: "/photos/IMG_8510.jpg",
-    alt: "Chapter members at a team dinner during a conference trip",
-  },
+  { src: "", alt: "Chapter photo 1 (coming soon)" },
+  { src: "", alt: "Chapter photo 2 (coming soon)" },
+  { src: "", alt: "Chapter photo 3 (coming soon)" },
+  { src: "", alt: "Chapter photo 4 (coming soon)" },
 ];
 
-// Wall of Fame cards. `pos` tweaks the crop focus for portrait photos.
+// Wall of Fame results. Photo slots are placeholders for now.
 const nationalWins = [
-  {
-    src: "/photos/IMG_9872.jpeg",
-    alt: "The Audio Podcasting team on stage with their trophies at the National TSA Conference",
-    title: "Audio Podcasting",
-    sub: "6th in the Nation",
-    pos: "object-center",
-  },
-  {
-    src: "/photos/IMG_9984.jpg",
-    alt: "The Geospatial Technology team reacting on stage at the National TSA Conference",
-    title: "Geospatial Technology",
-    sub: "4th in the Nation",
-    pos: "object-[50%_22%]",
-  },
-  {
-    src: "/photos/IMG_4625.jpg",
-    alt: "Three chapter members holding a tall trophy at the National TSA Conference",
-    title: "National Trophy Winners",
-    sub: "TSA National Conference",
-    pos: "object-[50%_35%]",
-  },
-  {
-    src: "/photos/IMG_9871.jpeg",
-    alt: "Chapter members receiving a trophy at the national awards ceremony",
-    title: "National Finalists",
-    sub: "Awards ceremony at Nationals",
-    pos: "object-center",
-  },
+  { title: "Audio Podcasting", sub: "6th in the Nation" },
+  { title: "Geospatial Technology", sub: "4th in the Nation" },
+  { title: "National Trophy Winners", sub: "TSA National Conference" },
+  { title: "National Finalists", sub: "Awards ceremony at Nationals" },
 ];
 
 const stateWins = [
-  {
-    src: "/photos/IMG_3610.jpg",
-    alt: "Chapter member holding up her 1st place medal at the PA State Leadership Conference",
-    title: "1st Place — States",
-    sub: "PA State Leadership Conference",
-    pos: "object-[50%_25%]",
-  },
-  {
-    src: "/photos/IMG_3608.jpg",
-    alt: "Five chapter members, one wearing a 2nd place medal, at the PA State Leadership Conference",
-    title: "2nd Place — States",
-    sub: "PA State Leadership Conference",
-    pos: "object-[50%_30%]",
-  },
-  {
-    src: "/photos/IMG_3603.jpg",
-    alt: "Three chapter members showing off their state medals at Seven Springs",
-    title: "State Medalists",
-    sub: "Hardware from Seven Springs",
-    pos: "object-[50%_30%]",
-  },
-  {
-    src: "/photos/IMG_3612.jpg",
-    alt: "Chapter member with her Promotional Design award sash and pins at the PA State Leadership Conference",
-    title: "Promotional Design",
-    sub: "PA States Medalist",
-    pos: "object-[50%_25%]",
-  },
+  { title: "1st Place — States", sub: "PA State Leadership Conference" },
+  { title: "2nd Place — States", sub: "PA State Leadership Conference" },
+  { title: "State Medalists", sub: "Hardware from Seven Springs" },
+  { title: "Promotional Design", sub: "PA States Medalist" },
 ];
 
 const marqueeItems = [
@@ -359,16 +291,14 @@ export default function HomePage() {
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {nationalWins.map((w, i) => (
-              <Reveal key={w.src} delay={i * 80}>
+              <Reveal key={w.title} delay={i * 80}>
                 <Card className="group h-full overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-soft-lg">
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-deep-navy">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={w.src}
-                      alt={w.alt}
-                      loading="lazy"
-                      className={`h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 ${w.pos}`}
-                    />
+                  <div
+                    role="img"
+                    aria-label={`${w.title} photo placeholder`}
+                    className="dots-pattern flex aspect-[4/3] w-full items-center justify-center bg-deep-navy"
+                  >
+                    <ImageIcon className="h-8 w-8 text-white/50" aria-hidden />
                   </div>
                   <div className="border-t-4 border-accent p-5">
                     <h4 className="font-display text-lg font-bold uppercase tracking-[0.02em]">
@@ -393,16 +323,14 @@ export default function HomePage() {
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {stateWins.map((w, i) => (
-              <Reveal key={w.src} delay={i * 80}>
+              <Reveal key={w.title} delay={i * 80}>
                 <Card className="group h-full overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-soft-lg">
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-deep-navy">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={w.src}
-                      alt={w.alt}
-                      loading="lazy"
-                      className={`h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 ${w.pos}`}
-                    />
+                  <div
+                    role="img"
+                    aria-label={`${w.title} photo placeholder`}
+                    className="dots-pattern flex aspect-[4/3] w-full items-center justify-center bg-deep-navy"
+                  >
+                    <ImageIcon className="h-8 w-8 text-white/50" aria-hidden />
                   </div>
                   <div className="border-t-4 border-primary p-5">
                     <h4 className="font-display text-lg font-bold uppercase tracking-[0.02em]">
