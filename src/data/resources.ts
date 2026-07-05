@@ -33,7 +33,6 @@ export const prepGuide: ResourceLink = {
 
 export const portfolioExamples: ResourceLink[] = [
   { title: "Canva Template", description: "A starter template for your documentation portfolio.", href: "#", comingSoon: true },
-  { title: "Example: 6th Place Nationals", description: "A sample portfolio that placed at nationals.", href: "#", comingSoon: true },
+  { title: "Example: 4th Place Nationals", description: "A sample portfolio that placed at nationals.", href: "#", comingSoon: true },
   { title: "Example: 2nd Place Nationals", description: "A sample portfolio that placed at nationals.", href: "#", comingSoon: true },
-  { title: "Sample Documentation Portfolio", description: "A full sample portfolio to look through.", href: "#", comingSoon: true },
 ];

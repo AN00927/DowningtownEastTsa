@@ -235,8 +235,10 @@ export function EventBrowser({ events }: { events: TsaEvent[] }) {
     });
   }, [events, query, category, participation]);
 
-  const national = filtered.filter((e) => e.scope === "national");
-  const pa = filtered.filter((e) => e.scope === "pa");
+  // Alphabetical within each section so events are easy to look up by name.
+  const byName = (a: TsaEvent, b: TsaEvent) => a.name.localeCompare(b.name);
+  const national = filtered.filter((e) => e.scope === "national").sort(byName);
+  const pa = filtered.filter((e) => e.scope === "pa").sort(byName);
 
   function clear() {
     setQuery("");

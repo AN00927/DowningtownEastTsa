@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowDown,
@@ -36,19 +37,21 @@ const slides: Slide[] = [
   { src: "", alt: "Chapter photo 4 (coming soon)" },
 ];
 
-// Wall of Fame results. Photo slots are placeholders for now.
+// Wall of Fame results. Empty photo = designed placeholder until one is picked.
+// pos = CSS object-position (see stateWins note below).
 const nationalWins = [
-  { title: "Audio Podcasting", sub: "6th in the Nation" },
-  { title: "Geospatial Technology", sub: "4th in the Nation" },
-  { title: "National Trophy Winners", sub: "TSA National Conference" },
-  { title: "National Finalists", sub: "Awards ceremony at Nationals" },
+  { place: "2nd Place", event: "Audio Podcasting", photo: "/photos/IMG_0304.jpeg", pos: "50% 50%" },
+  { place: "3rd Place", event: "Software Development", photo: "/photos/software-development-nationals.jpg", pos: "50% 38%" },
 ];
 
+// pos = CSS object-position: how portrait photos crop into the landscape
+// card (higher % = window slides down the photo).
 const stateWins = [
-  { title: "1st Place — States", sub: "PA State Leadership Conference" },
-  { title: "2nd Place — States", sub: "PA State Leadership Conference" },
-  { title: "State Medalists", sub: "Hardware from Seven Springs" },
-  { title: "Promotional Design", sub: "PA States Medalist" },
+  { place: "1st Place", event: "Geospatial Technology", photo: "/photos/IMG_3603.jpg", pos: "50% 0%" },
+  { place: "1st Place", event: "Transportation Modeling", photo: "/photos/IMG_3610.jpg", pos: "50% 25%" },
+  { place: "2nd Place", event: "Software Development", photo: "/photos/IMG_3608.jpg", pos: "50% 50%" },
+  { place: "3rd Place", event: "Promotional Design", photo: "/photos/IMG_3612.jpg", pos: "50% 25%" },
+  { place: "3rd Place", event: "Medical Technology", photo: "/photos/medical-technology.jpg", pos: "50% 25%" },
 ];
 
 const marqueeItems = [
@@ -289,23 +292,40 @@ export default function HomePage() {
               National TSA Conference
             </h3>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Two national wins get the featured treatment: bigger, wider cards. */}
+          <div className="grid gap-6 sm:grid-cols-2">
             {nationalWins.map((w, i) => (
-              <Reveal key={w.title} delay={i * 80}>
+              <Reveal key={w.event} delay={i * 80}>
                 <Card className="group h-full overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-soft-lg">
-                  <div
-                    role="img"
-                    aria-label={`${w.title} photo placeholder`}
-                    className="dots-pattern flex aspect-[4/3] w-full items-center justify-center bg-deep-navy"
-                  >
-                    <ImageIcon className="h-8 w-8 text-white/50" aria-hidden />
+                  <div className="relative">
+                    {w.photo ? (
+                      <div className="relative aspect-[16/9] w-full">
+                        <Image
+                          src={w.photo}
+                          alt={`${w.place} in ${w.event} at the TSA National Conference`}
+                          fill
+                          sizes="(min-width: 640px) 50vw, 100vw"
+                          className="object-cover"
+                          style={{ objectPosition: w.pos }}
+                        />
+                      </div>
+                    ) : (
+                      /* PLACEHOLDER photo slot — photo gets placed later. */
+                      <div
+                        role="img"
+                        aria-label={`${w.place}, ${w.event} — photo placeholder`}
+                        className="dots-pattern flex aspect-[16/9] w-full items-center justify-center bg-deep-navy"
+                      >
+                        <ImageIcon className="h-9 w-9 text-white/50" aria-hidden />
+                      </div>
+                    )}
                   </div>
                   <div className="border-t-4 border-accent p-5">
-                    <h4 className="font-display text-lg font-bold uppercase tracking-[0.02em]">
-                      {w.title}
+                    <h4 className="font-display text-2xl font-bold uppercase tracking-[0.02em]">
+                      {w.event}
                     </h4>
                     <p className="mt-1 text-sm font-semibold text-accent">
-                      {w.sub}
+                      {w.place} &middot; TSA Nationals
                     </p>
                   </div>
                 </Card>
@@ -321,23 +341,40 @@ export default function HomePage() {
               PA State Leadership Conference
             </h3>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Five state wins: one clean row on desktop instead of a 4+1 orphan. */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {stateWins.map((w, i) => (
-              <Reveal key={w.title} delay={i * 80}>
+              <Reveal key={w.event} delay={i * 80}>
                 <Card className="group h-full overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-soft-lg">
-                  <div
-                    role="img"
-                    aria-label={`${w.title} photo placeholder`}
-                    className="dots-pattern flex aspect-[4/3] w-full items-center justify-center bg-deep-navy"
-                  >
-                    <ImageIcon className="h-8 w-8 text-white/50" aria-hidden />
+                  <div className="relative">
+                    {w.photo ? (
+                      <div className="relative aspect-[4/3] w-full">
+                        <Image
+                          src={w.photo}
+                          alt={`${w.place} in ${w.event} at the PA State Leadership Conference`}
+                          fill
+                          sizes="(min-width: 1280px) 20vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                          className="object-cover"
+                          style={{ objectPosition: w.pos }}
+                        />
+                      </div>
+                    ) : (
+                      /* PLACEHOLDER photo slot — photo gets placed later. */
+                      <div
+                        role="img"
+                        aria-label={`${w.place}, ${w.event} — photo placeholder`}
+                        className="dots-pattern flex aspect-[4/3] w-full items-center justify-center bg-deep-navy"
+                      >
+                        <ImageIcon className="h-8 w-8 text-white/50" aria-hidden />
+                      </div>
+                    )}
                   </div>
                   <div className="border-t-4 border-primary p-5">
                     <h4 className="font-display text-lg font-bold uppercase tracking-[0.02em]">
-                      {w.title}
+                      {w.event}
                     </h4>
                     <p className="mt-1 text-sm font-semibold text-primary">
-                      {w.sub}
+                      {w.place} &middot; PA States
                     </p>
                   </div>
                 </Card>

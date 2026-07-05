@@ -98,7 +98,7 @@ export default function ResourcesPage() {
   const [canvaTemplate, nationalsExample, statesExample] = portfolioExamples;
   const portfolioCards: { resource: ResourceLink; label: string }[] = [
     { resource: canvaTemplate, label: "Template (Canva)" },
-    { resource: nationalsExample, label: "Example #1: 6th Place Nationals" },
+    { resource: nationalsExample, label: "Example #1: 4th Place Nationals" },
     { resource: statesExample, label: "Example #2: 2nd Place Nationals" },
   ];
 
@@ -188,42 +188,6 @@ export default function ResourcesPage() {
               </Reveal>
             ))}
           </div>
-        </Container>
-      </Section>
-
-      {/* Sample Portfolio */}
-      <Section className="bg-muted/40">
-        <Container>
-          <Reveal>
-            <SectionHeading
-              eyebrow="Reference"
-              title="Sample Portfolio"
-              subtitle="A full sample portfolio to read through from start to finish."
-              align="left"
-            />
-          </Reveal>
-          <Card className="flex flex-col gap-4 p-6 opacity-80 transition-shadow duration-200 hover:shadow-soft-lg sm:flex-row sm:items-start">
-            <div className="flex size-11 shrink-0 items-center justify-center rounded-[4px] bg-muted text-muted-foreground">
-              <FileText className="size-6" aria-hidden />
-            </div>
-            <div className="flex-1">
-              <div className="flex flex-wrap items-center gap-3">
-                <h3 className="text-lg font-semibold text-primary">
-                  Sample Portfolio (PDF)
-                </h3>
-                <Badge className="border-border bg-muted text-muted-foreground">
-                  Coming soon
-                </Badge>
-              </div>
-              <p className="mt-2 text-sm text-muted-foreground">
-                {prepGuide.description}
-              </p>
-              <p className="mt-3 text-xs text-muted-foreground">
-                This is a placeholder PDF. The real sample portfolio will be
-                linked here once it is ready.
-              </p>
-            </div>
-          </Card>
         </Container>
       </Section>
 

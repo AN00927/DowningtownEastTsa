@@ -1,23 +1,33 @@
 import type { Metadata, Viewport } from "next";
-import { Barlow, Barlow_Condensed } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { BackToTop } from "@/components/back-to-top";
 import { site } from "@/data/site";
 
-const barlow = Barlow({
+// Barlow / Barlow Condensed (latin) are self-hosted in ./fonts so dev and
+// build never depend on Google Fonts being reachable from this machine.
+const barlow = localFont({
   variable: "--font-barlow",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  src: [
+    { path: "./fonts/barlow-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/barlow-500.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/barlow-600.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/barlow-700.woff2", weight: "700", style: "normal" },
+  ],
 });
 
 // Condensed display face for headings: athletic, high-energy, built for the
 // big uppercase type this competition-focused design leans on.
-const display = Barlow_Condensed({
+const display = localFont({
   variable: "--font-barlow-condensed",
-  subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  src: [
+    { path: "./fonts/barlow-condensed-500.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/barlow-condensed-600.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/barlow-condensed-700.woff2", weight: "700", style: "normal" },
+    { path: "./fonts/barlow-condensed-800.woff2", weight: "800", style: "normal" },
+  ],
 });
 
 export const metadata: Metadata = {
