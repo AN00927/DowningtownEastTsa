@@ -45,9 +45,14 @@ export function CategoryGrid() {
     counts.set(e.category, (counts.get(e.category) ?? 0) + 1);
   }
 
+  // Most events first, left to right, on both rows.
+  const ordered = [...EVENT_CATEGORIES].sort(
+    (a, b) => (counts.get(b) ?? 0) - (counts.get(a) ?? 0),
+  );
+
   return (
     <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-6">
-      {EVENT_CATEGORIES.map((category, i) => {
+      {ordered.map((category, i) => {
         const { Icon, blurb } = CATEGORY_META[category];
         const count = counts.get(category) ?? 0;
         return (

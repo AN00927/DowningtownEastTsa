@@ -28,10 +28,11 @@ import { events, EVENT_CATEGORIES } from "@/data/events";
 import { officers } from "@/data/officers";
 import { site } from "@/data/site";
 
-// PLACEHOLDER slides — we'll pick which photos go where later.
+// Slides 3 and 4 are PLACEHOLDERS — better photos to be picked later.
+// hero-*.jpg files are pre-cropped to exactly 16:10 to fill the frame.
 const slides: Slide[] = [
-  { src: "", alt: "Chapter photo 1 (coming soon)" },
-  { src: "", alt: "Chapter photo 2 (coming soon)" },
+  { src: "/photos/hero-states-group.jpg", alt: "The full Downingtown East TSA chapter at the PA State Leadership Conference" },
+  { src: "/photos/hero-nationals-lineup.jpg", alt: "Chapter members at the TSA National Conference" },
   { src: "", alt: "Chapter photo 3 (coming soon)" },
   { src: "", alt: "Chapter photo 4 (coming soon)" },
 ];
@@ -104,7 +105,8 @@ export default function HomePage() {
       {/* 1. Hero: varsity headline left + photo carousel block right */}
       <section className="relative isolate overflow-hidden bg-deep-navy text-white">
         <DotGrid className="pointer-events-none absolute inset-0 -z-10 h-full w-full" />
-        <Container className="pb-20 pt-16 sm:pb-24 sm:pt-20">
+        {/* Wider container: text starts further left, photo block gets more room. */}
+        <Container className="!max-w-7xl pb-20 pt-16 sm:pb-24 sm:pt-20">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-14">
             {/* Left: welcome copy */}
             <div className="text-center lg:text-left">
@@ -143,10 +145,9 @@ export default function HomePage() {
                 aria-hidden
               />
               <div className="relative overflow-hidden rounded-[6px] border border-white/15 shadow-soft-lg">
-                <Carousel
-                  slides={slides}
-                  heightClass="h-[300px] sm:h-[380px] lg:h-[460px]"
-                />
+                {/* Taller 16:10 rectangle; the hero photos are pre-cropped to
+                    this exact ratio so each fills the frame completely. */}
+                <Carousel slides={slides} heightClass="aspect-[16/10]" />
               </div>
             </div>
           </div>

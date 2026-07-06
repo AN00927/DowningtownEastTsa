@@ -68,17 +68,22 @@ export function SectionHeading({
   title,
   subtitle,
   align = "center",
+  className,
+  titleClassName,
 }: {
   eyebrow?: string;
   title: string;
   subtitle?: string;
   align?: "center" | "left";
+  className?: string;
+  titleClassName?: string;
 }) {
   return (
     <div
       className={cn(
         "mb-12 max-w-2xl",
         align === "center" && "mx-auto text-center",
+        className,
       )}
     >
       {eyebrow && (
@@ -86,7 +91,9 @@ export function SectionHeading({
           <Eyebrow>{eyebrow}</Eyebrow>
         </div>
       )}
-      <h2 className="text-4xl font-bold sm:text-5xl">{title}</h2>
+      <h2 className={cn("text-4xl font-bold sm:text-5xl", titleClassName)}>
+        {title}
+      </h2>
       {subtitle && (
         <p className="mt-4 text-base text-muted-foreground sm:text-lg">{subtitle}</p>
       )}

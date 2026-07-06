@@ -32,7 +32,10 @@ export const prepGuide: ResourceLink = {
 };
 
 export const portfolioExamples: ResourceLink[] = [
-  { title: "Canva Template", description: "A starter template for your documentation portfolio.", href: "#", comingSoon: true },
-  { title: "Example: 2nd Place Nationals", description: "The chapter's Audio Podcasting portfolio that placed 2nd at nationals.", href: "https://docs.google.com/document/d/1YrfJ9uRGBgjZvdhYTv0balTXVTnI6vCOdCK2meU8ff8/edit?usp=sharing" },
-  { title: "Example: 4th Place Nationals", description: "The chapter's Geospatial Technology portfolio that placed 4th at nationals.", href: "https://docs.google.com/document/d/1yJgSqMPoyL9LhzwBEVJOmv6Iuu9Lv62MX6tmnqoAotc/edit?usp=sharing" },
+  { title: "Template (Canva)", description: "A starter template for your documentation portfolio.", href: "#", comingSoon: true },
+  { title: "Example #1: Audio Podcasting", description: "The chapter's Audio Podcasting portfolio that placed 2nd at nationals.", href: "https://drive.google.com/file/d/14clsrY9nLzwVVO4UouAl11SfWYfGI2vw/view?usp=sharing" },
+  { title: "Example #2: Geospatial Technology", description: "The chapter's Geospatial Technology portfolio that placed 4th at nationals.", href: "https://drive.google.com/file/d/1VsIJYlGNc-gkdHmGt6YmODOt2RXulHk2/view?usp=sharing" },
+  { title: "Example #3: Virtual Reality Simulation", description: "The chapter's Virtual Reality Simulation portfolio from the TSA National Conference.", href: "https://drive.google.com/file/d/1BqLBv4M1tvDE5V18W4elMR2PygyBlTWM/view" },
+  { title: "Example #4: Manufacturing Prototype", description: "The chapter's Manufacturing Prototype portfolio from the TSA National Conference.", href: "https://drive.google.com/file/d/1sZTuo_LTf5PRzFtmRRDawXwFm53ZDABK/view?usp=sharing" },
+  { title: "Example #5: Architectural Design", description: "The chapter's Architectural Design portfolio from the TSA National Conference.", href: "https://drive.google.com/file/d/1zl4JahyeexeeAEf4wZ9NwwAyRoTukaQ0/view?usp=sharing" },
 ];

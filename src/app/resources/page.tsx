@@ -94,14 +94,6 @@ function ResourceCard({
 }
 
 export default function ResourcesPage() {
-  // Relabel the portfolio entries to the three requested cards.
-  const [canvaTemplate, secondPlaceExample, fourthPlaceExample] = portfolioExamples;
-  const portfolioCards: { resource: ResourceLink; label: string }[] = [
-    { resource: canvaTemplate, label: "Template (Canva)" },
-    { resource: secondPlaceExample, label: "Example #1: 2nd Place Nationals" },
-    { resource: fourthPlaceExample, label: "Example #2: 4th Place Nationals" },
-  ];
-
   return (
     <>
       <PageHeader
@@ -177,14 +169,16 @@ export default function ResourcesPage() {
             <SectionHeading
               eyebrow="Documentation"
               title="Portfolio Templates + Examples"
-              subtitle="A starting template plus two portfolios that placed at nationals."
+              subtitle="A starting template plus real chapter portfolios from the TSA National Conference."
               align="left"
+              className="max-w-none"
+              titleClassName="sm:whitespace-nowrap"
             />
           </Reveal>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {portfolioCards.map(({ resource, label }, index) => (
-              <Reveal key={label} delay={index * 70}>
-                <ResourceCard resource={resource} label={label} />
+            {portfolioExamples.map((resource, index) => (
+              <Reveal key={resource.title} delay={index * 70}>
+                <ResourceCard resource={resource} />
               </Reveal>
             ))}
           </div>
