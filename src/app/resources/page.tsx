@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Download, ExternalLink, FileText, PlayCircle } from "lucide-react";
+import { Download, ExternalLink, FileText } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
 import { TiltCard } from "@/components/tilt-card";
@@ -95,11 +95,11 @@ function ResourceCard({
 
 export default function ResourcesPage() {
   // Relabel the portfolio entries to the three requested cards.
-  const [canvaTemplate, nationalsExample, statesExample] = portfolioExamples;
+  const [canvaTemplate, secondPlaceExample, fourthPlaceExample] = portfolioExamples;
   const portfolioCards: { resource: ResourceLink; label: string }[] = [
     { resource: canvaTemplate, label: "Template (Canva)" },
-    { resource: nationalsExample, label: "Example #1: 4th Place Nationals" },
-    { resource: statesExample, label: "Example #2: 2nd Place Nationals" },
+    { resource: secondPlaceExample, label: "Example #1: 2nd Place Nationals" },
+    { resource: fourthPlaceExample, label: "Example #2: 4th Place Nationals" },
   ];
 
   return (
@@ -110,7 +110,7 @@ export default function ResourcesPage() {
       />
 
       {/* Featured: all-in-one prep guide (the "mega document") */}
-      <section className="pt-16 sm:pt-20 lg:pt-24">
+      <section className="py-16 sm:py-20 lg:py-24">
         <Container>
           <Reveal>
             <Card className="flex flex-col gap-6 border-l-4 border-l-accent p-7 transition-shadow duration-200 hover:shadow-soft-lg sm:flex-row sm:items-center sm:p-8">
@@ -147,7 +147,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* Quick Links */}
-      <Section>
+      <Section className="border-t bg-muted/40">
         <Container>
           <Reveal>
             <SectionHeading
@@ -171,7 +171,7 @@ export default function ResourcesPage() {
       </Section>
 
       {/* Portfolio Templates + Examples */}
-      <Section>
+      <Section className="border-t">
         <Container>
           <Reveal>
             <SectionHeading
@@ -192,7 +192,7 @@ export default function ResourcesPage() {
       </Section>
 
       {/* YouTube Support */}
-      <Section>
+      <Section className="border-t bg-muted/40">
         <Container>
           <Reveal>
             <SectionHeading
@@ -203,22 +203,15 @@ export default function ResourcesPage() {
             />
           </Reveal>
           <Card className="overflow-hidden p-0">
-            {/*
-              Video placeholder. To embed a real video, replace the
-              placeholder block below with:
-
+            <div className="aspect-video w-full bg-deep-navy">
               <iframe
                 className="h-full w-full"
-                src="https://www.youtube.com/embed/VIDEO_ID"
-                title="Downingtown East TSA support video"
+                src="https://www.youtube.com/embed/zni-rHFt8No"
+                title="DEAST TSA Documentation Portfolio Tutorial"
                 loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
-            */}
-            <div className="flex aspect-video w-full flex-col items-center justify-center gap-3 bg-muted text-muted-foreground">
-              <PlayCircle className="size-12" aria-hidden />
-              <p className="text-sm font-medium">Video embed placeholder</p>
             </div>
             <div className="flex flex-col gap-3 p-6 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-sm text-muted-foreground">

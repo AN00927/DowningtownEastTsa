@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { ExternalLink, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { Container, Eyebrow, Section } from "@/components/ui";
 import { EventBrowser } from "@/components/event-browser";
 import { DotGrid } from "@/components/dot-grid";
@@ -49,14 +50,12 @@ export default function EventsPage() {
                 </p>
               </div>
             </div>
-            <a
+            <Link
               href={site.quizUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex h-11 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-[4px] bg-accent px-6 font-display text-[15px] font-bold uppercase tracking-[0.08em] text-accent-foreground shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-hover"
             >
-              Take the Quiz <ExternalLink className="h-4 w-4" aria-hidden />
-            </a>
+              Take the Quiz <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
           </div>
         </Container>
       </section>

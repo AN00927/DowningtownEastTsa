@@ -21,7 +21,8 @@ export const site = {
   },
 
   // External tools / embeds. TODO: replace the calendar embed with the real one.
-  quizUrl: "https://deast-tsa-personality-quiz.netlify.app/",
+  // The event quiz now runs natively on the site (src/app/quiz).
+  quizUrl: "/quiz",
   calendarEmbedUrl:
     "https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America%2FNew_York",
 

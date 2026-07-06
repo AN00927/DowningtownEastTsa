@@ -78,6 +78,7 @@ export const events: TsaEvent[] = [
   { id: "biotechnology-design", name: "Biotechnology Design", category: "Science & Research", scope: "national", teamMin: 2, teamMax: 6, blurb: "Research and propose a contemporary biotechnology solution.", image: "/events/biotechnology-design.jpg" },
   { id: "data-science-analytics", name: "Data Science and Analytics", category: "Science & Research", scope: "national", teamMin: 1, teamMax: 2, blurb: "Analyze a dataset to address a societal issue and present findings.", image: "/events/data-science-analytics.jpg" },
   { id: "forensic-science", name: "Forensic Science", category: "Science & Research", scope: "national", teamMin: 2, teamMax: 2, blurb: "Analyze and test crime-scene evidence to draw supported conclusions.", image: "/events/forensic-science.jpg" },
+  { id: "geospatial-technology", name: "Geospatial Technology", category: "Science & Research", scope: "national", teamMin: 1, teamMax: 3, blurb: "Interpret geospatial data and build a digital portfolio of maps, data, and findings." },
 
   // --- Media & Communication (incl. podcasting / debate) ------------------
   { id: "audio-podcasting", name: "Audio Podcasting", category: "Media & Communication", scope: "national", teamMin: 1, teamMax: 6, blurb: "Produce an original podcast episode with scripting, recording, and sound design.", image: "/events/audio-podcasting.jpg" },

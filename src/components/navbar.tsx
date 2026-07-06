@@ -56,14 +56,12 @@ export function Navbar() {
         {/* Links: always visible, wrap on small screens (no hamburger) */}
         <ul className="flex flex-wrap items-center gap-1 sm:gap-2">
             <li className="order-last ml-1 hidden md:block">
-              <a
+              <Link
                 href={site.quizUrl}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="inline-flex h-10 cursor-pointer items-center justify-center rounded-[4px] bg-accent px-5 font-display text-sm font-bold uppercase tracking-[0.08em] text-accent-foreground shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-hover"
               >
                 Take the Quiz
-              </a>
+              </Link>
             </li>
             {site.nav.map((item) => {
               const active = isActive(item.href);

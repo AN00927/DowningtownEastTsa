@@ -4,7 +4,6 @@ import {
   ArrowDown,
   ArrowRight,
   Compass,
-  ExternalLink,
   ImageIcon,
   LifeBuoy,
   Trophy,
@@ -128,14 +127,12 @@ export default function HomePage() {
                     Browse Events <ArrowRight className="h-4 w-4" aria-hidden />
                   </ButtonLink>
                 </Magnetic>
-                <a
+                <Link
                   href={site.quizUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="inline-flex h-13 cursor-pointer items-center justify-center gap-2 rounded-[4px] border border-white/25 bg-white/10 px-8 font-display text-base font-bold uppercase tracking-[0.08em] text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/20"
                 >
-                  Take the Quiz <ExternalLink className="h-4 w-4" aria-hidden />
-                </a>
+                  Take the Quiz <ArrowRight className="h-4 w-4" aria-hidden />
+                </Link>
               </div>
             </div>
 
