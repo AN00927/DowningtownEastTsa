@@ -185,8 +185,8 @@ export function QuizExperience() {
         <p className="mt-4 max-w-[58ch] text-muted-foreground">
           Answer {total} quick questions about how you like to think, build,
           and compete. We compare your answers against every event the chapter
-          offers and rank your closest matches — no wrong answers, about two
-          minutes.
+          offers and rank your closest matches. There are no wrong answers,
+          and it takes about two minutes.
         </p>
         <dl className="mt-7 grid grid-cols-3 gap-4 border-t pt-6">
           {[
@@ -224,7 +224,7 @@ export function QuizExperience() {
           )}
         </div>
         <p className="mt-5 text-xs text-muted-foreground">
-          Your answers stay in your browser — nothing is uploaded or shared.
+          Your answers stay in your browser. Nothing is uploaded or shared.
         </p>
       </Card>
     );
@@ -356,7 +356,7 @@ export function QuizExperience() {
         </Card>
       ) : (
         <Card className="mt-10 p-8 text-center text-muted-foreground">
-          No matches found — try retaking the quiz.
+          No matches found. Try retaking the quiz.
         </Card>
       )}
 

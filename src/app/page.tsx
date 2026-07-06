@@ -311,7 +311,7 @@ export default function HomePage() {
                       /* PLACEHOLDER photo slot — photo gets placed later. */
                       <div
                         role="img"
-                        aria-label={`${w.place}, ${w.event} — photo placeholder`}
+                        aria-label={`${w.place}, ${w.event} photo placeholder`}
                         className="dots-pattern flex aspect-[16/9] w-full items-center justify-center bg-deep-navy"
                       >
                         <ImageIcon className="h-9 w-9 text-white/50" aria-hidden />
@@ -360,7 +360,7 @@ export default function HomePage() {
                       /* PLACEHOLDER photo slot — photo gets placed later. */
                       <div
                         role="img"
-                        aria-label={`${w.place}, ${w.event} — photo placeholder`}
+                        aria-label={`${w.place}, ${w.event} photo placeholder`}
                         className="dots-pattern flex aspect-[4/3] w-full items-center justify-center bg-deep-navy"
                       >
                         <ImageIcon className="h-8 w-8 text-white/50" aria-hidden />
