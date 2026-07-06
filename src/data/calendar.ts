@@ -13,7 +13,7 @@ export interface CalendarEvent {
 export const nextCompetition: CalendarEvent = {
   name: "Regional Conference",
   date: "2026-12-05T08:00:00", // PLACEHOLDER. Set the real date/time
-  location: "Location TBA (placeholder)",
+  location: "Coming soon",
 };
 
 // The conferences the homepage clock counts down to (it targets the next one
@@ -22,7 +22,7 @@ export const nextCompetition: CalendarEvent = {
 // schedule when announced (leave location "" to show a "to be announced"
 // placeholder).
 export const conferences: CalendarEvent[] = [
-  { name: "Regional Conference", date: "2026-12-05T08:00:00", location: "Location TBA (placeholder)" },
+  { name: "Regional Conference", date: "2026-12-05T08:00:00", location: "Coming soon" },
   { name: "State Conference", date: "2027-02-19T09:00:00", location: "Seven Springs, PA" },
   { name: "National Conference", date: "2027-06-23T09:00:00", location: "Orlando, FL" },
 ];

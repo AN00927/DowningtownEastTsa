@@ -28,7 +28,7 @@ export const BASE_PROFILE = [3, 3, 3, 3, 3, 3, 3, 3, 3, 0];
 
 export const quizQuestions: QuizQuestion[] = [
   {
-    question: "How do you prefer to spend a rainy day?",
+    question: "Which have you done the most, or which seems the most interesting",
     options: [
       { label: "Sketching ideas for a new invention", modifiers: [0, 0, 0, 0, 2, 1, -1, 0, 0, 0] },
       { label: "Learning a new programming language", modifiers: [0, 0, 0, 3, 0, 0, 0, -1, 0, 0] },
@@ -65,35 +65,33 @@ export const quizQuestions: QuizQuestion[] = [
     ],
   },
   {
-    question: "What sounds like a fun weekend activity?",
+    question: "How do you prefer to work on projects?",
     options: [
-      { label: "Coding a new app with friends", modifiers: [0, 0, 0, 3, 0, 0, 1, -1, 0, 0] },
-      { label: "Tinkering with electronics and circuits", modifiers: [0, 0, 0, 1, 3, -1, 0, 0, 0, 0] },
-      { label: "Creating a mural or street art", modifiers: [0, 0, 0, -2, 0, 3, 2, 0, 0, 0] },
-      { label: "Analyzing data from a personal research project", modifiers: [0, 0, 0, -1, 0, 0, 0, 3, 0, 0] },
+      { label: "I prefer leading and organizing a team", modifiers: [2, 0, 0, 0, 0, 0, 1, 0, 0, 0] },
+      { label: "I like contributing as a reliable team member", modifiers: [1, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+      { label: "I work best independently on my own tasks", modifiers: [-1, 0, 0, 0, 1, 1, 0, 0, 0, 0] },
     ],
   },
   {
-    question: "How comfortable are you with complex problems and solutions?",
+    question: "How do you feel about presenting your work or documenting your process?",
     options: [
-      { label: "I'm excited for a real challenge!", modifiers: [3, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
-      { label: "I'm pretty confident that I can handle something difficult.", modifiers: [2, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
-      { label: "I prefer something a little more familiar.", modifiers: [-2, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
-      { label: "I definitely don't want to do anything too complicated.", modifiers: [-3, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+      { label: "I enjoy presenting and explaining my work to others", modifiers: [1, 0, 0, 0, 0, 0, 2, 0, 0, 0] },
+      { label: "I'm comfortable thoroughly documenting my process", modifiers: [0, 0, 0, 0, 0, 1, 0, 2, 0, 0] },
+      { label: "I prefer hands-on making over presenting or documenting", modifiers: [0, 0, 0, 1, 2, 0, 0, 0, 0, 0] },
     ],
   },
   {
     question: "What's your favorite way to approach a new idea?",
     options: [
-      { label: "Writing out a detailed plan", modifiers: [0, 0, 0, -1, 1, 0, 2, 0, 0, 0] },
-      { label: "Prototyping with available materials", modifiers: [0, 0, 0, 0, 3, 0, -1, 0, 0, 0] },
-      { label: "Developing a code-based solution", modifiers: [0, 0, 0, 3, 0, 0, 0, -1, 0, 0] },
-      { label: "Sketching concepts or wireframes", modifiers: [0, 0, 0, 0, 0, 3, 0, -1, 0, 0] },
-      { label: "Conducting initial research to validate the idea", modifiers: [0, 0, 0, -1, 0, 0, 0, 3, 0, 0] },
+      { label: "Making a detailed plan", modifiers: [0, 0, 0, -1, 1, 0, 2, 0, 0, 0] },
+      { label: "Building a quick prototype", modifiers: [0, 0, 0, 0, 3, 0, -1, 0, 0, 0] },
+      { label: "Writing code to solve it", modifiers: [0, 0, 0, 3, 0, 0, 0, -1, 0, 0] },
+      { label: "Sketching it out visually", modifiers: [0, 0, 0, 0, 0, 3, 0, -1, 0, 0] },
+      { label: "Researching the problem first", modifiers: [0, 0, 0, -1, 0, 0, 0, 3, 0, 0] },
     ],
   },
   {
-    question: "How popular of an event would you prefer to participate in?",
+    question: "How popular of an event would you prefer to participate in? (Keep in mind, some of these are more niche because they are harder)",
     options: [
       { label: "I want to dive into something with lots of competition!", modifiers: [0, 0, 2, 0, 0, 0, 0, 0, 0, 0] },
       { label: "I'm okay with relatively popular events, but nothing too competitive.", modifiers: [0, 0, 1, 0, 0, 0, 0, 0, 0, 0] },
@@ -108,6 +106,8 @@ export const quizQuestions: QuizQuestion[] = [
       { label: "Designing a product prototype", modifiers: [0, 0, 0, 0, 2, 1, 0, -1, 0, 0] },
       { label: "Filming and editing a documentary", modifiers: [0, 0, 0, -1, 0, 0, 3, 2, 0, 0] },
       { label: "Conducting a chemistry experiment", modifiers: [0, 0, 0, 0, 0, 0, -1, 3, 0, 0] },
+      { label: "Building and launching a marketing campaign", modifiers: [0, 0, 0, 0, 0, 2, 2, 1, 0, 0] },
+      { label: "Writing a research paper on a current topic", modifiers: [1, 0, 0, 0, 0, 0, 0, 3, 0, 0] },
     ],
   },
   {
@@ -122,8 +122,16 @@ export const quizQuestions: QuizQuestion[] = [
   {
     question: "Are you open to PA-only events, which only exist at the Pennsylvania conference?",
     options: [
-      { label: "Yes, include PA-only events in my results.", modifiers: [0, 0, 0, 0, 0, 0, 0, 0, 0, 1] },
-      { label: "No, only show me national events.", modifiers: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+      { label: "Yes, include PA-only events in my results. (You can't advance to nationals with these)", modifiers: [0, 0, 0, 0, 0, 0, 0, 0, 0, 1] },
+      { label: "No, only show me national qualifying events", modifiers: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+    ],
+  },
+  {
+    question: "What are your goals for TSA this year?",
+    options: [
+      { label: "I want to win at the highest level \u2014 I\u2019m in it to compete", modifiers: [2, 0, 2, 0, 0, 0, 0, 0, 0, 0] },
+      { label: "I want to learn new skills and build my portfolio", modifiers: [1, 0, 0, 0, 0, 1, 0, 1, 0, 0] },
+      { label: "I\u2019m trying it out to see what TSA is about", modifiers: [-1, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
     ],
   },
 ];

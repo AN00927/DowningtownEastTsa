@@ -44,11 +44,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-/** The official site that publishes this event's rules. */
-function officialSite(event: TsaEvent): { label: string; href: string } {
-  return event.scope === "pa"
-    ? { label: "PA TSA site", href: "https://patsa.org" }
-    : { label: "National TSA site", href: "https://tsaweb.org" };
+function officialSite(): { label: string; href: string } {
+  return {
+    label: "Schoology",
+    href: "https://schoology.dasd.org/group/1292257076/materials#/group/1292257076/materials?f=338016881",
+  };
 }
 
 export default async function EventDetailPage({ params }: Props) {
@@ -66,7 +66,7 @@ export default async function EventDetailPage({ params }: Props) {
     },
   ];
 
-  const rules = officialSite(event);
+  const rules = officialSite();
 
   // Up to 4 other events in the same category, in catalog order.
   const related = events
@@ -115,7 +115,7 @@ export default async function EventDetailPage({ params }: Props) {
               rel="noopener noreferrer"
               className="inline-flex h-11 cursor-pointer items-center justify-center gap-2 rounded-[4px] border border-border bg-card px-6 font-display text-[15px] font-bold uppercase tracking-[0.08em] transition-colors hover:border-accent hover:text-accent"
             >
-              Rules on the {rules.label}
+              Rules on Schoology
               <ExternalLink className="h-4 w-4" aria-hidden />
             </a>
           </div>

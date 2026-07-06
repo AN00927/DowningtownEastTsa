@@ -191,7 +191,7 @@ export function QuizExperience() {
         <dl className="mt-7 grid grid-cols-3 gap-4 border-t pt-6">
           {[
             { value: String(total), label: "Questions" },
-            { value: "~2 min", label: "To finish" },
+            { value: "~2.5 min", label: "To finish" },
             { value: "Top 5", label: "Matches" },
           ].map((s) => (
             <div key={s.label}>

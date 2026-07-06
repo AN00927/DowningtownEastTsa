@@ -21,7 +21,7 @@ export const faq: FaqItem[] = [
   {
     question: "How do competitions work?",
     answer:
-      "You pick your events in the fall and prepare during the year, then compete at the Pennsylvania State Conference in the spring. Top state finishers qualify for the National Conference in the summer.",
+      "You pick your events in the fall and prepare during the year. You first compete at the Regional Conference in December; if you earn enough points (see our point system document), you advance to the Pennsylvania State Conference in the spring. Top state finishers qualify for the National Conference in the summer.",
   },
   {
     question: "Can I compete in more than one event?",
