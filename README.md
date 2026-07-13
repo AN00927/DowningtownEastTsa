@@ -1,17 +1,18 @@
-# Downingtown East TSA Website
+# Downingtown East TSA
 
 The official website for the **Downingtown East High School** chapter of the
-Technology Student Association (TSA). It serves as a resource hub for members to
-explore competitive events, find the right event for them, get prep support,
-read announcements, and contact the chapter.
+Technology Student Association (TSA). It helps members explore competitive
+events, find the event that fits them via a built-in quiz, and get prep support.
 
 ## Tech stack
 
-- **Next.js 15** (App Router)
+- **Next.js 15** (App Router) with **React 19**
 - **TypeScript** (strict mode)
-- **Tailwind CSS v4** (design tokens in `src/app/globals.css`)
-- **next-themes** for light/dark mode (token-based, no hardcoded colors)
+- **Tailwind CSS v4** — design tokens defined in `src/app/globals.css`
 - **lucide-react** for icons
+- **Barlow / Barlow Condensed** self-hosted via `next/font/local` (no runtime
+  dependency on Google Fonts)
+- Single light theme by design ("Competition Bold": navy + scarlet)
 - Path alias `@/*` → `src/*`
 
 ## Running locally
@@ -19,59 +20,89 @@ read announcements, and contact the chapter.
 ```bash
 npm install      # install dependencies
 npm run dev      # start the dev server at http://localhost:3000
-npm run build    # production build (must pass cleanly: TS strict + eslint)
+npm run build    # production build (must pass cleanly: TS strict + ESLint)
 npm run start    # serve the production build
 ```
 
-## Where to edit content
+> Do not run `npm run build` while `npm run dev` is running — they share the
+> `.next/` directory and will corrupt each other's cache. Stop the dev server
+> first.
 
-All site content lives in `src/data/*`. Edit these files, never hardcode
-content in pages:
+## Project structure
+
+```
+src/
+  app/            # App Router routes, layout, global CSS, fonts
+  components/     # Reusable UI + interactive client components
+  data/           # All site content (edit here, never hardcode in pages)
+  lib/            # Small helpers (e.g. cn)
+public/           # Static assets (photos, logo, docs)
+```
+
+### Routes
+
+| Route | Page |
+| --- | --- |
+| `/` | Home — hero, about, event categories, season roadmap, Wall of Fame, FAQ |
+| `/events` | Event browser with search and category/participation filters |
+| `/events/[id]` | Individual event detail pages (generated from the events data) |
+| `/quiz` | Native "Find My Event" quiz |
+| `/resources` | Event Support — rules, prep guides, and portfolio examples |
+| `/team` | Officers and committees |
+
+`robots.ts` and `sitemap.ts` generate `robots.txt` / `sitemap.xml`;
+`not-found.tsx` is the custom 404.
+
+## Editing content
+
+All site content lives in `src/data/*`. Edit these files rather than hardcoding
+content in pages.
 
 | File | Controls |
 | --- | --- |
-| `src/data/site.ts` | School/chapter name, tagline, description, canonical `url`, social links, and the primary navigation. |
-| `src/data/events.ts` | The competitive events list, event categories, and participation/team-size helpers. |
-| `src/data/officers.ts` | Officer roster and advisor info (placeholders, no personal emails). |
-| `src/data/news.ts` | News / announcements (newest first; `slug`, `title`, `date`, `excerpt`, `body`). |
-| `src/data/achievements.ts` | Chapter achievements / awards. |
-| `src/data/faq.ts` | Frequently asked questions. |
-| `src/data/sponsors.ts` | Sponsor list and logos. |
-| `src/data/resources.ts` | Quick links, the prep-guide reference, and portfolio examples. |
-| `src/data/quiz.ts` | "Find My Event" quiz questions, options, and event/category weights. |
-| `src/data/calendar.ts` | Calendar / schedule entries. |
+| `src/data/site.ts` | Chapter name, tagline, description, canonical `url`, social links, and primary navigation. |
+| `src/data/events.ts` | Competitive events catalog and categories; powers `/events` and the quiz. `id` must stay unique and kebab-case. |
+| `src/data/quiz.ts` | "Find My Event" quiz — questions, per-event trait vectors, and matching logic. |
+| `src/data/officers.ts` | Officer roster and committees shown on the Team page. |
+| `src/data/resources.ts` | Event Support links, the prep-guide reference, and portfolio examples. Set `comingSoon: true` to render a link as not-ready. |
+| `src/data/faq.ts` | Homepage FAQ entries. |
+| `src/data/calendar.ts` | Upcoming dates; the homepage countdown targets the next competition (set `date: ""` for none). |
 
-## Replacing placeholders
+## Assets and remaining placeholders
 
-Before launch, swap out the placeholder assets and info:
+Static assets live under `public/`:
 
-- **Photos:** add real images under `public/` and reference them in the relevant
-  data file or page. Placeholder image/avatar slots render via
-  `ImagePlaceholder` / `AvatarPlaceholder` until real images are supplied.
-- **Officer info:** update `src/data/officers.ts` with real names, grades, roles,
-  and photos. Do **not** add personal student emails (see Privacy below).
-- **Prep guide PDF:** replace `public/docs/tsa-prep-guide-placeholder.pdf` with
-  the real prep guide (keep the same path, or update the link in
-  `src/data/resources.ts`).
-- **Sponsor logos:** add logo images to `public/` and reference them in
-  `src/data/sponsors.ts`.
-- **Site URL:** set the real domain in `src/data/site.ts` (`url`) so canonical
-  URLs, the sitemap, and robots.txt are correct.
-- **Social links:** confirm/replace the URLs in `site.socials` (the Schoology
-  link in particular is a placeholder).
+- `public/events/` — per-event photos (see `CREDITS.md` for attribution)
+- `public/photos/` — hero carousel and Wall of Fame photos
+- `public/docs/` — the prep-guide PDF
+- `public/tsa-logo.png` — chapter logo
 
-## Privacy rule
+Before launch, replace these placeholders:
 
-**No student personal emails anywhere on the site.** Visitors contact the
-chapter through the `/contact` form and the chapter's social media channels.
-Officer names, photos, and grades are placeholders until cleared for publication.
+- **Site URL** — set the real domain in `src/data/site.ts` (`url`) so canonical
+  URLs, the sitemap, and robots.txt are correct (currently `deasttsa.example.com`).
+- **Officer photos and bios** — `src/data/officers.ts`. Names and roles are real;
+  photos and bios are optional placeholders (empty `photo` renders an avatar
+  placeholder).
+- **Hero carousel** — slides 3–4 in `src/app/page.tsx` are empty and render a
+  "coming soon" panel until real photos are added.
+- **Prep guide** — replace `public/docs/tsa-prep-guide-placeholder.pdf` (keep the
+  path, or update the link in `src/data/resources.ts`).
+- **Resource links** — any entry marked `comingSoon` or pointing at `#` in
+  `src/data/resources.ts`.
+
+## Privacy
+
+**No student personal emails anywhere on the site.** Visitors reach the chapter
+through its social media channels (Facebook, Instagram, YouTube), configured in
+`site.socials`. There is no contact form.
 
 ## Deploying to Vercel
 
-1. Push this repository to GitHub (or GitLab/Bitbucket).
+1. Push this repository to GitHub.
 2. In [Vercel](https://vercel.com), click **New Project** and import the repo.
-3. Vercel auto-detects Next.js, so no extra config is needed. Keep the default
+3. Vercel auto-detects Next.js — no extra config is needed. Keep the default
    build command (`next build`) and output settings.
 4. Set the production domain, then update `url` in `src/data/site.ts` to match.
-5. Deploy. Pushes to the main branch trigger automatic production deploys;
-   other branches get preview deployments.
+5. Deploy. Pushes to `main` trigger production deploys; other branches get
+   preview deployments.
