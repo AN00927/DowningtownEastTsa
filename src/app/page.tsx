@@ -104,7 +104,9 @@ export default function HomePage() {
     <>
       {/* 1. Hero: varsity headline left + photo carousel block right */}
       <section className="relative isolate overflow-hidden bg-deep-navy text-white">
+        <div className="glow-accent -left-32 top-[-12%] -z-10 h-[520px] w-[520px]" aria-hidden />
         <DotGrid className="pointer-events-none absolute inset-0 -z-10 h-full w-full" />
+        <div className="grain -z-10" aria-hidden />
         {/* Wider container: text starts further left, photo block gets more room. */}
         <Container className="!max-w-7xl pb-20 pt-16 sm:pb-24 sm:pt-20">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-14">
@@ -224,6 +226,7 @@ export default function HomePage() {
       <section className="relative isolate overflow-hidden bg-deep-navy text-white">
         <div className="stripes-accent absolute inset-x-0 top-0 h-2" aria-hidden />
         <DotGrid className="pointer-events-none absolute inset-0 -z-10 h-full w-full" />
+        <div className="grain -z-10" aria-hidden />
         <Container className="py-16 sm:py-20">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div>
@@ -443,6 +446,7 @@ export default function HomePage() {
       {/* 9. Closing CTA */}
       <section className="relative isolate overflow-hidden bg-deep-navy text-white">
         <div className="stripes-accent absolute inset-x-0 top-0 h-2" aria-hidden />
+        <div className="grain -z-10" aria-hidden />
         <Container className="py-16 text-center sm:py-20">
           <Reveal className="flex flex-col items-center">
             <h2 className="max-w-3xl text-balance text-4xl font-bold text-white sm:text-6xl">
