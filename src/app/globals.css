@@ -149,6 +149,27 @@
   -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.55);
 }
 
+/* Fine film grain for tactile depth on dark bands. Decorative: absolutely
+   fills its (positioned) parent, sits behind content, adds subtle tooth so the
+   flat navy reads richer. Pointer-transparent and cheap (a tiled SVG). */
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Soft scarlet bloom used behind hero headlines for layered depth. */
+.glow-accent {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 9999px;
+  background: var(--scarlet);
+  opacity: 0.18;
+  filter: blur(120px);
+}
+
 /* Faint white dot pattern for designed image-placeholder panels. */
 .dots-pattern {
   background-image: radial-gradient(

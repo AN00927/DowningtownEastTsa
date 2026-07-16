@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import {
+  ArrowRight,
   Clapperboard,
   Cog,
   FlaskConical,
@@ -109,35 +110,52 @@ function Segmented({
 }
 
 /**
- * Airy, borderless entry in the spirit of the old chapter site: image slot on
- * top, then the event name with the team size beside it, then the full
- * description. The image is a designed placeholder — photos get placed later.
+ * Event entry as a self-contained block card so each event reads as clearly
+ * separated: designed image panel on top with corner tags (participation +
+ * category), then the event name, a skewed accent rule, the description, and a
+ * "View event" cue. Lifts and borders scarlet on hover, matching the rest of
+ * the site. The image is a designed placeholder — photos get placed later.
  */
 function EventCard({ event }: { event: TsaEvent }) {
   const Icon = CATEGORY_ICONS[event.category];
   return (
     <Link href={`/events/${event.id}`} className="group block h-full">
-      <article className="flex h-full flex-col">
+      <article className="flex h-full flex-col overflow-hidden rounded-[var(--radius-base)] border bg-card shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-soft-lg">
         {/* PLACEHOLDER image slot — we'll pick the right photo per event later. */}
         <div
           role="img"
           aria-label={`${event.name} photo placeholder`}
-          className="dots-pattern flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-2xl bg-deep-navy"
+          className="dots-pattern relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-deep-navy"
         >
-          <Icon className="h-10 w-10 text-white/40" aria-hidden />
-        </div>
-
-        <div className="mt-7 flex items-baseline justify-between gap-4">
-          <h3 className="font-display text-xl font-bold uppercase tracking-[0.14em] text-primary transition-colors group-hover:text-accent sm:text-2xl">
-            {event.name}
-          </h3>
-          <span className="shrink-0 text-sm text-muted-foreground">
+          <Icon
+            className="h-10 w-10 text-white/40 transition-transform duration-500 ease-out group-hover:scale-110"
+            aria-hidden
+          />
+          {/* Participation tag, top-right corner. */}
+          <span className="absolute right-3 top-3 rounded-[3px] border border-white/20 bg-white/10 px-2 py-1 font-display text-xs font-bold uppercase tracking-[0.06em] text-white backdrop-blur">
             {participationTag(event)}
           </span>
         </div>
-        <p className="mt-3 max-w-[46ch] text-base leading-relaxed text-muted-foreground">
-          {event.blurb}
-        </p>
+
+        <div className="flex flex-1 flex-col p-7">
+          <h3 className="font-display text-xl font-bold uppercase tracking-[0.08em] text-primary transition-colors group-hover:text-accent sm:text-2xl">
+            {event.name}
+          </h3>
+          <span
+            className="mt-3 block h-1 w-10 -skew-x-[20deg] bg-accent"
+            aria-hidden
+          />
+          <p className="mt-4 flex-1 text-[15px] leading-relaxed text-muted-foreground">
+            {event.blurb}
+          </p>
+          <span className="mt-6 inline-flex items-center gap-1.5 font-display text-sm font-bold uppercase tracking-[0.08em] text-accent">
+            View event
+            <ArrowRight
+              className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
+              aria-hidden
+            />
+          </span>
+        </div>
       </article>
     </Link>
   );
@@ -181,7 +199,7 @@ function EventGrid({
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-x-14 gap-y-20 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-7 sm:gap-9 md:grid-cols-2 xl:grid-cols-3">
           {events.map((event) => (
             <EventCard key={event.id} event={event} />
           ))}
