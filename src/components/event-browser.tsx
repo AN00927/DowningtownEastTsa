@@ -120,35 +120,40 @@ function EventCard({ event }: { event: TsaEvent }) {
   const Icon = CATEGORY_ICONS[event.category];
   return (
     <Link href={`/events/${event.id}`} className="group block h-full">
-      <article className="flex h-full flex-col overflow-hidden rounded-[var(--radius-base)] border bg-card shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-soft-lg">
+      {/* Compact horizontal row on phones (thumbnail left, text right) so 47
+          cards don't take forever to scroll; full vertical card from sm up. */}
+      <article className="flex h-full flex-row overflow-hidden rounded-[var(--radius-base)] border bg-card shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-soft-lg sm:flex-col">
         {/* PLACEHOLDER image slot — we'll pick the right photo per event later. */}
         <div
           role="img"
           aria-label={`${event.name} photo placeholder`}
-          className="dots-pattern relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden bg-deep-navy"
+          className="dots-pattern relative flex w-24 shrink-0 items-center justify-center overflow-hidden bg-deep-navy sm:aspect-[4/3] sm:w-full"
         >
           <Icon
-            className="h-10 w-10 text-white/40 transition-transform duration-500 ease-out group-hover:scale-110"
+            className="h-8 w-8 text-white/40 transition-transform duration-500 ease-out group-hover:scale-110 sm:h-10 sm:w-10"
             aria-hidden
           />
-          {/* Participation tag, top-right corner. */}
-          <span className="absolute right-3 top-3 rounded-[3px] border border-white/20 bg-white/10 px-2 py-1 font-display text-xs font-bold uppercase tracking-[0.06em] text-white backdrop-blur">
+          {/* Participation tag, top-right corner (sm+ only; shown inline on phones). */}
+          <span className="absolute right-3 top-3 hidden rounded-[3px] border border-white/20 bg-white/10 px-2 py-1 font-display text-xs font-bold uppercase tracking-[0.06em] text-white backdrop-blur sm:inline-block">
             {participationTag(event)}
           </span>
         </div>
 
-        <div className="flex flex-1 flex-col p-7">
-          <h3 className="font-display text-xl font-bold uppercase tracking-[0.08em] text-primary transition-colors group-hover:text-accent sm:text-2xl">
+        <div className="flex flex-1 flex-col p-4 sm:p-7">
+          <h3 className="font-display text-lg font-bold uppercase tracking-[0.06em] text-primary transition-colors group-hover:text-accent sm:text-2xl sm:tracking-[0.08em]">
             {event.name}
           </h3>
+          <span className="mt-0.5 text-xs text-muted-foreground sm:hidden">
+            {participationTag(event)}
+          </span>
           <span
-            className="mt-3 block h-1 w-10 -skew-x-[20deg] bg-accent"
+            className="mt-3 hidden h-1 w-10 -skew-x-[20deg] bg-accent sm:block"
             aria-hidden
           />
-          <p className="mt-4 flex-1 text-[15px] leading-relaxed text-muted-foreground">
+          <p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-muted-foreground sm:mt-4 sm:line-clamp-none sm:text-[15px]">
             {event.blurb}
           </p>
-          <span className="mt-6 inline-flex items-center gap-1.5 font-display text-sm font-bold uppercase tracking-[0.08em] text-accent">
+          <span className="mt-3 inline-flex items-center gap-1.5 font-display text-xs font-bold uppercase tracking-[0.08em] text-accent sm:mt-6 sm:text-sm">
             View event
             <ArrowRight
               className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
@@ -199,7 +204,7 @@ function EventGrid({
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-7 sm:gap-9 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:gap-9 md:grid-cols-2 xl:grid-cols-3">
           {events.map((event) => (
             <EventCard key={event.id} event={event} />
           ))}

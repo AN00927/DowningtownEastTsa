@@ -189,11 +189,11 @@ export default function HomePage() {
           <dl className="mx-auto mt-14 grid max-w-4xl grid-cols-2 gap-6 sm:grid-cols-4">
             {stats.map((s, i) => (
               <Reveal key={s.label} delay={i * 80}>
-                <div className="border-l-4 border-accent bg-card p-6 shadow-soft transition-transform duration-200 hover:-translate-y-1">
-                  <dt className="font-display text-5xl font-bold tabular-nums text-primary sm:text-6xl">
+                <div className="border-l-4 border-accent bg-card p-4 shadow-soft transition-transform duration-200 hover:-translate-y-1 sm:p-6">
+                  <dt className="font-display text-4xl font-bold tabular-nums text-primary sm:text-6xl">
                     <CountUp end={s.end} suffix={s.suffix} />
                   </dt>
-                  <dd className="mt-2 font-display text-sm font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+                  <dd className="mt-2 font-display text-xs font-semibold uppercase tracking-[0.1em] text-muted-foreground sm:text-sm">
                     {s.label}
                   </dd>
                 </div>
@@ -293,8 +293,9 @@ export default function HomePage() {
               National TSA Conference
             </h3>
           </div>
-          {/* Two national wins get the featured treatment: bigger, wider cards. */}
-          <div className="grid gap-6 sm:grid-cols-2">
+          {/* Two national wins get the featured treatment: bigger, wider cards.
+              Phones show them 2-up and compact to keep scrolling short. */}
+          <div className="grid grid-cols-2 gap-3 sm:gap-6">
             {nationalWins.map((w, i) => (
               <Reveal key={w.event} delay={i * 80}>
                 <Card className="group h-full overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-soft-lg">
@@ -321,11 +322,11 @@ export default function HomePage() {
                       </div>
                     )}
                   </div>
-                  <div className="border-t-4 border-accent p-5">
-                    <h4 className="font-display text-2xl font-bold uppercase tracking-[0.02em]">
+                  <div className="border-t-4 border-accent p-3.5 sm:p-5">
+                    <h4 className="font-display text-base font-bold uppercase tracking-[0.02em] sm:text-2xl">
                       {w.event}
                     </h4>
-                    <p className="mt-1 text-sm font-semibold text-accent">
+                    <p className="mt-1 text-xs font-semibold text-accent sm:text-sm">
                       {w.place} &middot; TSA Nationals
                     </p>
                   </div>
@@ -342,8 +343,9 @@ export default function HomePage() {
               PA State Leadership Conference
             </h3>
           </div>
-          {/* Five state wins: one clean row on desktop instead of a 4+1 orphan. */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {/* Five state wins: one clean row on desktop instead of a 4+1 orphan.
+              Phones show them 2-up and compact to keep scrolling short. */}
+          <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3 xl:grid-cols-5">
             {stateWins.map((w, i) => (
               <Reveal key={w.event} delay={i * 80}>
                 <Card className="group h-full overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-soft-lg">
@@ -370,11 +372,11 @@ export default function HomePage() {
                       </div>
                     )}
                   </div>
-                  <div className="border-t-4 border-primary p-5">
-                    <h4 className="font-display text-lg font-bold uppercase tracking-[0.02em]">
+                  <div className="border-t-4 border-primary p-3.5 sm:p-5">
+                    <h4 className="font-display text-base font-bold uppercase tracking-[0.02em] sm:text-lg">
                       {w.event}
                     </h4>
-                    <p className="mt-1 text-sm font-semibold text-primary">
+                    <p className="mt-1 text-xs font-semibold text-primary sm:text-sm">
                       {w.place} &middot; PA States
                     </p>
                   </div>
@@ -401,11 +403,11 @@ export default function HomePage() {
             {explore.map(({ title, description, href, cta, Icon }, i) => (
               <Reveal key={href} delay={i * 90}>
                 <TiltCard>
-                  <Card className="flex h-full flex-col p-7 transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-soft-lg">
-                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-[4px] bg-accent text-white">
-                      <Icon className="h-6 w-6" aria-hidden />
+                  <Card className="flex h-full flex-col p-5 transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-soft-lg sm:p-7">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-[4px] bg-accent text-white sm:h-12 sm:w-12">
+                      <Icon className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden />
                     </span>
-                    <h3 className="mt-5 font-display text-2xl font-bold uppercase tracking-[0.02em]">
+                    <h3 className="mt-4 font-display text-lg font-bold uppercase tracking-[0.02em] sm:mt-5 sm:text-2xl">
                       {title}
                     </h3>
                     <p className="mt-2 flex-1 text-sm text-muted-foreground">
@@ -413,7 +415,7 @@ export default function HomePage() {
                     </p>
                     <Link
                       href={href}
-                      className="mt-6 inline-flex items-center gap-1 font-display text-sm font-bold uppercase tracking-[0.08em] text-accent hover:underline"
+                      className="mt-4 inline-flex items-center gap-1 font-display text-xs font-bold uppercase tracking-[0.08em] text-accent hover:underline sm:mt-6 sm:text-sm"
                     >
                       {cta} <ArrowRight className="h-4 w-4" aria-hidden />
                     </Link>

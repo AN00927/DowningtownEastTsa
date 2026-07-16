@@ -48,14 +48,19 @@ function ResourceCard({
   if (resource.comingSoon) {
     return (
       <TiltCard>
-        <Card className="flex h-full flex-col p-6 opacity-80 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-soft-lg">
-          <div className="flex items-start justify-between gap-3">
-            <h3 className="text-lg font-semibold text-primary">{title}</h3>
+        <Card className="flex h-full flex-col p-4 opacity-80 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-soft-lg sm:p-6">
+          {/* Stacked on phones: badge + title side by side don't fit in the
+              2-up grid, so the badge would bleed past the card edge. */}
+          <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
+            <h3 className="text-base font-semibold text-primary sm:text-lg">
+              {title}
+            </h3>
             <Badge className="shrink-0 border-border bg-muted text-muted-foreground">
               Coming soon
             </Badge>
           </div>
-          <p className="mt-2 text-sm text-muted-foreground">
+          {/* Description hidden on phones to keep the 2-up grid short. */}
+          <p className="mt-2 hidden text-sm text-muted-foreground sm:block">
             {resource.description}
           </p>
         </Card>
@@ -70,21 +75,22 @@ function ResourceCard({
           href={resource.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex h-full flex-col rounded-[var(--radius-base)] p-6"
+          className="flex h-full flex-col rounded-[var(--radius-base)] p-4 sm:p-6"
         >
           <div className="flex items-start justify-between gap-3">
-            <h3 className="text-lg font-semibold text-primary transition-colors group-hover:text-accent">
+            <h3 className="text-base font-semibold text-primary transition-colors group-hover:text-accent sm:text-lg">
               {title}
             </h3>
             <ExternalLink
-              className="size-5 shrink-0 text-muted-foreground"
+              className="size-4 shrink-0 text-muted-foreground sm:size-5"
               aria-hidden
             />
           </div>
-          <p className="mt-2 text-sm text-muted-foreground">
+          {/* Description hidden on phones to keep the 2-up grid short. */}
+          <p className="mt-2 hidden text-sm text-muted-foreground sm:block">
             {resource.description}
           </p>
-          <span className="mt-4 text-sm font-medium text-accent">
+          <span className="mt-auto pt-3 text-sm font-medium text-accent sm:pt-4">
             Open link
           </span>
         </a>
@@ -149,7 +155,7 @@ export default function ResourcesPage() {
               align="left"
             />
           </Reveal>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
             {quickLinks.map((resource, index) => (
               <Reveal key={resource.title} delay={index * 70}>
                 <ResourceCard
@@ -175,7 +181,7 @@ export default function ResourcesPage() {
               titleClassName="lg:whitespace-nowrap"
             />
           </Reveal>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
             {portfolioExamples.map((resource, index) => (
               <Reveal key={resource.title} delay={index * 70}>
                 <ResourceCard resource={resource} />

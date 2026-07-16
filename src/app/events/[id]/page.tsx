@@ -79,17 +79,17 @@ export default async function EventDetailPage({ params }: Props) {
       <Section className="!pt-10 sm:!pt-12">
         <Container className="max-w-3xl">
           {/* At a glance */}
-          <dl className="grid gap-4 sm:grid-cols-3">
+          <dl className="grid gap-2.5 sm:gap-4 sm:grid-cols-3">
             {facts.map(({ Icon, label, value }) => (
               <div
                 key={label}
-                className="rounded-[var(--radius-base)] border border-l-4 border-l-accent bg-card p-4 shadow-soft"
+                className="rounded-[var(--radius-base)] border border-l-4 border-l-accent bg-card p-3 shadow-soft sm:p-4"
               >
                 <dt className="flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground">
                   <Icon className="h-4 w-4 text-accent" aria-hidden />
                   {label}
                 </dt>
-                <dd className="mt-1.5 font-display text-lg font-bold text-primary">
+                <dd className="mt-1 font-display text-base font-bold text-primary sm:mt-1.5 sm:text-lg">
                   {value}
                 </dd>
               </div>
@@ -125,17 +125,17 @@ export default async function EventDetailPage({ params }: Props) {
               <h2 className="text-2xl font-bold">
                 More in {event.category}
               </h2>
-              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              <div className="mt-5 grid gap-3 sm:gap-4 sm:grid-cols-2">
                 {related.map((r) => (
                   <Link key={r.id} href={`/events/${r.id}`} className="group">
-                    <Card className="flex h-full flex-col p-5 transition-all duration-200 group-hover:-translate-y-1 group-hover:border-accent group-hover:shadow-soft-lg">
-                      <h3 className="font-display text-xl font-bold group-hover:text-accent">
+                    <Card className="flex h-full flex-col p-4 transition-all duration-200 group-hover:-translate-y-1 group-hover:border-accent group-hover:shadow-soft-lg sm:p-5">
+                      <h3 className="font-display text-base font-bold group-hover:text-accent sm:text-xl">
                         {r.name}
                       </h3>
-                      <p className="mt-1.5 flex-1 text-sm text-muted-foreground">
+                      <p className="mt-1.5 line-clamp-2 flex-1 text-sm text-muted-foreground sm:line-clamp-none">
                         {r.blurb}
                       </p>
-                      <span className="mt-3 inline-flex items-center gap-1 font-display text-sm font-bold uppercase tracking-[0.08em] text-accent">
+                      <span className="mt-3 inline-flex items-center gap-1 font-display text-xs font-bold uppercase tracking-[0.08em] text-accent sm:text-sm">
                         View event
                         <ArrowRight
                           className="h-4 w-4 transition-transform group-hover:translate-x-1"

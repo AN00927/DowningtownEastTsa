@@ -32,19 +32,19 @@ export function SeasonRoadmap({ conferences }: { conferences: CalendarEvent[] })
           )}
           <div
             className={cn(
-              "flex w-full flex-col rounded-[var(--radius-base)] border bg-card p-6 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-soft-lg",
+              "flex w-full flex-col rounded-[var(--radius-base)] border bg-card p-4 shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-soft-lg sm:p-6",
             )}
           >
-            <span className="font-display text-5xl font-bold leading-none text-accent/25">
+            <span className="font-display text-3xl font-bold leading-none text-accent/25 sm:text-5xl">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <h3 className="mt-3 font-display text-2xl font-bold uppercase tracking-[0.02em]">
+            <h3 className="mt-2 font-display text-lg font-bold uppercase tracking-[0.02em] sm:mt-3 sm:text-2xl">
               {conf.name}
             </h3>
             <p className="mt-2 flex-1 text-sm text-muted-foreground">
               {LEVEL_BLURBS[i] ?? ""}
             </p>
-            <dl className="mt-5 space-y-1.5 border-t pt-4 text-sm">
+            <dl className="mt-4 space-y-1.5 border-t pt-3 text-xs sm:mt-5 sm:pt-4 sm:text-sm">
               <div className="flex items-center gap-2 text-foreground">
                 <CalendarDays className="h-4 w-4 shrink-0 text-accent" aria-hidden />
                 <dt className="sr-only">Date</dt>
