@@ -281,7 +281,7 @@ export function EventBrowser({ events }: { events: TsaEvent[] }) {
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search events"
               aria-label="Search events"
-              className="h-11 w-full rounded-[4px] border border-input bg-card pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-2"
+              className="h-11 w-full rounded-[4px] border border-input bg-card pl-9 pr-3 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-2"
             />
           </div>
           <Segmented value={participation} onChange={setParticipation} />

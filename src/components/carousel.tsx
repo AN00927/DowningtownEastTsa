@@ -138,8 +138,9 @@ export function Carousel({
         <ChevronRight className="h-5 w-5" aria-hidden />
       </button>
 
-      {/* Dots */}
-      <div className="absolute inset-x-0 bottom-4 flex justify-center gap-2.5">
+      {/* Dots. The visual bar is small, so the button carries a taller padded
+          hit area for comfortable touch targets on phones. */}
+      <div className="absolute inset-x-0 bottom-1.5 flex justify-center gap-1.5">
         {slides.map((_, i) => {
           const active = i === index;
           return (
@@ -149,11 +150,17 @@ export function Carousel({
               onClick={() => go(i)}
               aria-label={`Go to slide ${i + 1}`}
               aria-current={active ? "true" : undefined}
-              className={[
-                "h-2 -skew-x-[20deg] cursor-pointer transition-all",
-                active ? "w-8 bg-accent" : "w-3 bg-white/45 hover:bg-white/70",
-              ].join(" ")}
-            />
+              className="group/dot flex h-9 cursor-pointer items-center px-1"
+            >
+              <span
+                className={[
+                  "h-2 -skew-x-[20deg] transition-all",
+                  active
+                    ? "w-8 bg-accent"
+                    : "w-3 bg-white/45 group-hover/dot:bg-white/70",
+                ].join(" ")}
+              />
+            </button>
           );
         })}
       </div>

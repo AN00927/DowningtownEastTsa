@@ -172,7 +172,7 @@ export default function ResourcesPage() {
               subtitle="A starting template plus real chapter portfolios from the TSA National Conference."
               align="left"
               className="max-w-none"
-              titleClassName="sm:whitespace-nowrap"
+              titleClassName="lg:whitespace-nowrap"
             />
           </Reveal>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

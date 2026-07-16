@@ -133,7 +133,7 @@ export function NextCompetitionClock({ conferences }: { conferences: Conf[] }) {
                   {String(u.value).padStart(2, "0")}
                 </span>
               </div>
-              <div className="mt-1.5 font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-white/60 sm:text-xs">
+              <div className="mt-1.5 font-display text-[10px] font-semibold uppercase tracking-[0.06em] text-white/60 sm:text-xs sm:tracking-[0.14em]">
                 {u.label}
               </div>
             </div>
