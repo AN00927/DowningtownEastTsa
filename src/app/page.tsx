@@ -34,7 +34,6 @@ const slides: Slide[] = [
   { src: "/photos/nicephoto.JPG", alt: "Downingtown East TSA chapter group photo" },
   { src: "/photos/hero-states-group.jpg", alt: "The full Downingtown East TSA chapter at the PA State Leadership Conference" },
   { src: "/photos/hero-nationals-lineup.jpg", alt: "Chapter members at the TSA National Conference" },
-  { src: "/photos/TSAStatesDistrictPhoto2025.JPG", alt: "TSA States District photo 2025" },
 ];
 
 // Wall of Fame results. Empty photo = designed placeholder until one is picked.
