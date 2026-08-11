@@ -3,9 +3,12 @@
 import { useEffect, useState } from "react";
 import { MapPin } from "lucide-react";
 
+import { formatConferenceDate } from "@/data/calendar";
+
 interface Conf {
   name: string;
   date: string;
+  endDate?: string;
   location?: string;
 }
 
@@ -40,14 +43,6 @@ function breakdown(targetMs: number, nowMs: number): Parts {
   delta -= minutes * 60_000;
   const seconds = Math.floor(delta / 1000);
   return { months, days, hours, minutes, seconds };
-}
-
-function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
 }
 
 export function NextCompetitionClock({ conferences }: { conferences: Conf[] }) {
@@ -109,7 +104,9 @@ export function NextCompetitionClock({ conferences }: { conferences: Conf[] }) {
       </h2>
       <div className="mt-4 space-y-2">
         <p className="text-lg font-medium text-white/85">
-          {hasDate ? formatDate(next.date) : "Date to be announced"}
+          {hasDate
+            ? formatConferenceDate(next.date, next.endDate)
+            : "Date to be announced"}
         </p>
         <p className="flex items-center gap-2 text-sm text-white/60">
           <MapPin className="h-4 w-4 shrink-0" aria-hidden />

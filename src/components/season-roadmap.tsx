@@ -1,7 +1,7 @@
 // Three-step competition roadmap (Regionals -> States -> Nationals) driven by
 // the conference data. Server component.
 import { CalendarDays, MapPin } from "lucide-react";
-import type { CalendarEvent } from "@/data/calendar";
+import { formatConferenceDate, type CalendarEvent } from "@/data/calendar";
 import { cn } from "@/lib/utils";
 
 const LEVEL_BLURBS = [
@@ -9,14 +9,6 @@ const LEVEL_BLURBS = [
   "Pennsylvania's best chapters go head to head over three days.",
   "Top state finishers advance to the national stage.",
 ];
-
-function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
-}
 
 export function SeasonRoadmap({ conferences }: { conferences: CalendarEvent[] }) {
   return (
@@ -49,7 +41,9 @@ export function SeasonRoadmap({ conferences }: { conferences: CalendarEvent[] })
                 <CalendarDays className="h-4 w-4 shrink-0 text-accent" aria-hidden />
                 <dt className="sr-only">Date</dt>
                 <dd className="font-medium">
-                  {conf.date ? formatDate(conf.date) : "Date to be announced"}
+                  {conf.date
+                    ? formatConferenceDate(conf.date, conf.endDate)
+                    : "Date to be announced"}
                 </dd>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
