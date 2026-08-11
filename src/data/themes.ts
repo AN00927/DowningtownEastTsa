@@ -13,6 +13,11 @@
 // Checked August 2026: the page was still showing the 2025-26 themes (Dragster
 // read "No theme for 2026", Webmaster referenced "the 2026 National TSA
 // Conference"), so every theme below is intentionally still empty.
+//
+// TSA posts each season's themes in the FALL, so check back around October or
+// November 2026. A quick way to tell the page has rolled over: its PDF links
+// currently sit in a ".../themes-and-problems-2025-2026/" folder, and
+// 2026-2027-hs-events-eligibility-charts.pdf 404s. Both flip when it updates.
 // ---------------------------------------------------------------------------
 
 /** The season these themes belong to. Bump this when you paste in new themes. */
