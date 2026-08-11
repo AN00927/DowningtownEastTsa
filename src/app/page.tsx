@@ -234,19 +234,17 @@ export default function HomePage() {
                 <NextCompetitionClock conferences={conferences} />
               </div>
             </div>
-            {/* PLACEHOLDER: swap in a regional conference photo when you have one. */}
-            <div
-              role="img"
-              aria-label="Regional conference photo placeholder"
-              className="flex aspect-[4/3] w-full items-center justify-center rounded-[6px] border border-dashed border-white/25 bg-white/5"
-            >
-              <div className="flex flex-col items-center gap-2 text-white/55">
-                <ImageIcon className="h-9 w-9" aria-hidden />
-                <span className="text-sm font-medium">
-                  Regional conference photo coming soon
-                </span>
-              </div>
-            </div>
+            {/* Region 5 venue. The photo is ~4:3, so the frame crops nothing. */}
+            <figure className="overflow-hidden rounded-[6px] border border-white/15">
+              <Image
+                src="/photos/regionals-stem-academy.jpg"
+                alt="Downingtown STEM Academy, host of the PA-TSA Region 5 conference"
+                width={1200}
+                height={902}
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="aspect-[4/3] w-full object-cover"
+              />
+            </figure>
           </div>
         </Container>
       </section>

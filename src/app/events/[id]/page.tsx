@@ -6,6 +6,7 @@ import {
   ArrowRight,
   ExternalLink,
   Flag,
+  Lightbulb,
   LifeBuoy,
   Tag,
   Users,
@@ -22,6 +23,9 @@ import {
   teamSizeLabel,
   type TsaEvent,
 } from "@/data/events";
+import { themeFor } from "@/data/themes";
+
+const THEMES_URL = "https://tsaweb.org/competitions/themes-and-problems";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -67,6 +71,7 @@ export default async function EventDetailPage({ params }: Props) {
   ];
 
   const rules = officialSite();
+  const theme = themeFor(event.id);
 
   // Up to 4 other events in the same category, in catalog order.
   const related = events
@@ -102,6 +107,34 @@ export default async function EventDetailPage({ params }: Props) {
             This is a short summary. Always check the official TSA rules for the
             full event requirements before you compete.
           </p>
+
+          {/* Annual theme. Only rendered for events TSA sets a theme for --
+              see src/data/themes.ts. */}
+          {theme && (
+            <div className="mt-8 rounded-[var(--radius-base)] border border-l-4 border-l-accent bg-card p-4 shadow-soft sm:p-5">
+              <h2 className="flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.12em] text-muted-foreground">
+                <Lightbulb className="h-4 w-4 text-accent" aria-hidden />
+                {theme.season} Theme
+              </h2>
+              {theme.announced ? (
+                <p className="mt-2 text-base text-foreground">{theme.text}</p>
+              ) : (
+                <p className="mt-2 text-sm text-muted-foreground">
+                  TSA has not released the {theme.season} theme for this event
+                  yet. It will show up here once they do.
+                </p>
+              )}
+              <a
+                href={THEMES_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex items-center gap-1.5 font-display text-xs font-bold uppercase tracking-[0.08em] text-primary hover:text-accent"
+              >
+                Official themes and problems
+                <ExternalLink className="h-3.5 w-3.5" aria-hidden />
+              </a>
+            </div>
+          )}
 
           {/* Next steps */}
           <div className="mt-8 flex flex-wrap gap-3">
