@@ -123,18 +123,26 @@ function EventCard({ event }: { event: TsaEvent }) {
       {/* Compact horizontal row on phones (thumbnail left, text right) so 47
           cards don't take forever to scroll; full vertical card from sm up. */}
       <article className="flex h-full flex-row overflow-hidden rounded-[var(--radius-base)] border bg-card shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-soft-lg sm:flex-col">
-        {/* PLACEHOLDER image slot — we'll pick the right photo per event later. */}
-        <div
-          role="img"
-          aria-label={`${event.name} photo placeholder`}
-          className="dots-pattern relative flex w-24 shrink-0 items-center justify-center overflow-hidden bg-deep-navy sm:aspect-[4/3] sm:w-full"
-        >
-          <Icon
-            className="h-8 w-8 text-white/40 transition-transform duration-500 ease-out group-hover:scale-110 sm:h-10 sm:w-10"
-            aria-hidden
-          />
+        {/* Event photo, or a designed category panel when one is missing. */}
+        <div className="relative w-24 shrink-0 overflow-hidden bg-deep-navy sm:aspect-[4/3] sm:w-full">
+          {event.image ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={event.image}
+              alt=""
+              loading="lazy"
+              className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+            />
+          ) : (
+            <div className="dots-pattern flex h-full w-full items-center justify-center">
+              <Icon
+                className="h-8 w-8 text-white/40 transition-transform duration-500 ease-out group-hover:scale-110 sm:h-10 sm:w-10"
+                aria-hidden
+              />
+            </div>
+          )}
           {/* Participation tag, top-right corner (sm+ only; shown inline on phones). */}
-          <span className="absolute right-3 top-3 hidden rounded-[3px] border border-white/20 bg-white/10 px-2 py-1 font-display text-xs font-bold uppercase tracking-[0.06em] text-white backdrop-blur sm:inline-block">
+          <span className="absolute right-3 top-3 hidden rounded-[3px] border border-white/20 bg-deep-navy/60 px-2 py-1 font-display text-xs font-bold uppercase tracking-[0.06em] text-white backdrop-blur sm:inline-block">
             {participationTag(event)}
           </span>
         </div>

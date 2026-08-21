@@ -48,3 +48,26 @@ Photos on the /events page are Creative Commons licensed. Sources:
 - **flight-endurance**: "Lexington Model Airplane Fly-In Sept 2013 3.jpg" by A Train - CC BY-ND 2.0 - https://www.flickr.com/photos/26424952@N00/9847882436
 - **digital-video-production**: "Film set in the dining room." by ricardodiaz11 - CC BY 2.0 - https://www.flickr.com/photos/41652235@N00/4065908712
 - **technology-problem-solving**: "2012 FIRST Robotics Competition Palmetto Regional" by North Charleston - CC BY-SA 2.0 - https://www.flickr.com/photos/36686551@N06/7020607867
+
+- **artificial-intelligence**: "Neural Net Accelerator Board for China's Artificial Brain" by brewbooks - CC BY-SA 2.0 - https://www.flickr.com/photos/93452909@N00/2349655410
+- **robotics**: "Fllying Fish EV3 Robot" by dluders - CC BY-SA 2.0 - https://www.flickr.com/photos/42988571@N08/16672169445
+- **stem-mass-media**: "National Press Building, Ottawa, Ontario" by Ken Lund - CC BY-SA 2.0 - https://www.flickr.com/photos/75683070@N00/29441532914
+- **childrens-stories**: "Picture Books" by Enokson - CC BY 2.0 - https://www.flickr.com/photos/47823583@N03/4385119849
+
+- **automated-manufacturing-systems**: "gigantic robot arms 14.11.07" by kookalamanza - CC BY 2.0 - https://www.flickr.com/photos/19923675@N07/2022398757
+- **interior-design**: "Trustees room, construction of the McKim Building" by Boston Public Library - CC BY 2.0 - https://www.flickr.com/photos/24029425@N06/2387551929
+- **vlogging**: "Vlogger" by Beegee49 (Thanks for 12m views,account locked - CC BY-ND 2.0 - https://www.flickr.com/photos/66358983@N07/45963505155
+- **stem-mass-media**: "Newseum Interactive Newsrooms" by Mr.TinDC - CC BY-ND 2.0 - https://www.flickr.com/photos/7471115@N08/3810416472
+
+- **artificial-intelligence**: "Churchill Club Top 10 Tech Tech Trends Debate 2013 â I chose Deep Learning / Machine Learning" by jurvetson - CC BY 2.0 - https://www.flickr.com/photos/44124348109@N01/8810446747
+- **interior-design**: "Leila's mood board by Lars Frideen" by jrgd - CC BY 2.0 - https://www.flickr.com/photos/88398397@N00/4776983646
+
+- **artificial-intelligence**: "jsc2010e089924" by NASARobonaut - CC BY 2.0 - https://www.flickr.com/photos/50180177@N07/4691143282
+
+- **automated-manufacturing-systems**: "Tesla Motors Assembly Line" by jurvetson - CC BY 2.0 - https://www.flickr.com/photos/44124348109@N01/6858583426
+- **interior-design**: "Living Room" by Jeremy Levine Design - CC BY 2.0 - https://www.flickr.com/photos/25186605@N04/2888118022
+- **medical-technology**: "Bacteria solution" by kaibara87 - CC BY 2.0 - https://www.flickr.com/photos/34745138@N00/2072160194
+
+- **on-demand-video**: "Steve Irwin, 'Crocodile Hunter'" by dbking - CC BY 2.0 - https://www.flickr.com/photos/65193799@N00/19788289
+
+- **on-demand-video**: "Green screen" by ZapTheDingbat - CC BY 2.0 - https://www.flickr.com/photos/80476901@N00/3028956788
