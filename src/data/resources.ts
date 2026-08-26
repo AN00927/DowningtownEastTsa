@@ -28,7 +28,7 @@ export const prepGuide: ResourceLink = {
 };
 
 export const portfolioExamples: ResourceLink[] = [
-  { title: "Template (Canva)", description: "A starter template for your documentation portfolio.", href: "#", comingSoon: true },
+  { title: "Template (Canva)", description: "A starter template for your documentation portfolio.", href: "https://canva.link/ob595ffw0wqpzsa" },
   { title: "Example #1: Audio Podcasting", description: "The chapter's Audio Podcasting portfolio that placed 2nd at nationals.", href: "https://drive.google.com/file/d/14clsrY9nLzwVVO4UouAl11SfWYfGI2vw/view?usp=sharing" },
   { title: "Example #2: Geospatial Technology", description: "The chapter's Geospatial Technology portfolio that placed 4th at nationals.", href: "https://drive.google.com/file/d/1VsIJYlGNc-gkdHmGt6YmODOt2RXulHk2/view?usp=sharing" },
   { title: "Example #3: Virtual Reality Simulation", description: "The chapter's Virtual Reality Simulation portfolio from the TSA National Conference.", href: "https://drive.google.com/file/d/1BqLBv4M1tvDE5V18W4elMR2PygyBlTWM/view" },
