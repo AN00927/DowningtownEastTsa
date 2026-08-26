@@ -12,7 +12,7 @@ export interface ResourceLink {
 
 export const quickLinks: ResourceLink[] = [
   { title: "Event Matrix Sheet", description: "Read, read, read! See every event in one place.", href: "#", comingSoon: true },
-  { title: "Current Competition Rules", description: "The rules and regulations for this year's events.", href: "https://schoology.dasd.org/group/1292257076/materials#/group/1292257076/materials?f=338016881" },
+  { title: "Current Competition Rules", description: "The rules and regulations for this year's events.", href: "https://drive.google.com/drive/folders/1JiI5r_jGeRLOsyFhgjqsp32m5qyXXAta?usp=drive_link" },
   { title: "Event Change Form", description: "Need to switch events? Fill this out.", href: "#", comingSoon: true },
   { title: "Individual and Team IDs", description: "Important for early submission.", href: "#", comingSoon: true },
   { title: "Pennsylvania TSA Website", description: "Our state TSA website.", href: "https://patsa.org" },
