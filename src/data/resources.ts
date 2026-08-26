@@ -12,23 +12,19 @@ export interface ResourceLink {
 
 export const quickLinks: ResourceLink[] = [
   { title: "Event Matrix Sheet", description: "Read, read, read! See every event in one place.", href: "#", comingSoon: true },
-  { title: "Current Competition Rules", description: "The rules and regulations for this year's events.", href: "#", comingSoon: true },
+  { title: "Current Competition Rules", description: "The rules and regulations for this year's events.", href: "https://schoology.dasd.org/group/1292257076/materials#/group/1292257076/materials?f=338016881" },
   { title: "Event Change Form", description: "Need to switch events? Fill this out.", href: "#", comingSoon: true },
   { title: "Individual and Team IDs", description: "Important for early submission.", href: "#", comingSoon: true },
   { title: "Pennsylvania TSA Website", description: "Our state TSA website.", href: "https://patsa.org" },
   { title: "National TSA Website", description: "The national TSA website.", href: "https://tsaweb.org" },
 ];
 
-// The all-in-one prep guide is a PLACEHOLDER PDF. Replace the file at
-// /public/docs/tsa-prep-guide-placeholder.pdf with the real guide. It should
-// cover how to read the national rules, how to plan for an event, and timelines
-// broken down by category. (Do not invent this content. Link the real doc.)
+// The all-in-one master document the chapter maintains in Google Docs.
 export const prepGuide: ResourceLink = {
-  title: "TSA Prep Guide",
+  title: "TSA Master Document",
   description:
     "One document that walks you through how to read the national rules, how to plan for your event, and the timelines for each category.",
-  href: "/docs/tsa-prep-guide-placeholder.pdf",
-  comingSoon: true,
+  href: "https://docs.google.com/document/d/12mVzRWncu57GdFDWyE2DUXy8j9P1WmOO6otHRT_FNQQ/edit?usp=sharing",
 };
 
 export const portfolioExamples: ResourceLink[] = [

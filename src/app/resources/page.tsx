@@ -120,9 +120,6 @@ export default function ResourcesPage() {
                   <h2 className="text-xl font-bold text-primary">
                     {prepGuide.title}
                   </h2>
-                  <Badge className="border-border bg-muted text-muted-foreground">
-                    Placeholder PDF
-                  </Badge>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">
                   {prepGuide.description}
@@ -137,7 +134,7 @@ export default function ResourcesPage() {
                 className="shrink-0"
               >
                 <Download className="size-4" aria-hidden />
-                Open Guide
+                Open Document
               </ButtonLink>
             </Card>
           </Reveal>
