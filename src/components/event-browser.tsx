@@ -60,7 +60,7 @@ function CategoryPill({
       onClick={onClick}
       aria-pressed={active}
       className={cn(
-        "shrink-0 cursor-pointer whitespace-nowrap rounded-[4px] border px-3.5 py-1.5 font-display text-sm font-semibold uppercase tracking-[0.04em] transition-colors",
+        "inline-flex min-h-11 shrink-0 cursor-pointer items-center whitespace-nowrap rounded-[4px] border px-4 py-1.5 font-display text-sm font-semibold uppercase tracking-[0.04em] transition-colors sm:min-h-0",
         active
           ? "border-accent bg-accent text-accent-foreground"
           : "border-border bg-card text-muted-foreground hover:border-accent/50 hover:text-foreground",
@@ -96,7 +96,7 @@ function Segmented({
           onClick={() => onChange(o.value)}
           aria-pressed={value === o.value}
           className={cn(
-            "cursor-pointer rounded-[4px] px-3 py-1.5 font-display text-sm font-semibold uppercase tracking-[0.04em] transition-colors",
+            "inline-flex min-h-10 cursor-pointer items-center rounded-[4px] px-3.5 py-1.5 font-display text-sm font-semibold uppercase tracking-[0.04em] transition-colors sm:min-h-0",
             value === o.value
               ? "bg-accent text-accent-foreground"
               : "text-muted-foreground hover:bg-muted hover:text-foreground",
@@ -314,7 +314,7 @@ export function EventBrowser({ events }: { events: TsaEvent[] }) {
         <div
           role="group"
           aria-label="Filter by category"
-          className="flex gap-2 overflow-x-auto pb-1"
+          className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:px-0"
         >
           <CategoryPill active={category === "all"} onClick={() => setCategory("all")}>
             All categories

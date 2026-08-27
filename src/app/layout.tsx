@@ -78,7 +78,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${barlow.variable} ${display.variable} flex min-h-screen flex-col`}
+        className={`${barlow.variable} ${display.variable} flex min-h-dvh flex-col`}
       >
         <a
           href="#main"

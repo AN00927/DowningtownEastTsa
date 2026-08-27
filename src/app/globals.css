@@ -294,3 +294,16 @@
     animation: none;
   }
 }
+
+/* --- Mobile / iOS ------------------------------------------------------- */
+/* Kill the grey flash iOS paints over every tapped link and button. */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Safari on iOS ignores `text-wrap: balance` on long headings and can leave a
+   single word stranded; long unbroken strings (URLs, event names) would then
+   push the page wider than the screen. */
+body {
+  overflow-wrap: break-word;
+}
