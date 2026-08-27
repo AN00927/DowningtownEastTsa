@@ -1,27 +1,27 @@
 ﻿# Event card photo credits
 
 Photos on the /events page are Creative Commons licensed. Sources:
-- **animatronics**: supplied by the chapter (verify source/licensing before launch)
-- **architectural-design**: supplied by the chapter (verify source/licensing before launch)
-- **artificial-intelligence**: supplied by the chapter (verify source/licensing before launch)
+- **animatronics**: supplied by the chapter (confirm this is our own photo before launch)
+- **architectural-design**: "painter's house, isfahan, iran october 2007" by seier+seier - CC BY 2.0 - https://www.flickr.com/photos/94852245@N00/2087845614
+- **artificial-intelligence**: "Aldebaran Robotics's Nao humanoid robot on display at AAAI 2010" by jiuguangw - CC BY-SA 2.0 - https://www.flickr.com/photos/32366606@N00/4982411246
 - **audio-podcasting**: "My Podcast Set I" by brainblogger - CC BY 2.0 - https://www.flickr.com/photos/29205886@N08/2743534799
 - **automated-manufacturing-systems**: "Tesla Motors Assembly Line" by jurvetson - CC BY 2.0 - https://www.flickr.com/photos/44124348109@N01/6858583426
 - **battling-bots**: "MICS 2007 (robotics competition) - 120" by Nic's events - CC BY-SA 2.0 - https://www.flickr.com/photos/68457656@N00/468770018
 - **biotechnology-design**: "USAMRUK Malaria Diagnostics and Control Center of Excellence microscopy training - Nigeria, Africa, September 2009" by US Army Africa - CC BY 2.0 - https://www.flickr.com/photos/36281822@N08/4077018383
-- **board-game-design**: supplied by the chapter (verify source/licensing before launch)
-- **cad-architecture**: supplied by the chapter (verify source/licensing before launch)
-- **cad-engineering**: supplied by the chapter (verify source/licensing before launch)
+- **board-game-design**: "Risk - Onyx Edition (Ghosts of board games past)" by derekGavey - CC BY 2.0 - https://www.flickr.com/photos/45170709@N06/5295516326
+- **cad-architecture**: "Future kitchen (gotta love Sketchup!)" by juhansonin - CC BY 2.0 - https://www.flickr.com/photos/38869431@N00/318694405
+- **cad-engineering**: "Pano Head v2 model" by AMagill - CC BY 2.0 - https://www.flickr.com/photos/85473033@N00/25825063
 - **chapter-team**: "Wooden Gavel Desk" by allenallen1910 - CC BY 2.0 - https://www.flickr.com/photos/146141712@N06/33877744525
 - **childrens-stories**: "A mother helps her young child explore a colorful storybook while sitting together in their cozy living room. The child points excitedly at the illustrations" by nenad53 - CC BY 2.0 - https://www.flickr.com/photos/202780880@N02/54513869625
 - **cybersecurity**: "Virus" by Yu. Samoilov - CC BY 2.0 - https://www.flickr.com/photos/110751683@N02/15462325023
-- **data-science-analytics**: supplied by the chapter (verify source/licensing before launch)
+- **data-science-analytics**: "STACKED BAR CHART & MINI MONTHS" by Lauren Manning - CC BY 2.0 - https://www.flickr.com/photos/28541331@N00/5659594100
 - **debating-technological-issues**: "FerMUN: Model UN conference" by ITU Pictures - CC BY 2.0 - https://www.flickr.com/photos/42121221@N07/8364036717
 - **digital-video-production**: "Film set in the dining room." by ricardodiaz11 - CC BY 2.0 - https://www.flickr.com/photos/41652235@N00/4065908712
 - **dragster-design**: "03.18.12-CO2 Dragster Race" by kristinefull - CC BY-SA 2.0 - https://www.flickr.com/photos/63769631@N02/6858260702
 - **drone-challenge**: "Flying personal drone quadcopter" by ackab1 - CC BY-SA 2.0 - https://www.flickr.com/photos/57826643@N08/15899607032
 - **engineering-design**: "Close-up of a 3D printer printing a small toy figure" by Ivan Radic - CC BY 2.0 - https://www.flickr.com/photos/26344495@N05/48537889831
 - **extemporaneous-speech**: "Grant Speaks" by Visible Hand - CC BY 2.0 - https://www.flickr.com/photos/18844496@N00/302930614
-- **fashion-design-technology**: supplied by the chapter (verify source/licensing before launch)
+- **fashion-design-technology**: "Sewing Machine" by tsuacctnt - CC BY 2.0 - https://www.flickr.com/photos/8842985@N03/633158834
 - **flight-endurance**: "Lexington Model Airplane Fly-In Sept 2013 3.jpg" by A Train - CC BY-ND 2.0 - https://www.flickr.com/photos/26424952@N00/9847882436
 - **forensic-science**: "Army uses battlefield forensics to trace explosives" by U.S. Army Combat Capabilities Development Command - CC BY 2.0 - https://www.flickr.com/photos/34402227@N03/8271573853
 - **future-technology-teacher**: "USACE, DoDEA celebrate awesome during Engineers Week 2013" by USACE Europe District - CC BY 2.0 - https://www.flickr.com/photos/34728058@N08/8494453633
@@ -38,7 +38,7 @@ Photos on the /events page are Creative Commons licensed. Sources:
 - **prepared-presentation**: "Stage Mess + Wrong Focus" by juhansonin - CC BY 2.0 - https://www.flickr.com/photos/38869431@N00/4068382276
 - **promotional-design**: "Wiener WerkstÃ¤tte Exhibition poster" by MCAD Library - CC BY 2.0 - https://www.flickr.com/photos/69184488@N06/10349203554
 - **rc-off-road-racing**: "RC car race in Slavkov u Brna" by Debarshi Ray - CC BY-SA 2.0 - https://www.flickr.com/photos/39423133@N04/7804273748
-- **robotics**: supplied by the chapter (verify source/licensing before launch)
+- **robotics**: "MICS 2007 (robotics competition) - 123" by Nic's events - CC BY-SA 2.0 - https://www.flickr.com/photos/68457656@N00/468781489
 - **safety-illustration**: "Canadian Science - TRIUMF cyclotron" by Cargo Cult - CC BY 2.0 - https://www.flickr.com/photos/27119837@N06/7848904956
 - **software-development**: "Programmer's Laptop" by Wallboat - CC CC0 1.0 - https://www.flickr.com/photos/151415985@N06/36819065315
 - **stem-mass-media**: "Newseum Interactive Newsrooms" by Mr.TinDC - CC BY-ND 2.0 - https://www.flickr.com/photos/7471115@N08/3810416472
@@ -46,7 +46,7 @@ Photos on the /events page are Creative Commons licensed. Sources:
 - **technology-bowl**: "Buzzer" by Tim Reckmann  -  a59.de - CC BY 2.0
 - **technology-problem-solving**: "2012 FIRST Robotics Competition Palmetto Regional" by North Charleston - CC BY-SA 2.0 - https://www.flickr.com/photos/36686551@N06/7020607867
 - **transportation-modeling**: "Miniature Art Cars" by 1lenore - CC BY 2.0 - https://www.flickr.com/photos/80522246@N00/2381381671
-- **video-game-design**: supplied by the chapter (verify source/licensing before launch)
-- **vlogging**: supplied by the chapter (verify source/licensing before launch)
-- **vr-simulation**: supplied by the chapter (verify source/licensing before launch)
+- **video-game-design**: "Industry Members Try Out Game Design Students' Games" by vancouverfilmschool - CC BY 2.0 - https://www.flickr.com/photos/38174668@N05/4056079247
+- **vlogging**: "Green screen" by ZapTheDingbat - CC BY 2.0 - https://www.flickr.com/photos/80476901@N00/3028956788
+- **vr-simulation**: "Virtual Reality" by david.lohner - CC0 1.0 - https://www.flickr.com/photos/171116975@N07/46835000225
 - **webmaster**: "HTML PHP Javascript Source Code" by markus spiske - CC CC0 1.0 - https://www.flickr.com/photos/125167502@N02/31906693748
