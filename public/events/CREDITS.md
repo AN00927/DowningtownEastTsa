@@ -14,14 +14,14 @@ Photos on the /events page are Creative Commons licensed. Sources:
 - **chapter-team**: "Wooden Gavel Desk" by allenallen1910 - CC BY 2.0 - https://www.flickr.com/photos/146141712@N06/33877744525
 - **childrens-stories**: "A mother helps her young child explore a colorful storybook while sitting together in their cozy living room. The child points excitedly at the illustrations" by nenad53 - CC BY 2.0 - https://www.flickr.com/photos/202780880@N02/54513869625
 - **cybersecurity**: "Virus" by Yu. Samoilov - CC BY 2.0 - https://www.flickr.com/photos/110751683@N02/15462325023
-- **data-science-analytics**: "HNEC employees discussing the Data Dashboard" by jlevinger - CC BY-SA 2.0 - https://www.flickr.com/photos/39721596@N05/11288410236
+- **data-science-analytics**: supplied by the chapter (verify source/licensing before launch)
 - **debating-technological-issues**: "FerMUN: Model UN conference" by ITU Pictures - CC BY 2.0 - https://www.flickr.com/photos/42121221@N07/8364036717
 - **digital-video-production**: "Film set in the dining room." by ricardodiaz11 - CC BY 2.0 - https://www.flickr.com/photos/41652235@N00/4065908712
 - **dragster-design**: "03.18.12-CO2 Dragster Race" by kristinefull - CC BY-SA 2.0 - https://www.flickr.com/photos/63769631@N02/6858260702
 - **drone-challenge**: "Flying personal drone quadcopter" by ackab1 - CC BY-SA 2.0 - https://www.flickr.com/photos/57826643@N08/15899607032
 - **engineering-design**: "Close-up of a 3D printer printing a small toy figure" by Ivan Radic - CC BY 2.0 - https://www.flickr.com/photos/26344495@N05/48537889831
 - **extemporaneous-speech**: "Grant Speaks" by Visible Hand - CC BY 2.0 - https://www.flickr.com/photos/18844496@N00/302930614
-- **fashion-design-technology**: "Salisbury State High School, Sewing - Brisbane" by Queensland State Archives - CC PDM 1.0 - https://www.flickr.com/photos/60455048@N02/40344735792
+- **fashion-design-technology**: supplied by the chapter (verify source/licensing before launch)
 - **flight-endurance**: "Lexington Model Airplane Fly-In Sept 2013 3.jpg" by A Train - CC BY-ND 2.0 - https://www.flickr.com/photos/26424952@N00/9847882436
 - **forensic-science**: "Army uses battlefield forensics to trace explosives" by U.S. Army Combat Capabilities Development Command - CC BY 2.0 - https://www.flickr.com/photos/34402227@N03/8271573853
 - **future-technology-teacher**: "USACE, DoDEA celebrate awesome during Engineers Week 2013" by USACE Europe District - CC BY 2.0 - https://www.flickr.com/photos/34728058@N08/8494453633
@@ -38,7 +38,7 @@ Photos on the /events page are Creative Commons licensed. Sources:
 - **prepared-presentation**: "Stage Mess + Wrong Focus" by juhansonin - CC BY 2.0 - https://www.flickr.com/photos/38869431@N00/4068382276
 - **promotional-design**: "Wiener WerkstÃ¤tte Exhibition poster" by MCAD Library - CC BY 2.0 - https://www.flickr.com/photos/69184488@N06/10349203554
 - **rc-off-road-racing**: "RC car race in Slavkov u Brna" by Debarshi Ray - CC BY-SA 2.0 - https://www.flickr.com/photos/39423133@N04/7804273748
-- **robotics**: "Fllying Fish EV3 Robot" by dluders - CC BY-SA 2.0 - https://www.flickr.com/photos/42988571@N08/16672169445
+- **robotics**: supplied by the chapter (verify source/licensing before launch)
 - **safety-illustration**: "Canadian Science - TRIUMF cyclotron" by Cargo Cult - CC BY 2.0 - https://www.flickr.com/photos/27119837@N06/7848904956
 - **software-development**: "Programmer's Laptop" by Wallboat - CC CC0 1.0 - https://www.flickr.com/photos/151415985@N06/36819065315
 - **stem-mass-media**: "Newseum Interactive Newsrooms" by Mr.TinDC - CC BY-ND 2.0 - https://www.flickr.com/photos/7471115@N08/3810416472
@@ -46,7 +46,7 @@ Photos on the /events page are Creative Commons licensed. Sources:
 - **technology-bowl**: "Buzzer" by Tim Reckmann  -  a59.de - CC BY 2.0
 - **technology-problem-solving**: "2012 FIRST Robotics Competition Palmetto Regional" by North Charleston - CC BY-SA 2.0 - https://www.flickr.com/photos/36686551@N06/7020607867
 - **transportation-modeling**: "Miniature Art Cars" by 1lenore - CC BY 2.0 - https://www.flickr.com/photos/80522246@N00/2381381671
-- **video-game-design**: "Playstation 3: Sixaxis Wireless Controller" by wÅodi - CC BY-SA 2.0 - https://www.flickr.com/photos/19716902@N00/2490674642
-- **vlogging**: "Vlogger" by Beegee49 (Thanks for 12m views,account locked - CC BY-ND 2.0 - https://www.flickr.com/photos/66358983@N07/45963505155
-- **vr-simulation**: "action-adult-augmented-reality-756439" by toptenalternatives - CC BY 2.0 - https://www.flickr.com/photos/159248733@N04/45977002511
+- **video-game-design**: supplied by the chapter (verify source/licensing before launch)
+- **vlogging**: supplied by the chapter (verify source/licensing before launch)
+- **vr-simulation**: supplied by the chapter (verify source/licensing before launch)
 - **webmaster**: "HTML PHP Javascript Source Code" by markus spiske - CC CC0 1.0 - https://www.flickr.com/photos/125167502@N02/31906693748
