@@ -44,11 +44,22 @@ export const metadata: Metadata = {
     url: site.url,
     siteName: site.chapterName,
     type: "website",
+    // Without this, scrapers pick whatever image they find first on the page,
+    // which was the STEM Academy venue photo from the countdown section.
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 628,
+        alt: `${site.chapterName} members at the TSA National Conference`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.chapterName} | ${site.schoolName}`,
     description: site.description,
+    images: ["/og-image.jpg"],
   },
 };
 

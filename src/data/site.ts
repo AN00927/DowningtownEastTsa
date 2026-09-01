@@ -11,8 +11,9 @@ export const site = {
     "Use this website as a resource to prepare and be successful in your event this year!",
   description:
     "Downingtown East TSA is a club at East where students interested in engineering and related fields can compete in a variety of STEM events. TSA is a national organization created to develop skills in science, technology, engineering, and mathematics (STEM) and business education.",
-  // Used for canonical URLs / Open Graph. TODO: set to your real domain.
-  url: "https://deasttsa.example.com",
+  // Used for canonical URLs / Open Graph. Must match the live domain, or
+  // the sitemap and share previews point somewhere that does not exist.
+  url: "https://deasttsa.org",
 
   socials: {
     facebook: "https://www.facebook.com/profile.php?id=61562208695319",

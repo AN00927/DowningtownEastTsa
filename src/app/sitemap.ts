@@ -3,7 +3,7 @@ import { site } from "@/data/site";
 import { events } from "@/data/events";
 
 // Fixed lastModified so output is deterministic (no Date.now()).
-const lastModified = new Date("2025-09-01");
+const lastModified = new Date("2026-09-01");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = site.nav.map((item) => ({
