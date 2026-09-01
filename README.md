@@ -1,5 +1,7 @@
 # Downingtown East TSA
 
+Live at **<https://deasttsa.org>**.
+
 The website for the Downingtown East High School chapter of the Technology
 Student Association. Members use it to browse competitive events, find an event
 that fits them with the built-in quiz, and get prep resources.
@@ -104,11 +106,10 @@ Static files live under `public/`:
 - `public/photos/` has the hero carousel and Wall of Fame photos
 - `public/photos/officers/` has the officer headshots, cropped square
 - `public/tsa-logo.png` is the chapter logo
+- `public/og-image.jpg` is the link preview card, 1200x628
 
 ## Still to do before launch
 
-- Set the real domain in `src/data/site.ts`. It's still `deasttsa.example.com`,
-  so canonical URLs, the sitemap, and robots.txt all point at nothing.
 - Fill in the resource links still marked `comingSoon` in `resources.ts`: the
   event matrix sheet, the event change form, and the individual and team IDs.
 - `public/docs/tsa-prep-guide-placeholder.pdf` is left over from before the
@@ -127,5 +128,18 @@ through its social accounts (Facebook, Instagram, YouTube), which are set in
 2. In [Vercel](https://vercel.com), pick New Project and import it.
 3. Vercel detects Next.js on its own. Keep the default build command
    (`next build`) and output settings.
-4. Set the production domain, then update `url` in `src/data/site.ts` to match.
+4. The production domain is `deasttsa.org`, and `url` in `src/data/site.ts`
+   already matches it. If the domain ever changes, change both, or the sitemap,
+   robots.txt, and link previews will point at the old one.
 5. Deploy. Pushes to `main` go to production, other branches get preview builds.
+
+### Link previews
+
+`public/og-image.jpg` is what Facebook, iMessage, and Discord show when someone
+shares a link. It is declared in `src/app/layout.tsx`. Without it, scrapers grab
+whatever image happens to be first on the page, which used to mean the STEM
+Academy venue photo showed up as the site's main image.
+
+Previews are cached, so replacing the file is not enough on its own. Run the URL
+through the Facebook Sharing Debugger and press Scrape Again. Other apps expire
+their cache on their own after a day or so.
