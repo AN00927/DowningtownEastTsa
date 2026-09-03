@@ -4,7 +4,6 @@ import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { BackToTop } from "@/components/back-to-top";
-import { ScrollProgress } from "@/components/scroll-progress";
 import { site } from "@/data/site";
 
 // Barlow / Barlow Condensed (latin) are self-hosted in ./fonts so dev and
@@ -101,7 +100,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <ScrollProgress />
         <Navbar />
         <main id="main" className="flex-1">
           {children}
