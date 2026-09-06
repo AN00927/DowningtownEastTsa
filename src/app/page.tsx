@@ -3,9 +3,12 @@ import Link from "next/link";
 import {
   ArrowDown,
   ArrowRight,
+  CalendarClock,
+  ClipboardList,
   Compass,
   ImageIcon,
   LifeBuoy,
+  Sparkles,
   Trophy,
   Users,
 } from "lucide-react";
@@ -13,6 +16,7 @@ import { ButtonLink, Card, Container, Eyebrow, Section } from "@/components/ui";
 import { Carousel, type Slide } from "@/components/carousel";
 import { CategoryGrid } from "@/components/category-grid";
 import { SeasonRoadmap } from "@/components/season-roadmap";
+import { SeasonTimeline } from "@/components/season-timeline";
 import { FaqAccordion } from "@/components/faq";
 import { faq } from "@/data/faq";
 import { NextCompetitionClock } from "@/components/next-competition-clock";
@@ -103,7 +107,6 @@ export default function HomePage() {
     <>
       {/* 1. Hero: varsity headline left + photo carousel block right */}
       <section className="relative isolate overflow-hidden bg-deep-navy text-white">
-        <div className="glow-accent -left-32 top-[-12%] -z-10 h-[520px] w-[520px]" aria-hidden />
         <DotGrid className="pointer-events-none absolute inset-0 -z-10 h-full w-full" />
         <div className="grain -z-10" aria-hidden />
         {/* Wider container: text starts further left, photo block gets more room. */}
@@ -424,8 +427,105 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* 8. FAQ */}
-      <Section>
+      {/* 9. Where do I start: three doors into the site */}
+      <Section className="border-t bg-muted/40">
+        <Container>
+          <Reveal className="mb-12 flex flex-col items-center text-center">
+            <Eyebrow>Start Here</Eyebrow>
+            <h2 className="mt-3 text-4xl font-bold sm:text-5xl">
+              Where do I begin?
+            </h2>
+            <p className="mt-4 max-w-xl text-muted-foreground">
+              Three ways in, depending on where you are right now.
+            </p>
+          </Reveal>
+          <div className="grid gap-5 md:grid-cols-3">
+            {[
+              {
+                icon: Sparkles,
+                title: "I'm new to TSA",
+                body: "Find out what TSA is, what a competition actually looks like, and whether you need experience. You do not.",
+                href: "#faq",
+                cta: "Read the basics",
+              },
+              {
+                icon: Compass,
+                title: "Help me pick an event",
+                body: "Answer a few questions about what you like building and we will point you at the events that fit.",
+                href: "/quiz",
+                cta: "Take the quiz",
+              },
+              {
+                icon: ClipboardList,
+                title: "I know my event",
+                body: "Go straight to the rules, the master document, and portfolio examples from members who placed at nationals.",
+                href: "/resources",
+                cta: "Open resources",
+              },
+            ].map((door, index) => (
+              <Reveal key={door.title} delay={index * 80}>
+                <TiltCard>
+                  <Link href={door.href} className="group block h-full">
+                    <Card className="flex h-full flex-col p-7 transition-all duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-soft-lg">
+                      <span
+                        className="inline-flex size-12 items-center justify-center rounded-[4px] bg-accent/10 text-accent"
+                        aria-hidden
+                      >
+                        <door.icon className="size-6" />
+                      </span>
+                      <h3 className="mt-5 font-display text-xl font-bold uppercase tracking-[0.06em] text-primary transition-colors group-hover:text-accent">
+                        {door.title}
+                      </h3>
+                      <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                        {door.body}
+                      </p>
+                      <span className="mt-6 inline-flex items-center gap-1.5 font-display text-sm font-bold uppercase tracking-[0.08em] text-accent">
+                        {door.cta}
+                        <ArrowRight
+                          className="size-4 transition-transform duration-200 group-hover:translate-x-1"
+                          aria-hidden
+                        />
+                      </span>
+                    </Card>
+                  </Link>
+                </TiltCard>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      {/* 10. Season timeline: the deadlines between the conferences */}
+      <Section className="border-t">
+        <Container className="max-w-3xl">
+          <Reveal className="mb-12 flex flex-col items-center text-center">
+            <Eyebrow>Key Dates</Eyebrow>
+            <h2 className="mt-3 text-4xl font-bold sm:text-5xl">
+              The season, step by step
+            </h2>
+            <p className="mt-4 max-w-xl text-muted-foreground">
+              The Road to Nationals shows the three conferences. These are the
+              deadlines in between, including the ones that end your season if
+              you miss them.
+            </p>
+          </Reveal>
+          <Reveal>
+            <SeasonTimeline />
+          </Reveal>
+          <Reveal>
+            <p className="mt-10 flex items-start gap-2.5 rounded-[6px] border border-dashed px-4 py-3 text-sm text-muted-foreground">
+              <CalendarClock className="mt-0.5 size-4 shrink-0" aria-hidden />
+              <span>
+                PA-TSA publishes exact regional dates and deadlines soon. Check
+                with an officer before relying on any date here.
+              </span>
+            </p>
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* 11. FAQ */}
+      <Section id="faq" className="scroll-mt-24">
         <Container className="max-w-3xl">
           <Reveal className="mb-12 flex flex-col items-center text-center">
             <Eyebrow>FAQ</Eyebrow>
@@ -442,7 +542,7 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* 9. Closing CTA */}
+      {/* 12. Closing CTA */}
       <section className="relative isolate overflow-hidden bg-deep-navy text-white">
         <div className="stripes-accent absolute inset-x-0 top-0 h-2" aria-hidden />
         <div className="grain -z-10" aria-hidden />

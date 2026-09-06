@@ -161,15 +161,6 @@
 }
 
 /* Soft scarlet bloom used behind hero headlines for layered depth. */
-.glow-accent {
-  position: absolute;
-  pointer-events: none;
-  border-radius: 9999px;
-  background: var(--scarlet);
-  opacity: 0.18;
-  filter: blur(120px);
-}
-
 /* Faint white dot pattern for designed image-placeholder panels. */
 .dots-pattern {
   background-image: radial-gradient(

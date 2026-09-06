@@ -5,6 +5,7 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { BackToTop } from "@/components/back-to-top";
 import { site } from "@/data/site";
+import { Analytics } from "@vercel/analytics/next";
 
 // Barlow / Barlow Condensed (latin) are self-hosted in ./fonts so dev and
 // build never depend on Google Fonts being reachable from this machine.
@@ -106,6 +107,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <BackToTop />
+        <Analytics />
       </body>
     </html>
   );

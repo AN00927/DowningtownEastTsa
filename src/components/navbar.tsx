@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { MobileNav } from "@/components/mobile-nav";
 import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
@@ -33,7 +34,7 @@ export function Navbar() {
       <div className="h-[3px] bg-accent" aria-hidden />
       <nav
         aria-label="Primary"
-        className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-3 sm:px-6 lg:px-8"
+        className="mx-auto flex w-full max-w-6xl items-center justify-between gap-x-6 px-4 py-3 sm:px-6 lg:px-8"
       >
         {/* Logo. Save the official TSA logo as /public/tsa-logo.png. */}
         <Link
@@ -53,9 +54,9 @@ export function Navbar() {
           </span>
         </Link>
 
-        {/* Links: always visible, wrap on small screens (no hamburger) */}
-        <ul className="flex flex-wrap items-center gap-1 sm:gap-2">
-            <li className="order-last ml-1 hidden md:block">
+        {/* Links: md and up. Below that the drawer takes over. */}
+        <ul className="hidden flex-wrap items-center gap-1 sm:gap-2 md:flex">
+            <li className="order-last ml-1">
               <Link
                 href={site.quizUrl}
                 className="inline-flex h-10 cursor-pointer items-center justify-center rounded-[4px] bg-accent px-5 font-display text-sm font-bold uppercase tracking-[0.08em] text-accent-foreground shadow-soft transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-hover"
@@ -84,6 +85,8 @@ export function Navbar() {
               );
             })}
         </ul>
+
+        <MobileNav />
       </nav>
     </header>
   );
