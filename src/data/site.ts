@@ -27,6 +27,11 @@ export const site = {
   calendarEmbedUrl:
     "https://calendar.google.com/calendar/embed?src=en.usa%23holiday%40group.v.calendar.google.com&ctz=America%2FNew_York",
 
+  // The national TSA group access code students enter when they affiliate
+  // through iServices. Changes each season, so check it against the advisor's
+  // roster before the fall registration push.
+  groupCode: "WKQK-SKV7-VMCNR",
+
   // Primary navigation. Order = display order. Always-visible top bar.
   nav: [
     { label: "Home", href: "/" },

@@ -17,6 +17,7 @@ import { Carousel, type Slide } from "@/components/carousel";
 import { CategoryGrid } from "@/components/category-grid";
 import { SeasonRoadmap } from "@/components/season-roadmap";
 import { SeasonTimeline } from "@/components/season-timeline";
+import { JoinCode } from "@/components/join-code";
 import { FaqAccordion } from "@/components/faq";
 import { faq } from "@/data/faq";
 import { NextCompetitionClock } from "@/components/next-competition-clock";
@@ -495,7 +496,35 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* 10. Season timeline: the deadlines between the conferences */}
+      {/* 10. Group access code: the one thing a new member has to have */}
+      <section className="relative isolate overflow-hidden border-t bg-deep-navy text-white">
+        <div className="stripes-accent absolute inset-x-0 top-0 h-2" aria-hidden />
+        <div className="grain -z-10" aria-hidden />
+        <Container className="py-14 sm:py-16">
+          <Reveal>
+            <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
+              <Eyebrow tone="light">Joining</Eyebrow>
+              <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
+                Chapter access code
+              </h2>
+              <p className="mt-4 text-white/75">
+                You need this once, when you affiliate with national TSA through
+                iServices. Enter it as the group access code and you will be
+                added to our chapter.
+              </p>
+              <div className="mt-7 w-full">
+                <JoinCode />
+              </div>
+              <p className="mt-5 text-sm text-white/55">
+                Stuck on registration? Grab an officer at a meeting and we will
+                walk you through it.
+              </p>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* 11. Season timeline: the deadlines between the conferences */}
       <Section className="border-t">
         <Container className="max-w-3xl">
           <Reveal className="mb-12 flex flex-col items-center text-center">
@@ -524,7 +553,7 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* 11. FAQ */}
+      {/* 12. FAQ */}
       <Section id="faq" className="scroll-mt-24">
         <Container className="max-w-3xl">
           <Reveal className="mb-12 flex flex-col items-center text-center">
@@ -542,7 +571,7 @@ export default function HomePage() {
         </Container>
       </Section>
 
-      {/* 12. Closing CTA */}
+      {/* 13. Closing CTA */}
       <section className="relative isolate overflow-hidden bg-deep-navy text-white">
         <div className="stripes-accent absolute inset-x-0 top-0 h-2" aria-hidden />
         <div className="grain -z-10" aria-hidden />
