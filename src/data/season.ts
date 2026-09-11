@@ -40,14 +40,14 @@ export const seasonSteps: SeasonStep[] = [
     title: "Join the chapter",
     detail:
       "Come to a meeting, get on the roster, and start looking at events. You do not need to know your event yet.",
-    date: "",
+    date: "September 11, 2026",
   },
   {
     window: "September",
     title: "Register and pick your events",
     detail:
       "Chapter registration goes in through iServices. Choose your events and find your team.",
-    date: "",
+    date: "September 18, 2026",
     critical: true,
   },
   {
@@ -56,14 +56,6 @@ export const seasonSteps: SeasonStep[] = [
     detail:
       "Event lists are final by now. Read your rules, start your portfolio, and get build work underway.",
     date: "",
-  },
-  {
-    window: "December",
-    title: "Regional registration closes",
-    detail:
-      "The last point at which you can be entered for Regionals. It usually closes about two weeks before the conference.",
-    date: "",
-    critical: true,
   },
   {
     window: "January",
