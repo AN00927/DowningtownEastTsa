@@ -1,7 +1,26 @@
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, MapPin } from "lucide-react";
 
-import { seasonSteps } from "@/data/season";
+import { conferences, formatConferenceDate } from "@/data/calendar";
+import { seasonSteps, type SeasonStep } from "@/data/season";
 import { cn } from "@/lib/utils";
+
+/**
+ * Resolve what a step shows for a date. Conference steps read straight from
+ * calendar.ts so there is a single source of truth; everything else uses its
+ * own `date`, which is blank until the chapter confirms it.
+ */
+function resolveDate(step: SeasonStep): { date: string; location?: string } {
+  if (step.conference) {
+    const c = conferences.find((x) => x.name === step.conference);
+    if (c?.date) {
+      return {
+        date: formatConferenceDate(c.date, c.endDate),
+        location: c.location,
+      };
+    }
+  }
+  return { date: step.date };
+}
 
 /**
  * The season as a vertical list of dated steps, so a student can see what is
@@ -42,15 +61,28 @@ export function SeasonTimeline() {
           <p className="mt-1.5 max-w-prose text-sm leading-relaxed text-muted-foreground">
             {step.detail}
           </p>
-          <p className="mt-2 text-sm font-medium text-foreground">
-            {step.date !== "" ? (
-              step.date
-            ) : (
-              <span className="text-muted-foreground">
-                Exact dates announced soon
-              </span>
-            )}
-          </p>
+          {(() => {
+            const { date, location } = resolveDate(step);
+            return (
+              <>
+                <p className="mt-2 text-sm font-medium text-foreground">
+                  {date !== "" ? (
+                    date
+                  ) : (
+                    <span className="text-muted-foreground">
+                      Exact dates announced soon
+                    </span>
+                  )}
+                </p>
+                {location && (
+                  <p className="mt-1 flex items-center gap-1.5 text-sm text-muted-foreground">
+                    <MapPin className="size-3.5 shrink-0" aria-hidden />
+                    {location}
+                  </p>
+                )}
+              </>
+            );
+          })()}
         </li>
       ))}
     </ol>

@@ -23,6 +23,13 @@ export interface SeasonStep {
    * Leave "" until PA-TSA or the chapter confirms it.
    */
   date: string;
+  /**
+   * For the three conferences: the `name` of the matching entry in
+   * calendar.ts. The timeline formats that entry's real date and location, so
+   * conference dates live in exactly one place and the countdown and this
+   * timeline can never disagree. Takes precedence over `date`.
+   */
+  conference?: string;
   /** True for the steps a student can miss and be shut out of competing. */
   critical?: boolean;
 }
@@ -67,11 +74,12 @@ export const seasonSteps: SeasonStep[] = [
     critical: true,
   },
   {
-    window: "January - February",
+    window: "January",
     title: "Regional Conference",
     detail:
       "Every qualifying event runs here. Place well enough and you advance to States.",
     date: "",
+    conference: "Regional Conference",
   },
   {
     window: "February - March",
@@ -87,6 +95,7 @@ export const seasonSteps: SeasonStep[] = [
     detail:
       "Four days at Seven Springs. Top finishers here qualify for the National Conference.",
     date: "",
+    conference: "State Conference",
   },
   {
     window: "June",
@@ -94,5 +103,6 @@ export const seasonSteps: SeasonStep[] = [
     detail:
       "The end of the road for the season, and the reason for all of the above.",
     date: "",
+    conference: "National Conference",
   },
 ];
