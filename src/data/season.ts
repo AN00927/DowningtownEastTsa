@@ -51,7 +51,7 @@ export const seasonSteps: SeasonStep[] = [
     critical: true,
   },
   {
-    window: "October - November",
+    window: "October - December",
     title: "Build and prepare",
     detail:
       "Event lists are final by now. Read your rules, start your portfolio, and get build work underway.",
