@@ -11,7 +11,7 @@ export interface ResourceLink {
 }
 
 export const quickLinks: ResourceLink[] = [
-  { title: "Event Matrix Sheet", description: "Read, read, read! See every event in one place.", href: "#", comingSoon: true },
+  { title: "Event Matrix Sheet", description: "Read, read, read! See every event in one place.", href: "https://docs.google.com/spreadsheets/d/1LujA8mBb6KnGgRgiLvnko_hF2JCtm7rZQYBLj1IHOKE/edit?usp=sharing" },
   { title: "Current Competition Rules", description: "The rules and regulations for this year's events.", href: "https://drive.google.com/drive/folders/1JiI5r_jGeRLOsyFhgjqsp32m5qyXXAta?usp=drive_link" },
   { title: "Event Change Form", description: "Need to switch events? Fill this out.", href: "#", comingSoon: true },
   { title: "Individual and Team IDs", description: "Important for early submission.", href: "#", comingSoon: true },
