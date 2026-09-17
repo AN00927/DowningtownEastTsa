@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { Menu, X } from "lucide-react";
+import { ArrowRight, Facebook, Instagram, Menu, X, Youtube } from "lucide-react";
 import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
@@ -15,22 +15,29 @@ const OPEN_MS = 300;
 const CLOSE_MS = 255;
 const EASE = "cubic-bezier(0.25, 0.46, 0.45, 0.94)";
 
+const SOCIALS = [
+  { href: site.socials.facebook, label: "Facebook", Icon: Facebook },
+  { href: site.socials.instagram, label: "Instagram", Icon: Instagram },
+  { href: site.socials.youtube, label: "YouTube", Icon: Youtube },
+];
+
 const FOCUSABLE =
   'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 /**
- * Phone navigation drawer. Below `md` the header shows a menu button instead
- * of the full link row, which used to wrap onto two lines. Slides in from the
- * right as a modal dialog: focus is trapped inside, background scroll is
- * locked, Escape and the backdrop both close it, and focus returns to the
- * button afterwards.
+ * Phone navigation. Below `md` the header shows a menu button instead of the
+ * full link row, which used to wrap onto two lines. Opens as a full-screen
+ * modal dialog: focus is trapped inside, background scroll is locked, Escape
+ * and the close button both dismiss it, and focus returns to the menu button
+ * afterwards.
  *
- * Hidden entirely from `md` up, where the normal link row takes over.
+ * Full-bleed rather than a side panel, so it reads as a screen of its own
+ * instead of a box floating over the page.
  *
  * The panel is portaled to document.body on purpose. The header it lives in
  * carries `backdrop-blur`, and any element with a backdrop-filter becomes the
  * containing block for its position:fixed descendants. Rendered in place, the
- * drawer sized itself to the header instead of the viewport, which read as a
+ * panel sized itself to the header instead of the viewport, which read as a
  * small scrollable box hanging off the menu button.
  */
 export function MobileNav() {
@@ -57,12 +64,12 @@ export function MobileNav() {
   }, []);
 
   // Close on route change. Clicking a link navigates without unmounting the
-  // header, so without this the drawer would stay open over the new page.
+  // header, so without this the menu would stay open over the new page.
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
-  // Close if the viewport grows past the breakpoint while open. The drawer is
+  // Close if the viewport grows past the breakpoint while open. The menu is
   // display:none from md up, so rotating a phone to landscape would otherwise
   // hide it with the page still scroll-locked.
   useEffect(() => {
@@ -103,8 +110,7 @@ export function MobileNav() {
         return;
       }
       if (e.key !== "Tab" || !panelRef.current) return;
-      const items =
-        panelRef.current.querySelectorAll<HTMLElement>(FOCUSABLE);
+      const items = panelRef.current.querySelectorAll<HTMLElement>(FOCUSABLE);
       if (items.length === 0) return;
       const first = items[0];
       const last = items[items.length - 1];
@@ -139,23 +145,11 @@ export function MobileNav() {
   const duration = reducedMotion ? 0 : open ? OPEN_MS : CLOSE_MS;
   const transition = reducedMotion ? "none" : `${duration}ms ${EASE}`;
 
-  // Backdrop + panel. Portaled to body so neither is trapped by the header's
-  // backdrop-filter containing block.
+  // Portaled to body so the panel is not trapped by the header's
+  // backdrop-filter containing block. It covers the viewport, so there is no
+  // separate backdrop to dim.
   const drawer = (
     <div className="md:hidden">
-      {/* Kept mounted so it can fade both ways. */}
-      <div
-        onClick={close}
-        aria-hidden
-        className={cn(
-          "fixed inset-0 z-[60] bg-deep-navy/60",
-          open ? "opacity-100" : "pointer-events-none opacity-0",
-        )}
-        style={{
-          transition: reducedMotion ? "none" : `opacity ${duration}ms ease-out`,
-        }}
-      />
-
       <div
         id="mobile-nav"
         ref={panelRef}
@@ -166,64 +160,127 @@ export function MobileNav() {
         // tabbable. inert takes them out of the tab order and the a11y tree
         // without unmounting, which would kill the slide-out animation.
         inert={!open}
-        className="fixed inset-y-0 right-0 z-[70] flex h-dvh w-[min(320px,85vw)] flex-col overflow-y-auto bg-deep-navy text-white shadow-soft-lg"
+        className="fixed inset-0 z-[70] flex h-dvh w-screen flex-col overflow-hidden bg-deep-navy text-white"
         style={{
           transform: open ? "translateX(0)" : "translateX(100%)",
           transition: reducedMotion ? "none" : `transform ${transition}`,
-          paddingBottom: "env(safe-area-inset-bottom)",
         }}
       >
-        <div className="flex items-center justify-between border-b border-white/10 px-5 py-3">
-          <span className="font-display text-sm font-bold uppercase tracking-[0.12em] text-white/60">
-            Menu
+        {/* Same textures as the hero and closing bands, so the menu reads as
+            part of the site rather than a generic system sheet.
+
+            All of it lives in its own clipping layer. The bloom is deliberately
+            positioned past the panel edge, and left loose it would extend the
+            panel's scroll height, letting a touch drag pull the whole menu up
+            to reveal dead space below it. */}
+        <div
+          className="pointer-events-none absolute inset-0 overflow-hidden"
+          aria-hidden
+        >
+          <div className="stripes-accent absolute inset-x-0 top-0 h-2" />
+          <div className="dots-pattern absolute inset-0 opacity-40" />
+          <div className="grain" />
+          {/* Scarlet bloom so the field does not read as flat navy. */}
+          <div className="absolute -bottom-24 -left-24 size-72 rounded-full bg-accent opacity-20 blur-[90px]" />
+        </div>
+
+        <div
+          className="relative flex items-center justify-between px-6 pb-4"
+          style={{ paddingTop: "max(1.75rem, env(safe-area-inset-top))" }}
+        >
+          <span className="font-display text-sm font-bold uppercase tracking-[0.14em] text-white/55">
+            Downingtown East TSA
           </span>
           <button
             type="button"
             onClick={close}
             aria-label="Close menu"
-            className="inline-flex size-11 cursor-pointer items-center justify-center rounded-[4px] text-white transition-colors hover:bg-white/10 active:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="-mr-2 inline-flex size-11 cursor-pointer items-center justify-center rounded-[4px] text-white transition-colors hover:bg-white/10 active:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
-            <X className="size-6" aria-hidden />
+            <X className="size-7" aria-hidden />
           </button>
         </div>
 
-        <ul className="flex flex-col px-3 py-4">
-          {site.nav.map((item) => {
-            const active = isActive(item.href);
-            return (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  aria-current={active ? "page" : undefined}
-                  className={cn(
-                    "flex min-h-12 items-center gap-3 rounded-[4px] px-3 font-display text-lg font-bold uppercase tracking-[0.08em] transition-colors",
-                    active
-                      ? "text-accent"
-                      : "text-white/85 hover:bg-white/10 hover:text-white active:bg-white/15",
-                  )}
+        <nav aria-label="Menu" className="relative flex flex-1 items-center">
+          <ul className="flex w-full flex-col gap-1 px-6">
+            {site.nav.map((item, index) => {
+              const active = isActive(item.href);
+              return (
+                <li
+                  key={item.href}
+                  // Staggered entrance, settling just after the panel lands.
+                  // This is what makes it feel considered rather than abrupt.
+                  style={{
+                    opacity: open || reducedMotion ? 1 : 0,
+                    transform:
+                      open || reducedMotion
+                        ? "translateX(0)"
+                        : "translateX(28px)",
+                    transition: reducedMotion
+                      ? "none"
+                      : `opacity 260ms ease-out ${140 + index * 60}ms, transform 360ms ${EASE} ${140 + index * 60}ms`,
+                  }}
                 >
-                  {/* Skewed scarlet marker, same motif as the desktop underline. */}
-                  <span
+                  <Link
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
                     className={cn(
-                      "h-5 w-1 -skew-x-[20deg] bg-accent transition-opacity",
-                      active ? "opacity-100" : "opacity-0",
+                      "flex items-baseline gap-4 rounded-[4px] py-3 transition-colors",
+                      active ? "text-accent" : "text-white hover:text-accent",
                     )}
-                    aria-hidden
-                  />
-                  {item.label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+                  >
+                    <span
+                      className={cn(
+                        "font-display text-xs font-bold tabular-nums tracking-[0.2em] transition-colors",
+                        active ? "text-accent" : "text-white/35",
+                      )}
+                      aria-hidden
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="font-display text-[2.25rem] font-bold uppercase leading-[1.05] tracking-[0.04em]">
+                      {item.label}
+                    </span>
+                    {active && (
+                      <span
+                        className="ml-1 h-2.5 w-2.5 -skew-x-[20deg] self-center bg-accent"
+                        aria-hidden
+                      />
+                    )}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
 
-        <div className="mt-auto border-t border-white/10 p-5">
+        <div
+          className="relative border-t border-white/10 px-6 pt-5"
+          style={{ paddingBottom: "max(1.5rem, env(safe-area-inset-bottom))" }}
+        >
           <Link
             href={site.quizUrl}
-            className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-[4px] bg-accent font-display text-sm font-bold uppercase tracking-[0.08em] text-accent-foreground transition-colors hover:bg-accent-hover active:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="inline-flex h-14 w-full cursor-pointer items-center justify-center gap-2 rounded-[4px] bg-accent font-display text-base font-bold uppercase tracking-[0.1em] text-accent-foreground shadow-soft transition-colors hover:bg-accent-hover active:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             Take the Quiz
+            <ArrowRight className="size-5" aria-hidden />
           </Link>
+
+          <ul className="mt-4 flex items-center justify-center gap-2">
+            {SOCIALS.map(({ href, label, Icon }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="inline-flex size-11 items-center justify-center rounded-[4px] text-white/55 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                >
+                  <Icon className="size-5" aria-hidden />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
