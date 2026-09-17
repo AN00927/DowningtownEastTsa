@@ -1,4 +1,15 @@
 // ---------------------------------------------------------------------------
+// Team sizes verified 2026-09-16 against the official TSA eligibility chart,
+// "2027 & 2028 High School Competitions Eligibility":
+//   tsaweb.org/docs/default-source/competitions/events-eligibility-charts.pdf
+// That chart covers the June 2027 conference, which is the end of this season.
+//
+// Where the chart states only an entry limit and no team size (Audio
+// Podcasting, Biotechnology Design, Children's Stories, Digital Video
+// Production, Manufacturing Prototype, Music Production, On Demand Video,
+// Software Development, Video Game Design, Virtual Reality Simulation), the
+// numbers here come from the event rules, not the chart. Check those against
+// the rulebook before relying on them.
 // Competitive events catalog. Powers /events (search + filters) and /quiz.
 // To add/edit an event, edit an entry below. `id` must stay unique + kebab-case.
 // Descriptions are short summaries. Send members to the official TSA rules
@@ -59,18 +70,18 @@ export function teamSizeLabel(e: TsaEvent): string {
 
 export const events: TsaEvent[] = [
   // --- Creative & Design ---------------------------------------------------
-  { id: "animatronics", name: "Animatronics", category: "Creative & Design", scope: "national", teamMin: 2, teamMax: 6, blurb: "Design and build a mechanical device that uses sound, lights, and movement to tell a story.", image: "/events/animatronics.jpg" },
-  { id: "architectural-design", name: "Architectural Design", category: "Creative & Design", scope: "national", teamMin: 1, teamMax: 6, blurb: "Develop architectural plans and a physical model, then present your design solution.", image: "/events/architectural-design.jpg" },
-  { id: "board-game-design", name: "Board Game Design", category: "Creative & Design", scope: "national", teamMin: 2, teamMax: 6, blurb: "Design, build, and package an original, fully playable board game.", image: "/events/board-game-design.jpg" },
+  { id: "animatronics", name: "Animatronics", category: "Creative & Design", scope: "national", teamMin: 2, teamMax: 3, blurb: "Design and build a mechanical device that uses sound, lights, and movement to tell a story.", image: "/events/animatronics.jpg" },
+  { id: "architectural-design", name: "Architectural Design", category: "Creative & Design", scope: "national", teamMin: 1, teamMax: 4, blurb: "Develop architectural plans and a physical model, then present your design solution.", image: "/events/architectural-design.jpg" },
+  { id: "board-game-design", name: "Board Game Design", category: "Creative & Design", scope: "national", teamMin: 2, teamMax: 4, blurb: "Design, build, and package an original, fully playable board game.", image: "/events/board-game-design.jpg" },
   { id: "childrens-stories", name: "Children's Stories", category: "Creative & Design", scope: "national", teamMin: 1, teamMax: 6, blurb: "Write and illustrate an original children's story with supporting documentation.", image: "/events/childrens-stories.jpg" },
   { id: "fashion-design-technology", name: "Fashion Design and Technology", category: "Creative & Design", scope: "national", teamMin: 2, teamMax: 4, blurb: "Design and create a wearable garment that meets the annual design challenge.", image: "/events/fashion-design-technology.jpg" },
-  { id: "interior-design", name: "Interior Design", category: "Creative & Design", scope: "national", teamMin: 2, teamMax: 2, blurb: "Build color and material design boards that solve the annual interior design challenge.", image: "/events/interior-design.jpg" },
+  { id: "interior-design", name: "Interior Design", category: "Creative & Design", scope: "national", teamMin: 1, teamMax: 2, blurb: "Build color and material design boards that solve the annual interior design challenge.", image: "/events/interior-design.jpg" },
   { id: "music-production", name: "Music Production", category: "Creative & Design", scope: "national", teamMin: 1, teamMax: 6, blurb: "Compose and produce an original musical piece to a given theme.", image: "/events/music-production.jpg" },
   { id: "photographic-technology", name: "Photographic Technology", category: "Creative & Design", scope: "national", teamMin: 1, teamMax: 1, blurb: "Build a portfolio that demonstrates technical and creative imaging expertise.", image: "/events/photographic-technology.jpg" },
   { id: "promotional-design", name: "Promotional Design", category: "Creative & Design", scope: "national", teamMin: 1, teamMax: 1, blurb: "Create a graphic design resource packet that promotes a product or idea.", image: "/events/promotional-design.jpg" },
   { id: "video-game-design", name: "Video Game Design", category: "Creative & Design", scope: "national", teamMin: 2, teamMax: 6, blurb: "Build an E-rated online game that addresses the annual theme.", image: "/events/video-game-design.jpg" },
   { id: "vr-simulation", name: "Virtual Reality Simulation (VR)", category: "Creative & Design", scope: "national", teamMin: 1, teamMax: 6, blurb: "Create a 2 to 3 minute virtual reality simulation that addresses the annual theme.", image: "/events/vr-simulation.jpg" },
-  { id: "webmaster", name: "Webmaster", category: "Creative & Design", scope: "national", teamMin: 2, teamMax: 6, blurb: "Design, build, and launch a website that addresses the annual challenge.", image: "/events/webmaster.jpg" },
+  { id: "webmaster", name: "Webmaster", category: "Creative & Design", scope: "national", teamMin: 1, teamMax: 6, blurb: "Design, build, and launch a website that addresses the annual challenge.", image: "/events/webmaster.jpg" },
 
   // --- Engineering & Technology (incl. computing / robotics) ---------------
   { id: "artificial-intelligence", name: "Artificial Intelligence", category: "Engineering & Technology", scope: "national", teamMin: 2, teamMax: 2, blurb: "Take a test on AI concepts, then solve an on-site problem using generative AI tools.", image: "/events/artificial-intelligence.jpg" },
@@ -80,7 +91,7 @@ export const events: TsaEvent[] = [
   { id: "cybersecurity", name: "Cybersecurity", category: "Engineering & Technology", scope: "national", teamMin: 2, teamMax: 4, blurb: "Identify security breaches through Capture-the-Flag style challenges.", image: "/events/cybersecurity.jpg" },
   { id: "dragster-design", name: "Dragster Design", category: "Engineering & Technology", scope: "national", teamMin: 1, teamMax: 1, blurb: "Design and build a CO2-powered dragster that meets the annual design problem.", image: "/events/dragster-design.jpg" },
   { id: "drone-challenge", name: "Drone Challenge (UAV)", category: "Engineering & Technology", scope: "national", teamMin: 2, teamMax: 6, blurb: "Design, build, and fly an unmanned aerial vehicle through a series of tasks.", image: "/events/drone-challenge.jpg" },
-  { id: "engineering-design", name: "Engineering Design", category: "Engineering & Technology", scope: "national", teamMin: 3, teamMax: 6, blurb: "Engineer a solution to the annual grand-challenge theme and document the process.", image: "/events/engineering-design.jpg" },
+  { id: "engineering-design", name: "Engineering Design", category: "Engineering & Technology", scope: "national", teamMin: 2, teamMax: 4, blurb: "Engineer a solution to the annual grand-challenge theme and document the process.", image: "/events/engineering-design.jpg" },
   { id: "flight-endurance", name: "Flight Endurance", category: "Engineering & Technology", scope: "national", teamMin: 1, teamMax: 1, blurb: "Construct a rubber-band-powered model aircraft for maximum flight time.", image: "/events/flight-endurance.jpg" },
   { id: "hybrid-racer-xl", name: "Hybrid Racer XL", category: "Engineering & Technology", scope: "national", teamMin: 2, teamMax: 4, blurb: "Design, build, and race a dual-powered (solar and battery) model car.", image: "/events/hybrid-racer-xl.jpg" },
   { id: "manufacturing-prototype", name: "Manufacturing Prototype", category: "Engineering & Technology", scope: "national", teamMin: 2, teamMax: 6, blurb: "Fabricate a product using computer-integrated manufacturing processes.", image: "/events/manufacturing-prototype.jpg" },
@@ -102,12 +113,12 @@ export const events: TsaEvent[] = [
   { id: "extemporaneous-speech", name: "Extemporaneous Speech", category: "Media & Communication", scope: "national", teamMin: 1, teamMax: 1, blurb: "Deliver a 3 to 5 minute impromptu speech on a drawn topic.", image: "/events/extemporaneous-speech.jpg" },
   { id: "on-demand-video", name: "On Demand Video", category: "Media & Communication", scope: "national", teamMin: 2, teamMax: 6, blurb: "Create a 60-second film on a surprise theme within 36 hours.", image: "/events/on-demand-video.jpg" },
   { id: "prepared-presentation", name: "Prepared Presentation", category: "Media & Communication", scope: "national", teamMin: 1, teamMax: 1, blurb: "Give a 3 to 5 minute prepared speech on the annual conference theme.", image: "/events/prepared-presentation.jpg" },
-  { id: "stem-mass-media", name: "STEM Mass Media", category: "Media & Communication", scope: "national", teamMin: 2, teamMax: 6, blurb: "Cover the annual news story as a video broadcast, then as a written digital article.", image: "/events/stem-mass-media.jpg" },
+  { id: "stem-mass-media", name: "STEM Mass Media", category: "Media & Communication", scope: "national", teamMin: 2, teamMax: 3, blurb: "Cover the annual news story as a video broadcast, then as a written digital article.", image: "/events/stem-mass-media.jpg" },
   { id: "vlogging", name: "Vlogging", category: "Media & Communication", scope: "national", teamMin: 2, teamMax: 6, blurb: "Create a vlog series that brings the annual technology theme to life.", image: "/events/vlogging.jpg" },
 
   // --- Academic & Leadership -----------------------------------------------
   { id: "chapter-team", name: "Chapter Team", category: "Academic & Competition", scope: "national", teamMin: 6, teamMax: 6, blurb: "Demonstrate parliamentary procedure knowledge through a test and ceremony.", image: "/events/chapter-team.jpg" },
-  { id: "future-technology-teacher", name: "Future Technology Teacher", category: "Academic & Competition", scope: "national", teamMin: 1, teamMax: 1, blurb: "Plan and present a technology lesson as a prospective educator.", image: "/events/future-technology-teacher.jpg" },
+  { id: "future-technology-teacher", name: "Future Technology and Engineering Teacher", category: "Academic & Competition", scope: "national", teamMin: 1, teamMax: 1, blurb: "Plan and present a technology lesson as a prospective educator.", image: "/events/future-technology-teacher.jpg" },
   { id: "technology-bowl", name: "Technology Bowl", category: "Academic & Competition", scope: "national", teamMin: 3, teamMax: 3, blurb: "Compete in an objective test plus a head-to-head quiz on TSA content standards.", image: "/events/technology-bowl.jpg" },
 
   // --- Pennsylvania-only events (PA-TSA Competitive Events 2026 rulebook) ---
