@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Menu, X } from "lucide-react";
 import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
@@ -25,15 +26,25 @@ const FOCUSABLE =
  * button afterwards.
  *
  * Hidden entirely from `md` up, where the normal link row takes over.
+ *
+ * The panel is portaled to document.body on purpose. The header it lives in
+ * carries `backdrop-blur`, and any element with a backdrop-filter becomes the
+ * containing block for its position:fixed descendants. Rendered in place, the
+ * drawer sized itself to the header instead of the viewport, which read as a
+ * small scrollable box hanging off the menu button.
  */
 export function MobileNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
   const close = useCallback(() => setOpen(false), []);
+
+  // The portal target only exists in the browser.
+  useEffect(() => setMounted(true), []);
 
   // Read once on mount rather than during render: matchMedia does not exist
   // while prerendering, and reading it in useState would break hydration.
@@ -128,21 +139,11 @@ export function MobileNav() {
   const duration = reducedMotion ? 0 : open ? OPEN_MS : CLOSE_MS;
   const transition = reducedMotion ? "none" : `${duration}ms ${EASE}`;
 
-  return (
+  // Backdrop + panel. Portaled to body so neither is trapped by the header's
+  // backdrop-filter containing block.
+  const drawer = (
     <div className="md:hidden">
-      <button
-        ref={triggerRef}
-        type="button"
-        onClick={() => setOpen(true)}
-        aria-label="Open menu"
-        aria-controls="mobile-nav"
-        aria-expanded={open}
-        className="inline-flex size-11 cursor-pointer items-center justify-center rounded-[4px] text-primary transition-colors hover:bg-muted active:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-      >
-        <Menu className="size-6" aria-hidden />
-      </button>
-
-      {/* Backdrop. Kept mounted so it can fade both ways. */}
+      {/* Kept mounted so it can fade both ways. */}
       <div
         onClick={close}
         aria-hidden
@@ -150,7 +151,9 @@ export function MobileNav() {
           "fixed inset-0 z-[60] bg-deep-navy/60",
           open ? "opacity-100" : "pointer-events-none opacity-0",
         )}
-        style={{ transition: reducedMotion ? "none" : `opacity ${duration}ms ease-out` }}
+        style={{
+          transition: reducedMotion ? "none" : `opacity ${duration}ms ease-out`,
+        }}
       />
 
       <div
@@ -163,7 +166,7 @@ export function MobileNav() {
         // tabbable. inert takes them out of the tab order and the a11y tree
         // without unmounting, which would kill the slide-out animation.
         inert={!open}
-        className="fixed inset-y-0 right-0 z-[70] flex w-[min(320px,85vw)] flex-col overflow-y-auto bg-deep-navy text-white shadow-soft-lg"
+        className="fixed inset-y-0 right-0 z-[70] flex h-dvh w-[min(320px,85vw)] flex-col overflow-y-auto bg-deep-navy text-white shadow-soft-lg"
         style={{
           transform: open ? "translateX(0)" : "translateX(100%)",
           transition: reducedMotion ? "none" : `transform ${transition}`,
@@ -224,5 +227,24 @@ export function MobileNav() {
         </div>
       </div>
     </div>
+  );
+
+  return (
+    <>
+      <div className="md:hidden">
+        <button
+          ref={triggerRef}
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label="Open menu"
+          aria-controls="mobile-nav"
+          aria-expanded={open}
+          className="inline-flex size-11 cursor-pointer items-center justify-center rounded-[4px] text-primary transition-colors hover:bg-muted active:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >
+          <Menu className="size-6" aria-hidden />
+        </button>
+      </div>
+      {mounted && createPortal(drawer, document.body)}
+    </>
   );
 }
