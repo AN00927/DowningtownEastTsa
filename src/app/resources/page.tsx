@@ -24,13 +24,12 @@ export const metadata: Metadata = {
   title: "Resources",
 };
 
-// Clear, real labels for the six quick links (matched in data order). The old
-// site just shouted "READ! READ! READ!"; these say what each link actually is.
+// Clear, real labels for the quick links (matched in data order, so this array
+// and `quickLinks` have to stay the same length). The old site just shouted
+// "READ! READ! READ!"; these say what each link actually is.
 const quickLinkLabels = [
   "Event Matrix",
   "Competition Rules",
-  "Event Change Form",
-  "Team IDs",
   "PA TSA site",
   "National TSA site",
 ];
@@ -75,22 +74,21 @@ function ResourceCard({
           href={resource.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex h-full flex-col rounded-[var(--radius-base)] p-4 sm:p-6"
+          className="flex h-full flex-col rounded-[var(--radius-base)] p-6 sm:p-8"
         >
           <div className="flex items-start justify-between gap-3">
-            <h3 className="text-base font-semibold text-primary transition-colors group-hover:text-accent sm:text-lg">
+            <h3 className="text-lg font-semibold text-primary transition-colors group-hover:text-accent sm:text-xl">
               {title}
             </h3>
             <ExternalLink
-              className="size-4 shrink-0 text-muted-foreground sm:size-5"
+              className="size-5 shrink-0 text-muted-foreground"
               aria-hidden
             />
           </div>
-          {/* Description hidden on phones to keep the 2-up grid short. */}
-          <p className="mt-2 hidden text-sm text-muted-foreground sm:block">
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
             {resource.description}
           </p>
-          <span className="mt-auto pt-3 text-sm font-medium text-accent sm:pt-4">
+          <span className="mt-auto pt-5 text-sm font-medium text-accent">
             Open link
           </span>
         </a>
@@ -152,7 +150,7 @@ export default function ResourcesPage() {
               align="left"
             />
           </Reveal>
-          <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
             {quickLinks.map((resource, index) => (
               <Reveal key={resource.title} delay={index * 70}>
                 <ResourceCard
